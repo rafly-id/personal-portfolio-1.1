@@ -1,17 +1,12 @@
 import type { Metadata } from "next";
-import { Oswald, Roboto } from "next/font/google";
+import { Roboto } from "next/font/google";
 import "@/styles/globals.css";
-
-const oswald = Oswald({
-  variable: "--font-oswald",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
+import Navbar from "@/components/common/Navbar";
 
 const roboto = Roboto({
   variable: "--font-roboto",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "700"],
+  weight: ["200", "400", "700", "900"],
 });
 
 export const metadata: Metadata = {
@@ -58,11 +53,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${oswald.variable} ${roboto.variable} antialiased`}
-    >
-      <body>{children}</body>
+    <html lang="en" className={`${roboto.variable} antialiased`}>
+      <body>
+        <Navbar />
+        {children}
+      </body>
     </html>
   );
 }
