@@ -12,6 +12,7 @@
   --color-foreground: var(--foreground);
   --color-secondary: var(--secondary);
   --font-sans: var(--font-roboto);
+  --font-oswald: var(--font-oswald);
 }
 
 @layer base {

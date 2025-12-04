@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
+import { Roboto, Oswald } from "next/font/google";
 import "@/styles/globals.css";
 import Navbar from "@/components/common/Navbar";
 
@@ -7,6 +7,12 @@ const roboto = Roboto({
   variable: "--font-roboto",
   subsets: ["latin"],
   weight: ["200", "400", "700", "900"],
+});
+
+const oswald = Oswald({
+  variable: "--font-oswald",
+  subsets: ["latin"],
+  weight: ["200", "400", "700"],
 });
 
 export const metadata: Metadata = {
@@ -53,7 +59,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${roboto.variable} antialiased`}>
+    <html
+      lang="en"
+      className={`${roboto.variable} ${oswald.variable} antialiased`}
+    >
       <body>
         <Navbar />
         {children}

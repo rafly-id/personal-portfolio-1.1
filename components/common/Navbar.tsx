@@ -77,12 +77,12 @@ const Navbar = () => {
 
       <div
         ref={menuRef}
-        className="fixed top-0 left-0 w-full h-screen bg-secondary flex justify-center items-center text-center"
+        className="fixed top-0 left-0 w-full h-screen bg-secondary flex md:justify-center items-center md:text-center font-oswald"
         style={{
           transform: "translateY(-100%)",
         }}
       >
-        <div className="flex flex-col gap-3 text-3xl md:text-8xl font-bold uppercase">
+        <div className="flex flex-col gap-3 text-8xl font-bold uppercase ml-5 md:ml-0">
           {["Home", "About", "Work", "Contact"].map((item, index) => (
             <Link
               key={item}
