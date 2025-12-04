@@ -34,7 +34,7 @@ const CardWork = ({
         rel="noopener noreferrer"
         className="block"
       >
-        <ParallaxImage src={imageSrc} alt={imageAlt} />
+        <ParallaxImage src={imageSrc} alt={imageAlt} enableReveal={true} />
       </a>
 
       <CardHeader className="text-center font-bold text-4xl uppercase font-oswald">

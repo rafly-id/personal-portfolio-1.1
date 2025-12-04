@@ -10,16 +10,21 @@ gsap.registerPlugin(ScrollTrigger);
 interface ParallaxImageProps {
   src: string;
   alt: string;
+  enableReveal?: boolean;
 }
 
-const ParallaxImage = ({ src, alt }: ParallaxImageProps) => {
+const ParallaxImage = ({
+  src,
+  alt,
+  enableReveal = false,
+}: ParallaxImageProps) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const imageRef = useRef<HTMLImageElement | null>(null);
 
   useLayoutEffect(() => {
     if (!containerRef.current || !imageRef.current) return;
 
-    const tl = gsap.to(imageRef.current, {
+    const parallax = gsap.to(imageRef.current, {
       yPercent: 25,
       ease: "none",
       scrollTrigger: {
@@ -30,8 +35,30 @@ const ParallaxImage = ({ src, alt }: ParallaxImageProps) => {
       },
     });
 
+    if (!enableReveal) return;
+
+    const reveal = gsap.fromTo(
+      imageRef.current,
+      {
+        autoAlpha: 0,
+        clipPath: "inset(100% 0% 0% 0%)",
+      },
+      {
+        autoAlpha: 1,
+        clipPath: "inset(0% 0% 0% 0%)",
+        ease: "power3.out",
+        duration: 2,
+        scrollTrigger: {
+          trigger: imageRef.current,
+          start: "top 85%",
+          toggleActions: "play none none none",
+        },
+      }
+    );
+
     return () => {
-      tl.kill();
+      parallax.kill();
+      reveal.kill();
     };
   }, []);
 
