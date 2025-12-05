@@ -25,7 +25,8 @@ const ParallaxImage = ({
     if (!containerRef.current || !imageRef.current) return;
 
     const parallax = gsap.to(imageRef.current, {
-      yPercent: 25,
+      yPercent: 30,
+      scale: 1.2,
       ease: "none",
       scrollTrigger: {
         trigger: containerRef.current,
@@ -65,7 +66,7 @@ const ParallaxImage = ({
   return (
     <div
       ref={containerRef}
-      className="relative w-auto h-[500px] md:h-[650px] overflow-hidden"
+      className="relative w-auto h-[500px] md:h-[750px] overflow-hidden"
     >
       <Image
         ref={imageRef}
@@ -73,6 +74,7 @@ const ParallaxImage = ({
         alt={alt}
         fill
         className="object-cover grayscale"
+        loading="eager"
       />
     </div>
   );

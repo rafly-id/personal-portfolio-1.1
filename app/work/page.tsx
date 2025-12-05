@@ -1,4 +1,4 @@
-import CardWork from "./components/CardWork";
+import CardWork from "../../components/common/CardWork";
 import Title from "@/components/common/Title";
 
 const Work = () => {
