@@ -8,6 +8,7 @@ import {
 
 import TextReveal from "@/components/animations/TextReveal";
 import ParallaxImage from "@/components/animations/ParalaxImages";
+import ButtonCTA from "./ButtonCTA";
 
 interface CardWorkProps {
   imageSrc: string;
@@ -37,7 +38,7 @@ const CardWork = ({
         <ParallaxImage src={imageSrc} alt={imageAlt} enableReveal={true} />
       </a>
 
-      <CardHeader className="text-center font-bold text-4xl uppercase font-oswald">
+      <CardHeader className="text-center font-bold text-3xl md:text-4xl uppercase font-oswald">
         <CardTitle>
           <TextReveal text={title} y={150} duration={0.5} delay={0} />
         </CardTitle>
@@ -47,14 +48,11 @@ const CardWork = ({
         <CardDescription className="font-bold">
           <TextReveal text={tech.join(", ")} y={150} duration={0.5} delay={0} />
           {github && (
-            <a href={github} target="_blank" rel="noopener noreferrer">
-              <TextReveal
-                text="See on GitHub"
-                y={150}
-                duration={0.5}
-                delay={0}
-              />
-            </a>
+            <ButtonCTA
+              link={github}
+              text="See on GitHub"
+              className="text-xl p-2 md:p-5 my-2 md:my-5"
+            />
           )}
         </CardDescription>
       </CardContent>

@@ -42,7 +42,7 @@ export default function ScrollVelocity({
       let scrollVel = 0;
       let lastY = window.scrollY;
 
-      ScrollTrigger.create({
+      const trigger = ScrollTrigger.create({
         trigger: document.body,
         start: "top top",
         end: "bottom bottom",
@@ -65,7 +65,11 @@ export default function ScrollVelocity({
       };
 
       gsap.ticker.add(update);
-      return () => gsap.ticker.remove(update);
+
+      return () => {
+        gsap.ticker.remove(update);
+        trigger.kill();
+      };
     }, [width]);
 
     const repeated = Array.from({ length: numCopies }).map((_, i) => (

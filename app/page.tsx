@@ -23,7 +23,7 @@ const Landing = () => {
             delay={0.1}
           />
           <TextReveal
-            text="Specializing in React, Next.js, and Modern Frontend Technologies"
+            text="Specializing in React, Next.js, GSAP, and Modern Frontend Technologies"
             y={100}
             duration={1}
             delay={0.2}
@@ -45,10 +45,16 @@ const Landing = () => {
         />
       </div>
       <div className="uppercase mt-5 md:mt-10">
-        <ScrollVelocity
-          texts={["Rafly Adriansyah", "Frontend Developer"]}
-          velocity={50}
-          numCopies={6}
+        <TextReveal
+          text={
+            <ScrollVelocity
+              texts={["Rafly Adriansyah/" , "Frontend Developer/"]}
+              velocity={50}
+              numCopies={10}
+            />
+          }
+          y={160}
+          enableSplit={false}
         />
       </div>
       <ButtonCTA link="/about" text="Learn More About Me" />

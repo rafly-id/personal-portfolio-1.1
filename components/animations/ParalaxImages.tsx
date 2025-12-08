@@ -11,12 +11,14 @@ interface ParallaxImageProps {
   src: string;
   alt: string;
   enableReveal?: boolean;
+  y?: number;
 }
 
 const ParallaxImage = ({
   src,
   alt,
   enableReveal = false,
+  y = 30,
 }: ParallaxImageProps) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const imageRef = useRef<HTMLImageElement | null>(null);
@@ -25,7 +27,7 @@ const ParallaxImage = ({
     if (!containerRef.current || !imageRef.current) return;
 
     const parallax = gsap.to(imageRef.current, {
-      yPercent: 30,
+      yPercent: y,
       scale: 1.2,
       ease: "none",
       scrollTrigger: {
