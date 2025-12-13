@@ -1,5 +1,12 @@
+import type { Metadata } from "next";
+
 import Title from "@/components/common/Title";
 import WorkListSection from "./sections/WorkListSection";
+
+export const metadata: Metadata = {
+  title: "Work",
+  description: "Explore my projects and professional work in detail.",
+};
 
 const Work = () => {
   return (

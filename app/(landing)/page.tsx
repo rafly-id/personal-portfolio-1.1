@@ -1,8 +1,15 @@
+import type { Metadata } from "next";
+
 import ButtonCTA from "@/components/common/ButtonCTA";
 import HeroSection from "./sections/HeroSection";
 import ProfileSection from "./sections/ProfileSection";
 import MarqueeSection from "./sections/MarqueeSection";
 import FeaturedWorkSection from "./sections/FeaturedWorkSection";
+
+export const metadata: Metadata = {
+  title: "Home",
+  description: "Welcome to my portfolio website. Explore my work and learn more about me.",
+};
 
 const Landing = () => {
   return (

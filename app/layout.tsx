@@ -7,16 +7,21 @@ const roboto = Roboto({
   variable: "--font-roboto",
   subsets: ["latin"],
   weight: ["200", "400", "700", "900"],
+  display: "swap",
 });
 
 const oswald = Oswald({
   variable: "--font-oswald",
   subsets: ["latin"],
   weight: ["200", "400", "700"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Rafly Adriansyah Portofolio",
+  title: {
+    default: "Rafly Adriansyah Portofolio",
+    template: "%s | Rafly Adriansyah",
+  },
   description:
     "Portofolio pribadi Muhammad Rafly Adriansyah — seorang Frontend Developer yang juga berpengalaman dalam UI/UX dan pengembangan aplikasi web modern.",
   keywords: [
@@ -38,10 +43,10 @@ export const metadata: Metadata = {
     description:
       "Portofolio pribadi Muhammad Rafly Adriansyah — Frontend Developer dengan fokus pada UI/UX dan pengembangan web.",
     url: "https://your-vercel-domain.vercel.app",
-    siteName: "Rafly Adriansyah Portofolio ",
+    siteName: "Rafly Adriansyah Portofolio",
     images: [
       {
-        url: "https://placehold.co/1200x630?text=Portfolio+Preview",
+        url: "/images/share.png",
         width: 1200,
         height: 630,
         alt: "Preview Portofolio Muhammad Rafly Adriansyah",
@@ -55,9 +60,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html
       lang="en"
