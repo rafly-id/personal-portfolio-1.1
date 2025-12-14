@@ -14,7 +14,7 @@ const ButtonCTA = ({ link, text, className }: ButtonCTAProps) => {
       <Button
         asChild
         className={cn(
-          "font-bold uppercase text-3xl font-oswald p-5 md:p-10 border-2 rounded-full my-5 md:my-10 h-auto",
+          "font-bold uppercase text-3xl font-oswald p-5 border-2 rounded-full my-5 md:my-10 h-auto",
           className
         )}
       >

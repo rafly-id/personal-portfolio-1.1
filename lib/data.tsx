@@ -7,7 +7,12 @@ import {
   SiFigma,
   SiGit,
   SiNodedotjs,
+  SiJavascript,
+  SiGithub,
+  SiHtml5,
+  SiCss3,
 } from "react-icons/si";
+import { getWhatsAppLink } from "@/lib/utils";
 
 export const socialLinks = [
   {
@@ -28,9 +33,7 @@ export const socialLinks = [
   },
   {
     name: "Whatsapp",
-    href: `https://wa.me/6285974111131?text=${encodeURIComponent(
-      "Halo Rafly "
-    )}`,
+    href: getWhatsAppLink("Halo Rafly"),
   },
 ];
 
@@ -83,40 +86,44 @@ export const projects = [
 ];
 
 export const techStack = [
+  { name: "HTML5", icon: SiHtml5 },
+  { name: "CSS3", icon: SiCss3 },
+  { name: "JavaScript", icon: SiJavascript },
   {
     name: "Next.js",
-    icon: <SiNextdotjs className="w-8 h-8 md:w-10 md:h-10" />,
+    icon: SiNextdotjs,
   },
-  { name: "React", icon: <SiReact className="w-8 h-8 md:w-10 md:h-10" /> },
+  { name: "React", icon: SiReact },
   {
     name: "TypeScript",
-    icon: <SiTypescript className="w-8 h-8 md:w-10 md:h-10" />,
+    icon: SiTypescript,
   },
   {
     name: "Tailwind CSS",
-    icon: <SiTailwindcss className="w-8 h-8 md:w-10 md:h-10" />,
+    icon: SiTailwindcss,
   },
-  { name: "GSAP", icon: <SiGreensock className="w-8 h-8 md:w-10 md:h-10" /> },
+  { name: "GSAP", icon: SiGreensock },
   {
     name: "Node.js",
-    icon: <SiNodedotjs className="w-8 h-8 md:w-10 md:h-10" />,
+    icon: SiNodedotjs,
   },
-  { name: "Git", icon: <SiGit className="w-8 h-8 md:w-10 md:h-10" /> },
-  { name: "Figma", icon: <SiFigma className="w-8 h-8 md:w-10 md:h-10" /> },
+  { name: "Git", icon: SiGit },
+  { name: "GitHub", icon: SiGithub },
+  { name: "Figma", icon: SiFigma },
 ];
 
 export const aboutDetails = [
   {
     title: "Short description.",
-    text: "I started learning programming in 2023, and since then I’ve been passionate about creating minimal, responsive, and smooth user experiences using React and Next.js.",
+    text: "I started learning programming in 2023 and quickly developed a strong interest in building clean, responsive, and smooth user interfaces using React and Next.js.",
   },
   {
     title: "What drives me.",
-    text: "I love working through logic and problem-solving challenges, especially when turning ideas or designs into something interactive and functional.",
+    text: "I enjoy solving logical problems and tackling challenges, especially when transforming ideas or designs into interactive, functional, and well-structured web experiences.",
   },
   {
     title: "My approach.",
-    text: "I focus on a minimalistic style — clean layouts, efficient structure, and user-first design that feels simple but polished.",
+    text: "I prioritize a minimalistic approach by focusing on clean layouts, efficient code structure, and user-first design that feels simple, modern, and polished.",
   },
 ];
 
@@ -124,22 +131,22 @@ export const certificates = [
   {
     imageSrc: "/images/sertif-1.jpg",
     imageAlt: "Sertifikat 1",
-    title: "Frontend",
+    title: "Front-End Web Pemula",
     tech: ["html", "css", "javascript"],
-    link: "https://rafly-id-awwward.vercel.app/",
+    link: "https://www.dicoding.com/certificates/L4PQ5KG62ZO1",
   },
   {
     imageSrc: "/images/sertif-2.jpg",
     imageAlt: "Sertifikat 2",
-    title: "JavaScript",
+    title: "Belajar Dasar JavaScript",
     tech: ["javascript"],
-    link: "https://rafly-id-awwward.vercel.app/",
+    link: "https://www.dicoding.com/certificates/JLX14E6Q6X72",
   },
   {
     imageSrc: "/images/sertif-3.jpg",
     imageAlt: "Sertifikat 3",
-    title: "React",
+    title: "Aplikasi Web React",
     tech: ["react"],
-    link: "https://rafly-id-awwward.vercel.app/",
+    link: "https://www.dicoding.com/certificates/6RPNYE5R4Z2M",
   },
 ];

@@ -4,7 +4,8 @@ import ContactSection from "./sections/ContactSection";
 
 export const metadata: Metadata = {
   title: "Contact Me",
-  description: "Get in touch with me for collaborations, inquiries, or just to say hello.",
+  description:
+    "Get in touch with me for collaborations, inquiries, or just to say hello.",
 };
 
 const Contact = () => {

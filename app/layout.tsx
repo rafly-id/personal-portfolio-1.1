@@ -18,12 +18,15 @@ const oswald = Oswald({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://your-vercel-domain.vercel.app"),
+
   title: {
     default: "Rafly Adriansyah Portofolio",
     template: "%s | Rafly Adriansyah",
   },
   description:
     "Portofolio pribadi Muhammad Rafly Adriansyah — seorang Frontend Developer yang juga berpengalaman dalam UI/UX dan pengembangan aplikasi web modern.",
+
   keywords: [
     "Muhammad Rafly Adriansyah",
     "Frontend Developer",
@@ -36,8 +39,18 @@ export const metadata: Metadata = {
     "React.js",
     "Next.js",
   ],
+
   authors: [{ name: "Muhammad Rafly Adriansyah" }],
   creator: "Muhammad Rafly Adriansyah",
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Rafly Adriansyah Portofolio",
+    description:
+      "Portofolio pribadi Muhammad Rafly Adriansyah — Frontend Developer dengan fokus pada UI/UX dan pengembangan web.",
+    images: ["/images/share.png"],
+  },
+
   openGraph: {
     title: "Rafly Adriansyah Portofolio",
     description:

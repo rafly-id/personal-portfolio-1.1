@@ -17,9 +17,9 @@ const Landing = () => {
       <HeroSection />
       <ProfileSection />
       <MarqueeSection />
-      <ButtonCTA link="/about" text="Learn More About Me" />
+      <ButtonCTA link="/about" text="Learn More About Me" className="md:p-10" />
       <FeaturedWorkSection />
-      <ButtonCTA link="/work" text="See All My Work" />
+      <ButtonCTA link="/work" text="See All My Work" className="md:p-10" />
     </div>
   );
 };

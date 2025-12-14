@@ -1,3 +1,8 @@
+"use client";
+
+import { useRef } from "react";
+import Image from "next/image";
+
 import {
   Card,
   CardContent,
@@ -6,18 +11,18 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-import TextReveal from "@/components/animations/TextReveal";
-import ParallaxImage from "@/components/animations/ParalaxImages";
 import ButtonCTA from "./ButtonCTA";
+import { Project } from "@/types";
 
-interface CardWorkProps {
-  imageSrc: string;
-  imageAlt: string;
-  title: string;
-  tech: string[];
-  link?: string;
+import { useTextReveal } from "@/hooks/useTextReveal";
+import { useParallaxImage } from "@/hooks/useParallaxImage";
+
+type CardWorkProps = Pick<
+  Project,
+  "imageSrc" | "imageAlt" | "title" | "tech" | "link"
+> & {
   github?: string;
-}
+};
 
 const CardWork = ({
   imageSrc,
@@ -27,6 +32,34 @@ const CardWork = ({
   link,
   github,
 }: CardWorkProps) => {
+  const imageContainerRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLImageElement>(null);
+
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const techRef = useRef<HTMLParagraphElement>(null);
+
+  useParallaxImage({
+    containerRef: imageContainerRef,
+    imageRef,
+    y: 30,
+    enableReveal: true,
+  });
+
+  useTextReveal({
+    ref: titleRef,
+    y: 150,
+    duration: 0.5,
+    delay: 0,
+  });
+
+  useTextReveal({
+    ref: techRef,
+    y: 150,
+    duration: 0.5,
+    delay: 0,
+    type: "lines",
+  });
+
   return (
     <Card className="rounded-none border-0 p-0 gap-2 shadow-none">
       <a
@@ -35,18 +68,33 @@ const CardWork = ({
         rel="noopener noreferrer"
         className="block"
       >
-        <ParallaxImage src={imageSrc} alt={imageAlt} enableReveal={true} />
+        <div
+          ref={imageContainerRef}
+          className="relative w-full h-[500px] md:h-[800px] overflow-hidden"
+        >
+          <Image
+            ref={imageRef}
+            src={imageSrc}
+            alt={imageAlt}
+            fill
+            className="object-cover grayscale"
+            sizes="(max-width: 768px) 100vw, 80vw"
+          />
+        </div>
       </a>
 
       <CardHeader className="text-center font-bold text-3xl md:text-4xl uppercase font-oswald">
-        <CardTitle>
-          <TextReveal text={title} y={150} duration={0.5} delay={0} />
+        <CardTitle ref={titleRef} className="overflow-hidden">
+          {title}
         </CardTitle>
       </CardHeader>
 
       <CardContent className="text-center uppercase">
         <CardDescription className="font-bold">
-          <TextReveal text={tech.join(", ")} y={150} duration={0.5} delay={0} />
+          <p ref={techRef} className="overflow-hidden">
+            {tech.join(", ")}
+          </p>
+
           {github && (
             <ButtonCTA
               link={github}
