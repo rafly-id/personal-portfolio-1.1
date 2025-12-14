@@ -59,7 +59,7 @@ export const projects = [
   {
     imageSrc: "/images/project-3.png",
     imageAlt: "Project 3",
-    title: "Portofolio 2024",
+    title: "Portfolio 2024",
     tech: ["react", "gsap", "tailwindcss"],
     link: "https://raf-personal-portfolio.vercel.app/",
     github: "https://github.com/rafly-id/personal-portfolio",

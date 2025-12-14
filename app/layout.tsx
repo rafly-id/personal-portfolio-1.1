@@ -31,12 +31,11 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://your-vercel-domain.vercel.app"),
 
   title: {
-    default: "Rafly Adriansyah Portofolio",
+    default: "Rafly Adriansyah Portfolio",
     template: "%s | Rafly Adriansyah",
   },
   description:
-    "Portofolio pribadi Muhammad Rafly Adriansyah — seorang Frontend Developer yang juga berpengalaman dalam UI/UX dan pengembangan aplikasi web modern.",
-
+    "Portfolio pribadi Muhammad Rafly Adriansyah — seorang Frontend Developer yang juga berpengalaman dalam UI/UX dan pengembangan aplikasi web modern.",
   keywords: [
     "Muhammad Rafly Adriansyah",
     "Frontend Developer",
@@ -55,24 +54,24 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Rafly Adriansyah Portofolio",
+    title: "Rafly Adriansyah Portfolio",
     description:
-      "Portofolio pribadi Muhammad Rafly Adriansyah — Frontend Developer dengan fokus pada UI/UX dan pengembangan web.",
+      "Portfolio pribadi Muhammad Rafly Adriansyah — Frontend Developer dengan fokus pada UI/UX dan pengembangan web.",
     images: ["/images/share.png"],
   },
 
   openGraph: {
-    title: "Rafly Adriansyah Portofolio",
+    title: "Rafly Adriansyah Portfolio",
     description:
-      "Portofolio pribadi Muhammad Rafly Adriansyah — Frontend Developer dengan fokus pada UI/UX dan pengembangan web.",
+      "Portfolio pribadi Muhammad Rafly Adriansyah — Frontend Developer dengan fokus pada UI/UX dan pengembangan web.",
     url: "https://your-vercel-domain.vercel.app",
-    siteName: "Rafly Adriansyah Portofolio",
+    siteName: "Rafly Adriansyah Portfolio",
     images: [
       {
         url: "/images/share.png",
         width: 1200,
         height: 630,
-        alt: "Preview Portofolio Muhammad Rafly Adriansyah",
+        alt: "Preview Portfolio Muhammad Rafly Adriansyah",
       },
     ],
     locale: "id_ID",
