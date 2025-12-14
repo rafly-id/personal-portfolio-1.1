@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import Title from "@/components/common/Title";
+import Title from "@/components/ui/Title";
 import WorkListSection from "./sections/WorkListSection";
 
 export const metadata: Metadata = {

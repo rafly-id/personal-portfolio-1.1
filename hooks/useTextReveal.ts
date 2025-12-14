@@ -39,6 +39,8 @@ export function useTextReveal({
     () => {
       if (!ref.current) return;
 
+      gsap.set(ref.current, { autoAlpha: 0 });
+
       let split: SplitText | null = null;
       let targets: gsap.TweenTarget;
 
@@ -52,11 +54,14 @@ export function useTextReveal({
           targets = ref.current!.children;
         }
 
+        gsap.set(ref.current, { autoAlpha: 1 });
+
         gsap.from(targets, {
           y,
           duration,
           delay,
           stagger,
+          filter: "blur(20px)",
           ease: "power3.out",
           scrollTrigger: {
             trigger:

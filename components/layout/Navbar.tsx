@@ -26,6 +26,7 @@ const Navbar = () => {
       split = new SplitText(linksRef.current, { type: "chars" });
       gsap.from(split.chars, {
         y: 150,
+        filter: "blur(20px)",
         duration: 0.5,
         stagger: 0.01,
         delay: 0.5,
@@ -39,6 +40,7 @@ const Navbar = () => {
       split = new SplitText(linksRef.current, { type: "chars" });
       gsap.to(split.chars, {
         y: 150,
+        filter: "blur(20px)",
         stagger: 0.01,
         duration: 0.5,
       });

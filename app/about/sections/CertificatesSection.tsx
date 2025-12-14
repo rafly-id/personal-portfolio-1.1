@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { useTextReveal } from "@/hooks/useTextReveal";
-import CardWork from "@/components/common/CardWork";
+import CardWork from "@/components/feature/CardWork";
 import { certificates } from "@/lib/data";
 
 const CertificatesSection = () => {

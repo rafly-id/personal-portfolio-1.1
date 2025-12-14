@@ -11,7 +11,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-import ButtonCTA from "./ButtonCTA";
+import ButtonCTA from "@/components/ui/ButtonCTA";
 import { Project } from "@/types";
 
 import { useTextReveal } from "@/hooks/useTextReveal";

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import ButtonCTA from "@/components/common/ButtonCTA";
+import ButtonCTA from "@/components/ui/ButtonCTA";
 import HeroSection from "./sections/HeroSection";
 import ProfileSection from "./sections/ProfileSection";
 import MarqueeSection from "./sections/MarqueeSection";
