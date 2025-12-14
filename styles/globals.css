@@ -13,6 +13,7 @@
   --color-secondary: var(--secondary);
   --font-sans: var(--font-roboto);
   --font-oswald: var(--font-oswald);
+  --font-kranky: var(--font-kranky);
 }
 
 @layer base {

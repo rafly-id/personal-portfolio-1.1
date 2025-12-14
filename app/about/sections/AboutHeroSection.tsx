@@ -70,7 +70,7 @@ const AboutHeroSection = () => {
         <div ref={marqueeRevealRef}>
           <div
             ref={marqueeScrollerRef1}
-            className="flex whitespace-nowrap tracking-tight font-oswald text-4xl font-bold md:text-[5rem]"
+            className="flex whitespace-nowrap tracking-tight font-kranky text-4xl font-bold md:text-[5rem]"
           >
             {Array.from({ length: 10 }).map((_, i) => (
               <span
@@ -102,14 +102,15 @@ const AboutHeroSection = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mt-10 md:mt-20">
         <div>
-          <div className="uppercase font-oswald font-bold text-6xl md:text-7xl mb-5 md:mb-10 overflow-hidden">
+          <div className="uppercase font-kranky font-bold text-6xl md:text-7xl mb-5 md:mb-10 overflow-hidden">
             <h1 ref={titleRef}>Hi, I’m Rafly.</h1>
           </div>
 
           <div className="text-xl md:text-3xl font-light uppercase tracking-tight overflow-hidden">
             <p ref={descRef}>
-              Nice to meet you — I’m a Frontend Developer who enjoys building
-              clean and modern web interfaces.
+              Nice to meet you — I’m a{" "}
+              <span className="font-kranky">Frontend Developer</span> who enjoys
+              building clean and modern web interfaces.
             </p>
           </div>
         </div>

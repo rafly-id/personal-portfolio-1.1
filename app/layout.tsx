@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Roboto, Oswald } from "next/font/google";
+import { Roboto, Oswald , Kranky } from "next/font/google";
 import "@/styles/globals.css";
 import Navbar from "@/components/layout/Navbar";
 import SmoothScroll from "@/components/global/SmoothScroll";
@@ -17,6 +17,13 @@ const oswald = Oswald({
   variable: "--font-oswald",
   subsets: ["latin"],
   weight: ["200", "400", "700"],
+  display: "swap",
+});
+
+const kranky = Kranky({
+  variable: "--font-kranky",
+  subsets: ["latin"],
+  weight: ["400"],
   display: "swap",
 });
 
@@ -82,7 +89,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${roboto.variable} ${oswald.variable} antialiased`}
+      className={`${roboto.variable} ${oswald.variable} ${kranky.variable} antialiased`}
     >
       <body>
         <SmoothScroll>

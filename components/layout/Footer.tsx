@@ -20,7 +20,7 @@ const Footer = () => {
 
   return (
     <footer className="mx-5 flex gap-8 md:gap-30 h-screen pb-5 justify-center items-center">
-      <div className="font-bold text-7xl md:text-9xl font-oswald uppercase overflow-hidden">
+      <div className="font-bold text-7xl md:text-9xl font-kranky uppercase">
         <h2 ref={titleRef}>Let's Talk</h2>
       </div>
 

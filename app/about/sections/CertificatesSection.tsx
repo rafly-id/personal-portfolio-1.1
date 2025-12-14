@@ -1,24 +1,15 @@
 "use client";
 
-import { useRef } from "react";
-import { useTextReveal } from "@/hooks/useTextReveal";
 import CardWork from "@/components/feature/CardWork";
+import Title from "@/components/ui/Title";
 import { certificates } from "@/lib/data";
 
 const CertificatesSection = () => {
-  const titleRef = useRef<HTMLHeadingElement>(null);
-
-  useTextReveal({
-    ref: titleRef,
-    y: 100,
-    duration: 1,
-    delay: 0,
-  });
 
   return (
     <section className="mt-20 md:mt-32 mb-20">
-      <div className="font-oswald text-4xl md:text-6xl uppercase mb-10 overflow-hidden">
-        <h2 ref={titleRef}>Certificates</h2>
+      <div className="flex justify-center text-center mb-10">
+        <Title text="certificate" />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">

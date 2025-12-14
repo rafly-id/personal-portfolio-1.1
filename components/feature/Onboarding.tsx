@@ -47,12 +47,12 @@ const Onboarding = ({ onFinish }: OnboardingProps) => {
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 z-[9999] flex items-center justify-center bg-foreground text-background"
+      className="fixed inset-0 z-9999 flex items-center justify-center bg-foreground text-background"
     >
       <div className="relative overflow-hidden p-4 text-center">
         <h1
           ref={textRef}
-          className="text-5xl md:text-8xl font-bold font-oswald tracking-tighter uppercase opacity-0 invisible"
+          className="text-5xl md:text-8xl font-bold font-kranky tracking-tighter uppercase opacity-0 invisible"
         >
           RAFLY ADRIANSYAH
         </h1>

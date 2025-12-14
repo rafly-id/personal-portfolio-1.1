@@ -36,7 +36,7 @@ const AboutDetailsSection = () => {
                 <div className="overflow-hidden">
                   <h3
                     ref={titleRef}
-                    className="font-oswald text-2xl md:text-5xl uppercase tracking-tight"
+                    className="font-kranky text-2xl md:text-5xl uppercase tracking-tight"
                   >
                     {detail.title}
                   </h3>

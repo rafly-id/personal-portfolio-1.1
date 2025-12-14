@@ -1,5 +1,7 @@
 "use client";
 
+import Title from "@/components/ui/Title";
+
 import { useRef } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { socialLinks } from "@/lib/data";
@@ -32,7 +34,7 @@ function SocialLinkItem({
     >
       <div
         ref={textRef}
-        className="text-2xl md:text-4xl font-oswald uppercase overflow-hidden"
+        className="text-2xl md:text-4xl font-oswald uppercase overflow-hidden hover:font-kranky"
       >
         {name}
       </div>
@@ -43,15 +45,7 @@ function SocialLinkItem({
 }
 
 const ContactSection = () => {
-  const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
-
-  useTextReveal({
-    ref: titleRef,
-    y: 150,
-    duration: 1,
-    delay: 0,
-  });
 
   useTextReveal({
     ref: subtitleRef,
@@ -64,12 +58,10 @@ const ContactSection = () => {
   return (
     <section className="flex flex-col md:flex-row overflow-hidden mx-5 mt-20 md:mt-0">
       <div className="w-full md:w-1/2 flex items-center justify-center">
-        <div className="font-bold text-6xl md:text-8xl font-oswald uppercase overflow-hidden">
-          <h2 ref={titleRef}>Let's Talk</h2>
-        </div>
+        <Title text="Let's Talk" className="text-6xl md:text-8xl" />
       </div>
 
-      <div className="w-full md:w-1/2 flex flex-col justify-center mt-20 md:mt-10">
+      <div className="w-full md:w-1/2 flex flex-col justify-center mt-10">
         <div className="flex flex-col gap-6 max-w-2xl">
           <div className="mb-4 md:mb-8 overflow-hidden">
             <p

@@ -5,22 +5,23 @@ import { useTextReveal } from "@/hooks/useTextReveal";
 
 interface TitleProps {
   text?: string;
+  className?: string;
 }
 
-const Title = ({ text }: TitleProps) => {
+const Title = ({ text, className }: TitleProps) => {
   const titleRef = useRef<HTMLHeadingElement>(null);
 
   useTextReveal({
     ref: titleRef,
     y: 150,
-    duration: 0.5,
-    delay: 0.5,
+    duration: 1,
+    delay: 0,
   });
 
   return (
     <div className="flex justify-start items-center text-center">
-      <div className="text-8xl md:text-9xl font-bold uppercase font-oswald overflow-hidden">
-        <h1 ref={titleRef}>{text}</h1>
+      <div className="text-5xl font-bold uppercase font-kranky">
+        <h1 ref={titleRef} className={className}>{text}</h1>
       </div>
     </div>
   );

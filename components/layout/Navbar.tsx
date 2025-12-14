@@ -54,7 +54,9 @@ const Navbar = () => {
   return (
     <div className="sticky top-0 left-0 p-5 w-full z-50">
       <div className="flex justify-between items-center text-center font-bold relative z-60">
-        <div className="text-3xl md:text-5xl">RAF</div>
+        <div className="text-3xl md:text-5xl font-kranky mix-blend-difference">
+          <Link href="/">Rafly.</Link>
+        </div>
         <Button
           className="flex flex-col justify-center items-center gap-1 p-2 rounded cursor-pointer"
           onClick={() => setIsOpen(!isOpen)}
@@ -93,7 +95,7 @@ const Navbar = () => {
               ref={(el) => {
                 linksRef.current[index] = el;
               }}
-              className="overflow-hidden inline-block"
+              className="overflow-hidden inline-block hover:font-kranky"
             >
               {item}
             </Link>

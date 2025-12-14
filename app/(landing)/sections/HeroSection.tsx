@@ -31,7 +31,7 @@ export default function HeroSection() {
         <div ref={adrianRef} className="overflow-hidden pb-1">
           ADRIANSYAH
         </div>
-        <div ref={frontendRef} className="overflow-hidden pb-1">
+        <div ref={frontendRef} className="overflow-hidden pb-1 font-kranky">
           FRONTEND
         </div>
         <div ref={developerRef} className="overflow-hidden pb-1">
@@ -39,12 +39,12 @@ export default function HeroSection() {
         </div>
       </div>
 
-      <div className="flex flex-col justify-end uppercase font-oswald font-light text-sm md:text-lg md:leading-relaxed gap-1 md:gap-0">
+      <div className="flex flex-col justify-end uppercase font-light text-sm md:text-lg tracking-tighter gap-1 md:gap-0">
         <p ref={desc1Ref} className="overflow-hidden">
           Crafting Engaging Web Experiences with Precision and Creativity
         </p>
         <p ref={desc2Ref} className="overflow-hidden">
-          Specializing in React, Next.js, GSAP, and Modern Frontend Technologies
+          Specializing in <span className="font-kranky">React, Next.js, GSAP,</span> and Modern Frontend Technologies
         </p>
         <p ref={desc3Ref} className="overflow-hidden">
           Let&apos;s Build Something Amazing Together!
