@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Roboto, Oswald } from "next/font/google";
 import "@/styles/globals.css";
 import Navbar from "@/components/layout/Navbar";
+import SmoothScroll from "@/components/global/SmoothScroll";
+import PageLoader from "@/components/global/PageLoader";
 
 const roboto = Roboto({
   variable: "--font-roboto",
@@ -82,8 +84,12 @@ export default function RootLayout({
       className={`${roboto.variable} ${oswald.variable} antialiased`}
     >
       <body>
-        <Navbar />
-        {children}
+        <SmoothScroll>
+          <PageLoader>
+            <Navbar />
+            {children}
+          </PageLoader>
+        </SmoothScroll>
       </body>
     </html>
   );
