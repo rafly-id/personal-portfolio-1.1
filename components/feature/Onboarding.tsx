@@ -14,10 +14,10 @@ const Onboarding = ({ onFinish }: OnboardingProps) => {
 
   useTextReveal({
     ref: textRef,
-    y: 100,
+    y: 150,
     duration: 1,
-    stagger: 0.1,
-    type: "chars",
+    stagger: 0.5,
+    type: "words",
     trigger: containerRef,
     start: "top bottom",
   });
@@ -26,7 +26,7 @@ const Onboarding = ({ onFinish }: OnboardingProps) => {
     document.body.style.overflow = "hidden";
 
     const tl = gsap.timeline({
-      delay: 2,
+      delay: 1.5,
       onComplete: () => {
         onFinish();
         document.body.style.overflow = "auto";
