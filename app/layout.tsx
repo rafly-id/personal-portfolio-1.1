@@ -28,7 +28,7 @@ const kranky = Kranky({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://your-vercel-domain.vercel.app"),
+  metadataBase: new URL("https://rafly-id.vercel.app/"),
 
   title: {
     default: "Rafly Adriansyah Portfolio",
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
     title: "Rafly Adriansyah Portfolio",
     description:
       "Portfolio pribadi Muhammad Rafly Adriansyah — Frontend Developer dengan fokus pada UI/UX dan pengembangan web.",
-    url: "https://your-vercel-domain.vercel.app",
+    url: "https://rafly-id.vercel.app/",
     siteName: "Rafly Adriansyah Portfolio",
     images: [
       {

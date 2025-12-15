@@ -9,18 +9,14 @@ export default function HeroSection() {
   const frontendRef = useRef<HTMLDivElement>(null);
   const developerRef = useRef<HTMLDivElement>(null);
 
-  const desc1Ref = useRef<HTMLParagraphElement>(null);
-  const desc2Ref = useRef<HTMLParagraphElement>(null);
-  const desc3Ref = useRef<HTMLParagraphElement>(null);
+  const descRef = useRef<HTMLParagraphElement>(null);
 
   useTextReveal({ ref: raflyRef, y: 150, delay: 0 });
   useTextReveal({ ref: adrianRef, y: 150, delay: 0.1 });
   useTextReveal({ ref: frontendRef, y: 150, delay: 0.2 });
   useTextReveal({ ref: developerRef, y: 150, delay: 0.3 });
 
-  useTextReveal({ ref: desc1Ref, y: 100, delay: 0.1, type: "lines" });
-  useTextReveal({ ref: desc2Ref, y: 100, delay: 0.2, type: "lines" });
-  useTextReveal({ ref: desc3Ref, y: 100, delay: 0.3, type: "lines" });
+  useTextReveal({ ref: descRef, y: 100, delay: 0.1, type: "lines" });
 
   return (
     <section className="flex flex-col md:flex-row justify-between gap-5">
@@ -39,15 +35,13 @@ export default function HeroSection() {
         </div>
       </div>
 
-      <div className="flex flex-col justify-end uppercase font-light text-sm md:text-lg tracking-tighter gap-1 md:gap-0">
-        <p ref={desc1Ref} className="overflow-hidden">
+      <div className="flex flex-col justify-end uppercase font-light text-sm md:text-lg tracking-tighter max-w-xl">
+        <p ref={descRef} className="overflow-hidden">
           Crafting Engaging Web Experiences with Precision and Creativity
-        </p>
-        <p ref={desc2Ref} className="overflow-hidden">
-          Specializing in <span className="font-kranky">React, Next.js, GSAP,</span> and Modern Frontend Technologies
-        </p>
-        <p ref={desc3Ref} className="overflow-hidden">
-          Let&apos;s Build Something Amazing Together!
+          Specializing in{" "}
+          <span className="font-kranky">React, Next.js, GSAP,</span> and Modern
+          Frontend Technologies,
+          <span className="font-kranky"> Let's Build Something Amazing Together!</span>
         </p>
       </div>
     </section>

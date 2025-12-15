@@ -13,9 +13,10 @@ interface ButtonCTAProps {
   link: string;
   text: string;
   className?: string;
+  target?: string;
 }
 
-const ButtonCTA = ({ link, text, className }: ButtonCTAProps) => {
+const ButtonCTA = ({ link, text, className, target }: ButtonCTAProps) => {
   const linkref = useRef<HTMLAnchorElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
 
@@ -59,11 +60,11 @@ const ButtonCTA = ({ link, text, className }: ButtonCTAProps) => {
       <Button
         asChild
         className={cn(
-          "font-bold uppercase text-3xl font-kranky p-10 border-2 rounded-full w-auto md:py-2 my-5 md:my-10 relative overflow-hidden",
+          "font-bold uppercase text-3xl font-kranky p-10 border-2 rounded-full w-auto my-5 md:my-10 relative overflow-hidden",
           className
         )}
       >
-        <Link href={link} ref={linkref}>
+        <Link href={link} ref={linkref} target={target}>
           <div
             ref={bgRef}
             className="absolute inset-0 bg-foreground"

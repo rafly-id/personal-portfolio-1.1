@@ -59,7 +59,7 @@ export const projects = [
   {
     imageSrc: "/images/project-3.png",
     imageAlt: "Project 3",
-    title: "Portfolio 2024",
+    title: "Portfolio Previous Version",
     tech: ["react", "gsap", "tailwindcss"],
     link: "https://raf-personal-portfolio.vercel.app/",
     github: "https://github.com/rafly-id/personal-portfolio",
@@ -83,6 +83,15 @@ export const projects = [
     github: "https://github.com/rafly-id/WebClient-UAS",
     featured: false,
   },
+  {
+    imageSrc: "/images/project-6.png",
+    imageAlt: "Project 6",
+    title: "Portofolio Latest",
+    tech: ["nextjs", "tailwindcss", "typescript", "gsap"],
+    link: "https://rafly-id.vercel.app/",
+    github: "https://github.com/rafly-id/personal-portfolio-1.1",
+    featured: false,
+  }
 ];
 
 export const techStack = [
@@ -115,15 +124,15 @@ export const techStack = [
 export const aboutDetails = [
   {
     title: "Short description.",
-    text: "I started learning programming in 2023 and quickly developed a strong interest in building clean, responsive, and smooth user interfaces using React and Next.js.",
+    text: "I started learning programming in 2023 and gradually developed a strong interest in front-end development, focusing on building clean, responsive, and smooth user interfaces using modern tools like React and Next.js.",
   },
   {
     title: "What drives me.",
-    text: "I enjoy solving logical problems and tackling challenges, especially when transforming ideas or designs into interactive, functional, and well-structured web experiences.",
+    text: "I enjoy solving logical problems and facing technical challenges, especially when transforming ideas or visual designs into interactive, functional, and well-structured web experiences that feel intuitive and engaging.",
   },
   {
     title: "My approach.",
-    text: "I prioritize a minimalistic approach by focusing on clean layouts, efficient code structure, and user-first design that feels simple, modern, and polished.",
+    text: "I focus on a minimalistic and user-centered approach by maintaining clean layouts, efficient and readable code structures, and thoughtful design choices that result in simple, modern, and polished interfaces.",
   },
 ];
 

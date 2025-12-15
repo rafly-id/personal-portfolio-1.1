@@ -66,51 +66,19 @@ const AboutHeroSection = () => {
 
   return (
     <>
-      <div className="uppercase overflow-hidden">
-        <div ref={marqueeRevealRef}>
-          <div
-            ref={marqueeScrollerRef1}
-            className="flex whitespace-nowrap tracking-tight font-kranky text-4xl font-bold md:text-[5rem]"
-          >
-            {Array.from({ length: 10 }).map((_, i) => (
-              <span
-                key={i}
-                ref={i === 0 ? marqueeFirstItemRef1 : undefined}
-                className="shrink-0"
-              >
-                About Me/&nbsp;
-              </span>
-            ))}
-          </div>
-
-          <div
-            ref={marqueeScrollerRef2}
-            className="flex whitespace-nowrap tracking-tight font-oswald text-4xl font-bold md:text-[5rem]"
-          >
-            {Array.from({ length: 10 }).map((_, i) => (
-              <span
-                key={i}
-                ref={i === 0 ? marqueeFirstItemRef2 : undefined}
-                className="shrink-0"
-              >
-                Rafly Adriansyah/&nbsp;
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mt-10 md:mt-20">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mt-10">
         <div>
-          <div className="uppercase font-kranky font-bold text-6xl md:text-7xl mb-5 md:mb-10 overflow-hidden">
+          <div className="uppercase font-kranky font-bold text-5xl md:text-7xl mb-5 md:mb-10 overflow-hidden">
             <h1 ref={titleRef}>Hi, I’m Rafly.</h1>
           </div>
 
-          <div className="text-xl md:text-3xl font-light uppercase tracking-tight overflow-hidden">
+          <div className="text-sm md:text-2xl font-light uppercase tracking-tighter overflow-hidden max-w-2xl">
             <p ref={descRef}>
               Nice to meet you — I’m a{" "}
               <span className="font-kranky">Frontend Developer</span> who enjoys
-              building clean and modern web interfaces.
+              building clean, modern web interfaces with a focus on good design,
+              usability, smooth interactions, responsive layouts, and attention
+              to detail.
             </p>
           </div>
         </div>
@@ -129,6 +97,40 @@ const AboutHeroSection = () => {
               className="object-cover grayscale"
               sizes="(max-width: 768px) 100vw, 80vw"
             />
+          </div>
+        </div>
+      </div>
+
+      <div className="uppercase overflow-hidden">
+        <div ref={marqueeRevealRef}>
+          <div
+            ref={marqueeScrollerRef1}
+            className="flex whitespace-nowrap tracking-tight font-kranky text-5xl font-bold md:text-[5rem]"
+          >
+            {Array.from({ length: 10 }).map((_, i) => (
+              <span
+                key={i}
+                ref={i === 0 ? marqueeFirstItemRef1 : undefined}
+                className="shrink-0"
+              >
+                About Me/&nbsp;
+              </span>
+            ))}
+          </div>
+
+          <div
+            ref={marqueeScrollerRef2}
+            className="flex whitespace-nowrap tracking-tight font-oswald text-5xl font-bold md:text-[5rem]"
+          >
+            {Array.from({ length: 10 }).map((_, i) => (
+              <span
+                key={i}
+                ref={i === 0 ? marqueeFirstItemRef2 : undefined}
+                className="shrink-0"
+              >
+                Rafly Adriansyah/&nbsp;
+              </span>
+            ))}
           </div>
         </div>
       </div>

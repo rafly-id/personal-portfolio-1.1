@@ -34,11 +34,11 @@ export default function MarqueeSection() {
   });
 
   return (
-    <section className="uppercase overflow-hidden space-y-2">
+    <section className="uppercase overflow-hidden space-y-2 mt-5">
       <div ref={revealRef}>
         <div
           ref={scrollerRef1}
-          className="flex whitespace-nowrap tracking-tight font-oswald text-4xl font-bold md:text-[5rem]"
+          className="flex whitespace-nowrap tracking-tight font-oswald text-5xl font-bold md:text-[5rem]"
         >
           {Array.from({ length: 10 }).map((_, i) => (
             <span
@@ -53,7 +53,7 @@ export default function MarqueeSection() {
 
         <div
           ref={scrollerRef2}
-          className="flex whitespace-nowrap tracking-tight font-kranky text-4xl font-bold md:text-[5rem]"
+          className="flex whitespace-nowrap tracking-tight font-kranky text-5xl font-bold md:text-[5rem]"
         >
           {Array.from({ length: 10 }).map((_, i) => (
             <span

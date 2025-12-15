@@ -6,7 +6,7 @@ import { aboutDetails } from "@/lib/data";
 
 const AboutDetailsSection = () => {
   return (
-    <section className="mt-5">
+    <section className="mt-10 md:mt-20">
       <div className="max-w-2xl mx-auto md:px-5">
         <div className="grid grid-cols-1 gap-5 md:gap-20">
           {aboutDetails.map((detail, index) => {
