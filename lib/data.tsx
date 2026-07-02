@@ -109,7 +109,7 @@ export const projects = [
     tech: ["HTML", "CSS", "JavaScript"],
     link: "https://id-camp-todoapps.vercel.app/",
     github: "https://github.com/rafly-id/idCamp_todoapps",
-    featured: false,
+    featured: true,
     role: "Frontend Developer",
     year: "2023",
     description: "A clean, performant task management app emphasizing local storage and pure modern JavaScript DOM manipulation.",
