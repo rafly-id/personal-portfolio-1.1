@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 import {
   Card,
@@ -19,12 +20,13 @@ import { useParallaxImage } from "@/hooks/useParallaxImage";
 
 type CardWorkProps = Pick<
   Project,
-  "imageSrc" | "imageAlt" | "title" | "tech" | "link"
+  "slug" | "imageSrc" | "imageAlt" | "title" | "tech" | "link"
 > & {
   github?: string;
 };
 
 const CardWork = ({
+  slug,
   imageSrc,
   imageAlt,
   title,
@@ -62,12 +64,7 @@ const CardWork = ({
 
   return (
     <Card className="rounded-none border-0 p-0 gap-2 shadow-none">
-      <a
-        href={link}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="block"
-      >
+      <Link href={`/work/${slug}`} className="block">
         <div
           ref={imageContainerRef}
           className="relative w-full h-[500px] md:h-[800px] overflow-hidden"
@@ -77,15 +74,20 @@ const CardWork = ({
             src={imageSrc}
             alt={imageAlt}
             fill
-            className="object-cover grayscale"
+            className="object-cover grayscale hover:grayscale-0 transition-[filter] duration-700 ease-[cubic-bezier(0.32,0.72,0,1)]"
             sizes="(max-width: 768px) 100vw, 80vw"
           />
         </div>
-      </a>
+      </Link>
 
       <CardHeader className="text-center font-bold text-3xl md:text-4xl uppercase font-oswald">
         <CardTitle ref={titleRef} className="overflow-hidden">
-          {title}
+          <Link
+            href={`/work/${slug}`}
+            className="hover:font-kranky transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] inline-block"
+          >
+            {title}
+          </Link>
         </CardTitle>
       </CardHeader>
 
@@ -97,8 +99,8 @@ const CardWork = ({
 
           {github && (
             <ButtonCTA
-              link={github}
-              text="See on GitHub"
+              link={`/work/${slug}`}
+              text="View Project"
               className="text-xl p-2 md:p-5 my-2 md:my-5"
             />
           )}

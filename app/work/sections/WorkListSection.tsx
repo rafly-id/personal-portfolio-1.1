@@ -7,6 +7,7 @@ const WorkListSection = () => {
       {projects.map((project, index) => (
         <CardWork
           key={index}
+          slug={project.slug}
           imageSrc={project.imageSrc}
           imageAlt={project.imageAlt}
           title={project.title}
