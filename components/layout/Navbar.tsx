@@ -90,7 +90,13 @@ const Navbar = () => {
           {["Home", "About", "Work", "Contact"].map((item, index) => (
             <Link
               key={item}
-              href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+              href={
+                item === "Home"
+                  ? "/"
+                  : item === "About"
+                  ? "/#about"
+                  : `/${item.toLowerCase()}`
+              }
               onClick={() => setIsOpen(false)}
               ref={(el) => {
                 linksRef.current[index] = el;

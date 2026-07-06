@@ -4,7 +4,10 @@ import ButtonCTA from "@/components/ui/ButtonCTA";
 import HeroSection from "./sections/HeroSection";
 import ProfileSection from "./sections/ProfileSection";
 import MarqueeSection from "./sections/MarqueeSection";
+import AboutDetailsSection from "./sections/AboutDetailsSection";
+import TechStackSection from "./sections/TechStackSection";
 import FeaturedWorkSection from "./sections/FeaturedWorkSection";
+import CertificatesSection from "./sections/CertificatesSection";
 
 export const metadata: Metadata = {
   title: "Home",
@@ -25,13 +28,11 @@ const Landing = () => {
         <MarqueeSection />
       </div>
 
-      <div className="mt-4 md:mt-6">
-        <ButtonCTA
-          link="/about"
-          text="More About Me"
-          className="px-5 md:p-10"
-        />
-      </div>
+      {/* About Details Section with Z-Axis scrolling */}
+      <AboutDetailsSection />
+
+      {/* Tech Stack Section with Scroll Reveal */}
+      <TechStackSection />
 
       <div className="mt-14 md:mt-16">
         <FeaturedWorkSection />
@@ -40,8 +41,12 @@ const Landing = () => {
       <div className="mt-2 md:mt-10">
         <ButtonCTA link="/work" text="See All My Work" className="md:p-10" />
       </div>
+
+      {/* Certificates Section with Hover Media Reveal */}
+      <CertificatesSection />
     </div>
   );
 };
 
 export default Landing;
+
