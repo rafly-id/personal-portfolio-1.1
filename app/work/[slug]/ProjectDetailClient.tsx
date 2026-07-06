@@ -51,7 +51,7 @@ const ProjectDetailClient = ({ project }: ProjectDetailClientProps) => {
       <div className="mb-10">
         <Link
           href="/work"
-          className="inline-flex items-center gap-2 group text-sm font-bold uppercase font-oswald tracking-widest text-foreground/60 hover:text-foreground transition-colors duration-300"
+          className="inline-flex items-center gap-2 group text-sm font-bold uppercase font-instrument_serif tracking-widest text-foreground/60 hover:text-foreground transition-colors duration-300"
         >
           <span className="transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:-translate-x-2">
             ←
@@ -69,7 +69,7 @@ const ProjectDetailClient = ({ project }: ProjectDetailClientProps) => {
         </div>
         <h1
           ref={titleRef}
-          className="font-oswald font-black text-5xl md:text-8xl lg:text-9xl uppercase tracking-tighter leading-[0.9] overflow-hidden mb-6"
+          className="font-instrument_serif font-black text-5xl md:text-8xl lg:text-9xl uppercase tracking-tighter leading-[0.9] overflow-hidden mb-6"
         >
           {project.title}
         </h1>
@@ -108,7 +108,7 @@ const ProjectDetailClient = ({ project }: ProjectDetailClientProps) => {
               <span className="block text-[10px] uppercase tracking-[0.2em] text-foreground/40 font-bold mb-2">
                 Role
               </span>
-              <span className="block font-oswald text-lg uppercase font-bold text-foreground">
+              <span className="block font-instrument_serif text-lg uppercase font-bold text-foreground">
                 {project.role}
               </span>
             </div>
@@ -117,7 +117,7 @@ const ProjectDetailClient = ({ project }: ProjectDetailClientProps) => {
               <span className="block text-[10px] uppercase tracking-[0.2em] text-foreground/40 font-bold mb-2">
                 Year
               </span>
-              <span className="block font-oswald text-lg uppercase font-bold text-foreground">
+              <span className="block font-instrument_serif text-lg uppercase font-bold text-foreground">
                 {project.year}
               </span>
             </div>
@@ -145,7 +145,7 @@ const ProjectDetailClient = ({ project }: ProjectDetailClientProps) => {
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative flex items-center justify-between pl-6 pr-2 py-3 bg-foreground text-background font-bold uppercase font-oswald rounded-full text-sm tracking-wider transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:scale-[1.02] active:scale-[0.98] shadow-sm flex-1 text-center"
+              className="group relative flex items-center justify-between pl-6 pr-2 py-3 bg-foreground text-background font-bold uppercase font-instrument_serif rounded-full text-sm tracking-wider transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:scale-[1.02] active:scale-[0.98] shadow-sm flex-1 text-center"
             >
               <span className="mr-4">Visit Live Site</span>
               <span className="w-8 h-8 rounded-full bg-background text-foreground flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:-rotate-45">
@@ -158,7 +158,7 @@ const ProjectDetailClient = ({ project }: ProjectDetailClientProps) => {
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative flex items-center justify-between pl-6 pr-2 py-3 bg-background border border-foreground/20 text-foreground font-bold uppercase font-oswald rounded-full text-sm tracking-wider transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:border-foreground hover:scale-[1.02] active:scale-[0.98] flex-1 text-center"
+                className="group relative flex items-center justify-between pl-6 pr-2 py-3 bg-background border border-foreground/20 text-foreground font-bold uppercase font-instrument_serif rounded-full text-sm tracking-wider transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:border-foreground hover:scale-[1.02] active:scale-[0.98] flex-1 text-center"
               >
                 <span className="mr-4">Source Code</span>
                 <span className="w-8 h-8 rounded-full bg-foreground/5 flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:bg-foreground group-hover:text-background group-hover:-rotate-45">
@@ -173,7 +173,7 @@ const ProjectDetailClient = ({ project }: ProjectDetailClientProps) => {
         <div className="lg:col-span-7 space-y-12">
           {/* Overview */}
           <div>
-            <h2 className="font-oswald text-xl font-bold uppercase tracking-widest mb-4 text-foreground/90">
+            <h2 className="font-instrument_serif text-xl font-bold uppercase tracking-widest mb-4 text-foreground/90">
               [ Overview ]
             </h2>
             <p className="font-sans text-lg text-foreground/80 leading-relaxed font-light whitespace-pre-line">
@@ -184,7 +184,7 @@ const ProjectDetailClient = ({ project }: ProjectDetailClientProps) => {
           {/* Key Features */}
           {project.features && project.features.length > 0 && (
             <div>
-              <h2 className="font-oswald text-xl font-bold uppercase tracking-widest mb-5 text-foreground/90">
+              <h2 className="font-instrument_serif text-xl font-bold uppercase tracking-widest mb-5 text-foreground/90">
                 [ Key Features ]
               </h2>
               <ul className="space-y-4">
@@ -203,7 +203,7 @@ const ProjectDetailClient = ({ project }: ProjectDetailClientProps) => {
           {/* Challenges */}
           {project.challenges && (
             <div>
-              <h2 className="font-oswald text-xl font-bold uppercase tracking-widest mb-4 text-foreground/90">
+              <h2 className="font-instrument_serif text-xl font-bold uppercase tracking-widest mb-4 text-foreground/90">
                 [ Engineering Challenge ]
               </h2>
               <p className="font-sans text-lg text-foreground/80 leading-relaxed font-light">
@@ -220,7 +220,7 @@ const ProjectDetailClient = ({ project }: ProjectDetailClientProps) => {
           Up Next
         </span>
         <Link href={`/work/${nextProject.slug}`} className="group inline-block">
-          <h2 className="font-oswald font-black text-4xl md:text-7xl uppercase tracking-tighter transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] text-foreground group-hover:scale-105 group-hover:font-kranky">
+          <h2 className="font-instrument_serif font-black text-4xl md:text-7xl uppercase tracking-tighter transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] text-foreground group-hover:scale-105 group-hover:font-instrument_serif">
             {nextProject.title}{" "}
             <span className="inline-block transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-2 group-hover:-translate-y-2">
               ↗

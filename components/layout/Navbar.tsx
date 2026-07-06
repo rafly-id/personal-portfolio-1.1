@@ -54,7 +54,7 @@ const Navbar = () => {
   return (
     <div className="sticky top-0 left-0 p-5 w-full z-50">
       <div className="flex justify-between items-center text-center font-bold relative z-60">
-        <div className="text-3xl md:text-5xl font-kranky mix-blend-difference">
+        <div className="text-3xl md:text-5xl font-instrument_serif mix-blend-difference">
           <Link href="/">Rafly.</Link>
         </div>
         <Button
@@ -81,7 +81,7 @@ const Navbar = () => {
 
       <div
         ref={menuRef}
-        className="fixed top-0 left-0 w-full h-screen bg-secondary flex md:justify-center items-center md:text-center font-oswald"
+        className="fixed top-0 left-0 w-full h-screen bg-secondary flex md:justify-center items-center md:text-center font-instrument_serif"
         style={{
           transform: "translateY(-100%)",
         }}
@@ -95,7 +95,7 @@ const Navbar = () => {
               ref={(el) => {
                 linksRef.current[index] = el;
               }}
-              className="overflow-hidden inline-block hover:font-kranky"
+              className="overflow-hidden inline-block"
             >
               {item}
             </Link>

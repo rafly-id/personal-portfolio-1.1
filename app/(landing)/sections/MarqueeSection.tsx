@@ -38,7 +38,7 @@ export default function MarqueeSection() {
       <div ref={revealRef}>
         <div
           ref={scrollerRef1}
-          className="flex whitespace-nowrap tracking-tight font-oswald text-5xl font-bold md:text-[5rem]"
+          className="flex whitespace-nowrap tracking-tight font-instrument_serif text-5xl font-bold md:text-[5rem]"
         >
           {Array.from({ length: 10 }).map((_, i) => (
             <span
@@ -53,7 +53,7 @@ export default function MarqueeSection() {
 
         <div
           ref={scrollerRef2}
-          className="flex whitespace-nowrap tracking-tight font-kranky text-5xl font-bold md:text-[5rem]"
+          className="flex whitespace-nowrap tracking-tight font-instrument_serif text-5xl font-bold md:text-[5rem]"
         >
           {Array.from({ length: 10 }).map((_, i) => (
             <span

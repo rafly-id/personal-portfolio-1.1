@@ -78,7 +78,7 @@ const FeaturedWorkSection = () => {
       >
         {/* Giant Outlined Background Text */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0 md:flex">
-          <h2 className="bg-heading font-oswald font-black text-[13vw] tracking-tighter uppercase text-foreground/5 leading-none">
+          <h2 className="bg-heading font-instrument_serif font-black text-[13vw] tracking-tighter uppercase text-foreground/5 leading-none">
             Selected Work
           </h2>
         </div>
@@ -133,10 +133,10 @@ const FeaturedWorkSection = () => {
               {/* Title & Metadata */}
               <div className="mt-4 flex flex-col md:flex-row md:items-start justify-between gap-2 px-1">
                 <div>
-                  <h4 className="font-oswald text-2xl lg:text-3xl font-black uppercase tracking-tight leading-none text-foreground">
+                  <h4 className="font-instrument_serif text-2xl lg:text-3xl font-black uppercase tracking-tight leading-none text-foreground">
                     <Link
                       href={`/work/${project.slug}`}
-                      className="hover:font-kranky hover:text-foreground transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]"
+                      className="hover:font-instrument_serif hover:text-foreground transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]"
                     >
                       {project.title}
                     </Link>

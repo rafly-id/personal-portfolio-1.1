@@ -20,14 +20,14 @@ export default function HeroSection() {
 
   return (
     <section className="flex flex-col md:flex-row justify-between gap-5">
-      <div className="font-bold font-oswald text-6xl md:text-8xl mt-5 md:mt-10">
+      <div className="font-bold font-instrument_serif text-6xl md:text-8xl mt-5 md:mt-10">
         <div ref={raflyRef} className="overflow-hidden pb-1">
           RAFLY
         </div>
         <div ref={adrianRef} className="overflow-hidden pb-1">
           ADRIANSYAH
         </div>
-        <div ref={frontendRef} className="overflow-hidden pb-1 font-kranky">
+        <div ref={frontendRef} className="overflow-hidden pb-1 font-instrument_serif">
           FRONTEND
         </div>
         <div ref={developerRef} className="overflow-hidden pb-1">
@@ -39,9 +39,9 @@ export default function HeroSection() {
         <p ref={descRef} className="overflow-hidden">
           Crafting Engaging Web Experiences with Precision and Creativity
           Specializing in{" "}
-          <span className="font-kranky">React, Next.js, GSAP,</span> and Modern
+          <span className="font-instrument_serif">React, Next.js, GSAP,</span> and Modern
           Frontend Technologies,
-          <span className="font-kranky"> Let's Build Something Amazing Together!</span>
+          <span className="font-instrument_serif"> Let's Build Something Amazing Together!</span>
         </p>
       </div>
     </section>

@@ -68,14 +68,14 @@ const AboutHeroSection = () => {
     <>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mt-10">
         <div>
-          <div className="uppercase font-kranky font-bold text-5xl md:text-7xl mb-5 md:mb-10 overflow-hidden">
+          <div className="uppercase font-instrument_serif font-bold text-5xl md:text-7xl mb-5 md:mb-10 overflow-hidden">
             <h1 ref={titleRef}>Hi, I’m Rafly.</h1>
           </div>
 
           <div className="text-sm md:text-2xl font-light uppercase tracking-tighter overflow-hidden max-w-2xl">
             <p ref={descRef}>
               Nice to meet you — I’m a{" "}
-              <span className="font-kranky">Frontend Developer</span> who enjoys
+              <span className="font-instrument_serif">Frontend Developer</span> who enjoys
               building clean, modern web interfaces with a focus on good design,
               usability, smooth interactions, responsive layouts, and attention
               to detail.
@@ -105,7 +105,7 @@ const AboutHeroSection = () => {
         <div ref={marqueeRevealRef}>
           <div
             ref={marqueeScrollerRef1}
-            className="flex whitespace-nowrap tracking-tight font-kranky text-5xl font-bold md:text-[5rem]"
+            className="flex whitespace-nowrap tracking-tight font-instrument_serif text-5xl font-bold md:text-[5rem]"
           >
             {Array.from({ length: 10 }).map((_, i) => (
               <span
@@ -120,7 +120,7 @@ const AboutHeroSection = () => {
 
           <div
             ref={marqueeScrollerRef2}
-            className="flex whitespace-nowrap tracking-tight font-oswald text-5xl font-bold md:text-[5rem]"
+            className="flex whitespace-nowrap tracking-tight font-instrument_serif text-5xl font-bold md:text-[5rem]"
           >
             {Array.from({ length: 10 }).map((_, i) => (
               <span

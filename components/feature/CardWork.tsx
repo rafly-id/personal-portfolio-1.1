@@ -80,11 +80,11 @@ const CardWork = ({
         </div>
       </Link>
 
-      <CardHeader className="text-center font-bold text-3xl md:text-4xl uppercase font-oswald">
+      <CardHeader className="text-center font-bold text-3xl md:text-4xl uppercase font-instrument_serif">
         <CardTitle ref={titleRef} className="overflow-hidden">
           <Link
             href={`/work/${slug}`}
-            className="hover:font-kranky transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] inline-block"
+            className="hover:font-instrument_serif transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] inline-block"
           >
             {title}
           </Link>

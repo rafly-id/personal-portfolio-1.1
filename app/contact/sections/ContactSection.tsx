@@ -34,7 +34,7 @@ function SocialLinkItem({
     >
       <div
         ref={textRef}
-        className="text-2xl md:text-4xl font-oswald uppercase overflow-hidden hover:font-kranky"
+        className="text-2xl md:text-4xl font-instrument_serif uppercase overflow-hidden hover:font-instrument_serif"
       >
         {name}
       </div>

@@ -1,27 +1,20 @@
 import type { Metadata } from "next";
-import { Roboto, Oswald , Kranky } from "next/font/google";
+import { DM_Sans , Instrument_Serif} from "next/font/google";
 import "@/styles/globals.css";
 import Navbar from "@/components/layout/Navbar";
 import SmoothScroll from "@/components/global/SmoothScroll";
 import PageLoader from "@/components/global/PageLoader";
 import Cursor from "@/components/global/Cursor";
 
-const roboto = Roboto({
-  variable: "--font-roboto",
+const dm_sans = DM_Sans({
+  variable: "--font-dm-sans",
   subsets: ["latin"],
   weight: ["200", "400", "700", "900"],
   display: "swap",
 });
 
-const oswald = Oswald({
-  variable: "--font-oswald",
-  subsets: ["latin"],
-  weight: ["200", "400", "700"],
-  display: "swap",
-});
-
-const kranky = Kranky({
-  variable: "--font-kranky",
+const instrument_serif = Instrument_Serif({
+  variable: "--font-instrument-serif",
   subsets: ["latin"],
   weight: ["400"],
   display: "swap",
@@ -88,7 +81,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${roboto.variable} ${oswald.variable} ${kranky.variable} antialiased`}
+      className={`${dm_sans.variable} ${instrument_serif.variable} antialiased`}
     >
       <body>
         <SmoothScroll>
