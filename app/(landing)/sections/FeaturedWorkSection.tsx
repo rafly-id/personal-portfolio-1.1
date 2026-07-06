@@ -77,7 +77,7 @@ const FeaturedWorkSection = () => {
         className="md:sticky md:top-0 md:h-screen md:flex md:flex-col md:justify-center md:overflow-hidden py-16 md:py-0 w-full"
       >
         {/* Giant Outlined Background Text */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0 hidden md:flex">
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0 md:flex">
           <h2 className="bg-heading font-oswald font-black text-[13vw] tracking-tighter uppercase text-foreground/5 leading-none">
             Selected Work
           </h2>

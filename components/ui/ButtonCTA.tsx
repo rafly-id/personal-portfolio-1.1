@@ -18,27 +18,32 @@ interface ButtonCTAProps {
 
 const ButtonCTA = ({ link, text, className, target }: ButtonCTAProps) => {
   const linkref = useRef<HTMLAnchorElement>(null);
-  const bgRef = useRef<HTMLDivElement>(null);
+  const text1Ref = useRef<HTMLSpanElement>(null);
+  const text2Ref = useRef<HTMLSpanElement>(null);
 
   useGSAP(() => {
     const linkElement = linkref.current;
-    const bgElement = bgRef.current;
+    const text1Element = text1Ref.current;
+    const text2Element = text2Ref.current;
 
-    if (!linkElement || !bgElement) return;
+    if (!linkElement || !text1Element || !text2Element) return;
 
     const tl = gsap.timeline({ paused: true });
 
-    tl.to(linkElement, {
-      color: "var(--background)",
-      scale: 1.1,
-      duration: 0.5,
-      ease: "none",
-    }).to(
-      bgElement,
+    tl.to(
+      text1Element,
       {
-        clipPath: "circle(150% at 50% 50%)",
-        duration: 0.5,
-        ease: "none",
+        yPercent: -100,
+        duration: 0.4,
+        ease: "power2.inOut",
+      },
+      0
+    ).to(
+      text2Element,
+      {
+        yPercent: -100,
+        duration: 0.4,
+        ease: "power2.inOut",
       },
       0
     );
@@ -60,17 +65,19 @@ const ButtonCTA = ({ link, text, className, target }: ButtonCTAProps) => {
       <Button
         asChild
         className={cn(
-          "font-bold uppercase text-3xl font-kranky p-10 border-2 rounded-full w-auto my-5 md:my-10 relative overflow-hidden",
+          "font-bold text-3xl font-kranky p-10 border-2 rounded-full w-auto my-5 md:my-10 relative overflow-hidden",
           className
         )}
       >
         <Link href={link} ref={linkref} target={target}>
-          <div
-            ref={bgRef}
-            className="absolute inset-0 bg-foreground"
-            style={{ clipPath: "circle(0% at 50% 50%)" }}
-          />
-          <span className="relative z-10">{text}</span>
+          <span className="relative z-10 overflow-hidden flex flex-col justify-center items-center">
+            <span ref={text1Ref} className="block select-none">
+              {text}
+            </span>
+            <span ref={text2Ref} className="absolute block select-none top-full">
+              {text}
+            </span>
+          </span>
         </Link>
       </Button>
     </div>
@@ -78,3 +85,4 @@ const ButtonCTA = ({ link, text, className, target }: ButtonCTAProps) => {
 };
 
 export default ButtonCTA;
+

@@ -31,7 +31,6 @@ const Footer = () => {
           <ButtonCTA
             link="/CV_Rafly_Adriansyah.pdf"
             text="Download CV"
-            className="uppercase"
             target="_blank"
           />
         </div>
