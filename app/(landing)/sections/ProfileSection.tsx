@@ -19,7 +19,7 @@ export default function ProfileSection() {
     <section className="w-full h-auto">
       <div
         ref={containerRef}
-        className="relative w-full h-[500px] md:h-[750px] overflow-hidden"
+        className="relative w-full h-[500px] md:h-[750px] overflow-hidden rounded-[calc(2.5rem-0.5rem)]"
       >
         <Image
           ref={imageRef}

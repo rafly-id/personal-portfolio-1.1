@@ -12,6 +12,7 @@ interface UseParallaxImageOptions {
   imageRef: RefObject<HTMLElement | null>;
   y?: number;
   enableReveal?: boolean;
+  scrub?: boolean | number;
 }
 
 export function useParallaxImage({
@@ -19,22 +20,44 @@ export function useParallaxImage({
   imageRef,
   y = 30,
   enableReveal = false,
+  scrub = 1.5,
 }: UseParallaxImageOptions) {
   useGSAP(
     () => {
       if (!containerRef.current || !imageRef.current) return;
 
-      const parallaxTween = gsap.to(imageRef.current, {
-        yPercent: y,
-        scale: 1.2,
-        ease: "none",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: true,
-        },
+      // Calculate layout shift percentages
+      const absoluteY = Math.abs(y);
+      const heightPercent = 100 + absoluteY;
+      const topOffsetPercent = -(absoluteY / 2);
+      const yPercentShift = ((absoluteY / 2) / heightPercent) * 100;
+
+      // Determine animation direction based on the sign of y
+      const startYPercent = y >= 0 ? -yPercentShift : yPercentShift;
+      const endYPercent = y >= 0 ? yPercentShift : -yPercentShift;
+
+      // Apply initial styling to make the image taller and offset it
+      gsap.set(imageRef.current, {
+        height: `${heightPercent}%`,
+        top: `${topOffsetPercent}%`,
       });
+
+      const parallaxTween = gsap.fromTo(
+        imageRef.current,
+        {
+          yPercent: startYPercent,
+        },
+        {
+          yPercent: endYPercent,
+          ease: "none",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: scrub,
+          },
+        }
+      );
 
       let revealTween: gsap.core.Tween | null = null;
 
@@ -51,7 +74,7 @@ export function useParallaxImage({
             ease: "power3.out",
             duration: 2,
             scrollTrigger: {
-              trigger: imageRef.current,
+              trigger: containerRef.current,
               start: "top 85%",
               toggleActions: "play none none none",
             },
@@ -68,7 +91,7 @@ export function useParallaxImage({
     },
     {
       scope: containerRef,
-      dependencies: [y, enableReveal],
+      dependencies: [y, enableReveal, scrub],
     }
   );
 }

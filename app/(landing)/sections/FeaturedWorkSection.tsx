@@ -105,7 +105,7 @@ const FeaturedWorkSection = () => {
                 href={`/work/${project.slug}`}
                 className="block overflow-hidden p-2 md:p-3 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] "
               >
-                <div className="relative w-full aspect-video overflow-hidden">
+                <div className="relative w-full aspect-video overflow-hidden rounded-[calc(2.5rem-0.5rem)]">
                   {/* Main background image */}
                   <Image
                     src={project.imageSrc}
