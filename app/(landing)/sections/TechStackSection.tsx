@@ -125,7 +125,8 @@ const TechStackSection = () => {
   );
 
   const handleToggle = (index: number) => {
-    setActiveIndex(activeIndex === index ? null : index);
+    if (activeIndex === index) return;
+    setActiveIndex(index);
   };
 
   return (
@@ -148,7 +149,7 @@ const TechStackSection = () => {
           return (
             <div
               key={catIdx}
-              className="bg-foreground/[0.02] border border-foreground/10 rounded-[2rem] p-1.5 tech-card transition-all duration-500 hover:border-special/20"
+              className="bg-foreground/[0.02] border border-foreground/10 rounded-[2rem] p-1.5 tech-card transition-all duration-500 hover:border-foreground/20"
               style={{ willChange: "transform, opacity" }}
             >
               <div className="bg-foreground/[0.01] rounded-[calc(2rem-0.375rem)] p-6 md:p-8 h-full flex flex-col justify-start">
@@ -162,13 +163,13 @@ const TechStackSection = () => {
                     <span className="font-mono text-sm md:text-base text-foreground/40 tracking-wider">
                       {numStr}
                     </span>
-                    <h3 className="font-instrument_serif text-2xl md:text-3xl lg:text-4xl text-foreground/80 group-hover/btn:text-special transition-colors duration-300 capitalize">
+                    <h3 className="font-instrument_serif text-2xl md:text-3xl lg:text-4xl text-foreground/80 group-hover/btn:text-foreground transition-colors duration-300 capitalize">
                       {cat.title}
                     </h3>
                   </div>
 
                   {/* Circular Chevron Wrapper */}
-                  <div className="accordion-chevron w-10 h-10 rounded-full border border-foreground/10 flex items-center justify-center bg-foreground/[0.02] text-foreground/60 transition-all duration-500 group-hover/btn:scale-105 group-hover/btn:border-special/30 group-hover/btn:text-special">
+                  <div className="accordion-chevron w-10 h-10 rounded-full border border-foreground/10 flex items-center justify-center bg-foreground/[0.02] text-foreground/60 transition-all duration-500 group-hover/btn:scale-105 group-hover/btn:border-foreground/30 group-hover/btn:text-foreground">
                     <ChevronDown size={18} strokeWidth={1.5} />
                   </div>
                 </button>
@@ -188,7 +189,7 @@ const TechStackSection = () => {
                         >
                           <div className="p-3">
                             <tech.icon
-                              className="w-9 h-9 md:w-10 md:h-10 text-foreground/30 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover/item:scale-110 group-hover/item:text-special"
+                              className="w-9 h-9 md:w-10 md:h-10 text-foreground/30 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover/item:scale-110 group-hover/item:text-foreground"
                             />
                           </div>
                           <span className="mt-2 text-[9px] md:text-xs uppercase tracking-widest font-mono text-foreground/50 transition-colors duration-300 group-hover/item:text-foreground/80 text-center">
