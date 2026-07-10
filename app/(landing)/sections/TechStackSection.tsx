@@ -1,17 +1,19 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ChevronDown } from "lucide-react";
 import { techStack } from "@/lib/data";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const TechStackSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState<number | null>(0);
 
-  // Grouping logic for bento categories
+  // Grouping logic for categories
   const categories = [
     {
       title: "Core Languages",
@@ -33,18 +35,17 @@ const TechStackSection = () => {
     },
   ];
 
+  // Entry Scroll Animation
   useGSAP(
     () => {
       if (!sectionRef.current) return;
 
       const title = sectionRef.current.querySelector(".tech-title");
       const cards = gsap.utils.toArray(".tech-card");
-      const items = gsap.utils.toArray(".tech-item");
 
-      // Set initial states to prevent visual flash on load
+      // Set initial states to prevent visual flash
       gsap.set(title, { y: 80, opacity: 0 });
-      gsap.set(cards, { y: 50, opacity: 0, scale: 0.95 });
-      gsap.set(items, { scale: 0.7, opacity: 0 });
+      gsap.set(cards, { y: 50, opacity: 0, scale: 0.98 });
 
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -71,21 +72,61 @@ const TechStackSection = () => {
           ease: "power3.out",
         },
         "-=0.4"
-      )
-      .to(
-        items,
-        {
-          scale: 1,
-          opacity: 1,
-          stagger: 0.03,
-          duration: 0.6,
-          ease: "back.out(1.5)",
-        },
-        "-=0.6"
       );
     },
     { scope: sectionRef }
   );
+
+  // Accordion Expand/Collapse Animation
+  useGSAP(
+    () => {
+      const contents = gsap.utils.toArray<HTMLElement>(".accordion-content");
+      const chevrons = gsap.utils.toArray<HTMLElement>(".accordion-chevron");
+
+      contents.forEach((content, idx) => {
+        const isOpen = idx === activeIndex;
+
+        // Animate height
+        gsap.to(content, {
+          height: isOpen ? "auto" : 0,
+          duration: 0.6,
+          ease: "power4.inOut",
+          overwrite: "auto",
+          onStart: () => {
+            if (isOpen) {
+              const items = content.querySelectorAll(".tech-item");
+              gsap.fromTo(
+                items,
+                { scale: 0.8, opacity: 0, y: 15 },
+                {
+                  scale: 1,
+                  opacity: 1,
+                  y: 0,
+                  stagger: 0.05,
+                  duration: 0.5,
+                  ease: "back.out(1.2)",
+                  overwrite: "auto",
+                }
+              );
+            }
+          },
+        });
+
+        // Animate chevron rotation
+        gsap.to(chevrons[idx], {
+          rotate: isOpen ? 180 : 0,
+          duration: 0.5,
+          ease: "power3.inOut",
+          overwrite: "auto",
+        });
+      });
+    },
+    { dependencies: [activeIndex], scope: sectionRef }
+  );
+
+  const handleToggle = (index: number) => {
+    setActiveIndex(activeIndex === index ? null : index);
+  };
 
   return (
     <section ref={sectionRef} className="mt-20 md:mt-32 py-10 overflow-hidden">
@@ -98,38 +139,70 @@ const TechStackSection = () => {
         </div>
       </div>
 
-      {/* Bento Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto px-4">
-        {categories.map((cat, catIdx) => (
-          <div
-            key={catIdx}
-            className="bg-foreground/[0.02] dark:bg-white/[0.02] border border-foreground/10 dark:border-white/10 rounded-[2rem] p-1.5 tech-card"
-            style={{ willChange: "transform, opacity" }}
-          >
-            <div className="bg-foreground/[0.01] dark:bg-white/[0.01] rounded-[calc(2rem-0.375rem)] p-6 md:p-8 h-full flex flex-col justify-start">
-              <h3 className="font-instrument_serif text-2xl md:text-3xl text-foreground/80 tracking-tight capitalize mb-8 border-b border-foreground/10 pb-2">
-                {cat.title}
-              </h3>
-              
-              <div className="grid grid-cols-3 gap-6 md:gap-8">
-                {cat.items.map((tech, techIdx) => (
-                  <div
-                    key={techIdx}
-                    className="tech-item flex flex-col items-center gap-3 transition-transform duration-300 hover:scale-110 cursor-default"
-                    style={{ willChange: "transform, opacity" }}
-                  >
-                    <div className="p-4 bg-foreground/5 rounded-2xl border border-foreground/10 flex items-center justify-center shadow-sm">
-                      <tech.icon className="w-8 h-8 text-foreground/80 hover:text-foreground transition-colors duration-300" />
-                    </div>
-                    <span className="text-[10px] md:text-xs uppercase tracking-wider font-light text-foreground/60 text-center">
-                      {tech.name}
+      {/* Accordion Stack */}
+      <div className="flex flex-col gap-6 max-w-4xl mx-auto px-4">
+        {categories.map((cat, catIdx) => {
+          const isOpen = activeIndex === catIdx;
+          const numStr = `0${catIdx + 1} /`;
+
+          return (
+            <div
+              key={catIdx}
+              className="bg-foreground/[0.02] border border-foreground/10 rounded-[2rem] p-1.5 tech-card transition-all duration-500 hover:border-special/20"
+              style={{ willChange: "transform, opacity" }}
+            >
+              <div className="bg-foreground/[0.01] rounded-[calc(2rem-0.375rem)] p-6 md:p-8 h-full flex flex-col justify-start">
+                {/* Header Toggle */}
+                <button
+                  onClick={() => handleToggle(catIdx)}
+                  className="w-full flex items-center justify-between text-left focus:outline-none group/btn cursor-pointer"
+                  aria-expanded={isOpen}
+                >
+                  <div className="flex items-center gap-4 md:gap-6">
+                    <span className="font-mono text-sm md:text-base text-foreground/40 tracking-wider">
+                      {numStr}
                     </span>
+                    <h3 className="font-instrument_serif text-2xl md:text-3xl lg:text-4xl text-foreground/80 group-hover/btn:text-special transition-colors duration-300 capitalize">
+                      {cat.title}
+                    </h3>
                   </div>
-                ))}
+
+                  {/* Circular Chevron Wrapper */}
+                  <div className="accordion-chevron w-10 h-10 rounded-full border border-foreground/10 flex items-center justify-center bg-foreground/[0.02] text-foreground/60 transition-all duration-500 group-hover/btn:scale-105 group-hover/btn:border-special/30 group-hover/btn:text-special">
+                    <ChevronDown size={18} strokeWidth={1.5} />
+                  </div>
+                </button>
+
+                {/* Animated Content Panel */}
+                <div
+                  className="accordion-content overflow-hidden"
+                  style={{ height: catIdx === 0 ? "auto" : 0 }}
+                >
+                  <div className="pt-8 md:pt-10">
+                    <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-6 md:gap-8">
+                      {cat.items.map((tech, techIdx) => (
+                        <div
+                          key={techIdx}
+                          className="tech-item flex flex-col items-center justify-center p-3 rounded-2xl hover:bg-foreground/[0.02] transition-all duration-300 group/item cursor-default"
+                          style={{ willChange: "transform, opacity" }}
+                        >
+                          <div className="p-3">
+                            <tech.icon
+                              className="w-9 h-9 md:w-10 md:h-10 text-foreground/30 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover/item:scale-110 group-hover/item:text-special"
+                            />
+                          </div>
+                          <span className="mt-2 text-[9px] md:text-xs uppercase tracking-widest font-mono text-foreground/50 transition-colors duration-300 group-hover/item:text-foreground/80 text-center">
+                            {tech.name}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );
