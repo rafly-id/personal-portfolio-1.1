@@ -5,6 +5,7 @@ import HeroSection from "./sections/HeroSection";
 import ProfileSection from "./sections/ProfileSection";
 import MarqueeSection from "./sections/MarqueeSection";
 import AboutDetailsSection from "./sections/AboutDetailsSection";
+import ExperienceSection from "./sections/ExperienceSection";
 import TechStackSection from "./sections/TechStackSection";
 import FeaturedWorkSection from "./sections/FeaturedWorkSection";
 import CertificatesSection from "./sections/CertificatesSection";
@@ -30,6 +31,9 @@ const Landing = () => {
 
       {/* About Details Section with Z-Axis scrolling */}
       <AboutDetailsSection />
+
+      {/* Experience Section with Inverted Color Theme */}
+      <ExperienceSection />
 
       {/* Tech Stack Section with Scroll Reveal */}
       <TechStackSection />

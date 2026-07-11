@@ -225,3 +225,21 @@ export const certificates = [
     link: "https://www.dicoding.com/certificates/6RPNYE5R4Z2M",
   },
 ];
+
+export const experiences = [
+  {
+    company: "BP3KP Jawa III",
+    role: "Frontend Developer Intern",
+    period: "Feb - Juni 2026",
+    location: "Yogyakarta, Indonesia",
+    description: "Developed during my frontend engineering internship, this project involved the complete restructuring of the SEJATI application and the integration of the Sinoman Dashboard for RTLH (Rumah Tidak Layak Huni) management.",
+    bullets: [
+      "Migrated a monolithic legacy codebase into a highly scalable, modular architecture using Feature-Sliced Design (FSD).",
+      "Implemented Role-Based Access Control (RBAC) with Region-lock security measures.",
+      "Optimized rendering pipelines, custom React hooks, and state management, resulting in a zero-defect deployment.",
+      "Strictly enforced TypeScript interfaces to prevent data mismatches and security concerns."
+    ],
+    tech: ["React", "TypeScript", "Tailwind CSS", "FSD", "GSAP"]
+  }
+];
+
