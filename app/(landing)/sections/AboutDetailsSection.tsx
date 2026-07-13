@@ -35,9 +35,9 @@ const AboutDetailsSection = () => {
           scrollTrigger: {
             trigger: triggerRef.current,
             start: "top top",
-            end: "+=350%", // Scroll depth for pinning
+            end: "+=280%", // Scroll depth for pinning
             pin: true,
-            scrub: 1,
+            scrub: 0.2,
             invalidateOnRefresh: true,
           },
         });
@@ -109,9 +109,9 @@ const AboutDetailsSection = () => {
           scrollTrigger: {
             trigger: triggerRef.current,
             start: "top top",
-            end: "+=350%",
+            end: "+=280%",
             pin: true,
-            scrub: 1,
+            scrub: 0.2,
             invalidateOnRefresh: true,
           },
         });
