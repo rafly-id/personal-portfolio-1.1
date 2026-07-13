@@ -55,12 +55,12 @@ const ExperienceSection = () => {
       gsap.to(root, {
         "--background": "#1c1a19",
         "--foreground": "#f4f3ef",
-        duration: 0.6,
-        ease: "power2.out",
+        duration: 0.3,
+        ease: "power1.inOut",
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top bottom", // triggers dark mode when top of section enters viewport
-          end: "bottom top", // triggers light mode when bottom of section leaves viewport
+          end: "bottom center", // triggers light mode when bottom of section leaves viewport
           toggleActions: "play reverse play reverse", // play on enter, reverse on leave, play on enterBack, reverse on leaveBack
           invalidateOnRefresh: true,
         },
@@ -82,7 +82,7 @@ const ExperienceSection = () => {
       className="w-full text-foreground py-24 md:py-36 overflow-hidden z-10 relative"
     >
       <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-start w-full px-4 md:px-10 max-w-6xl mx-auto">
-        
+
         {/* Left Column: Sticky-like info */}
         <div className="exp-left md:col-span-5 text-left md:sticky md:top-24 flex flex-col justify-center">
           <span className="w-fit text-[10px] uppercase tracking-[0.2em] font-medium text-foreground/50 border border-foreground/10 rounded-full px-3.5 py-1">
@@ -95,7 +95,7 @@ const ExperienceSection = () => {
             <Briefcase size={18} className="text-foreground/40" />
             {experiences[0].role}
           </h3>
-          
+
           <div className="flex flex-col gap-3 font-mono text-xs text-foreground/55 border-l-2 border-foreground/15 pl-4 py-1">
             <span className="flex items-center gap-2">
               <Calendar size={14} className="text-foreground/45" />

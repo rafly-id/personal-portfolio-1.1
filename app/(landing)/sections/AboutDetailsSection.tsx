@@ -82,7 +82,7 @@ const AboutDetailsSection = () => {
           duration: 1,
         }, "+=0.4");
 
-        // Paragraph 3 (Float Left) - Calibrated Zoom (Scale: 1.25 / Z: 200)
+        // Paragraph 3 (Float Left)
         tl.to(paragraphs[2] as Element, {
           z: 0,
           scale: 1,
@@ -93,10 +93,10 @@ const AboutDetailsSection = () => {
           duration: 1,
         })
         .to(paragraphs[2] as Element, {
-          z: 200,
-          scale: 1.25,
+          z: 600,
+          scale: 1.6,
           opacity: 0,
-          xPercent: -25,
+          xPercent: -35,
           pointerEvents: "none",
           ease: "power2.in",
           duration: 1,
@@ -156,7 +156,7 @@ const AboutDetailsSection = () => {
           duration: 1,
         }, "+=0.4");
 
-        // Paragraph 3 (Centered) - Calibrated Zoom (Scale: 1.2 / Z: 200)
+        // Paragraph 3 (Centered)
         tl.to(paragraphs[2] as Element, {
           z: 0,
           scale: 1,
@@ -167,8 +167,8 @@ const AboutDetailsSection = () => {
           duration: 1,
         })
         .to(paragraphs[2] as Element, {
-          z: 200,
-          scale: 1.2,
+          z: 600,
+          scale: 1.4,
           opacity: 0,
           xPercent: 0,
           pointerEvents: "none",
