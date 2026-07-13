@@ -19,7 +19,7 @@ export default function HeroSection() {
   useTextReveal({ ref: descRef, y: 100, delay: 0.1, type: "lines" });
 
   return (
-    <section className="flex flex-col md:flex-row justify-between gap-5">
+    <section className="flex flex-col md:flex-row justify-between gap-5 mt-20">
       <div className="font-bold font-instrument_serif text-6xl md:text-8xl mt-5 md:mt-10">
         <div ref={raflyRef} className="overflow-hidden pb-1">
           RAFLY

@@ -20,7 +20,7 @@ const Footer = () => {
   });
 
   return (
-    <footer className="mx-5 flex flex-col md:flex-row gap-8 md:gap-30 h-screen justify-center items-center">
+    <footer id="contact" className="mx-5 flex flex-col md:flex-row gap-8 md:gap-30 h-screen justify-center items-center">
       <div className="flex flex-col md:flex-row gap-2 justify-center items-center font-bold text-7xl md:text-9xl font-instrument_serif uppercase">
         <h2 ref={titleRef}>Let's</h2>
         <h2 ref={titleRef}>Talk</h2>

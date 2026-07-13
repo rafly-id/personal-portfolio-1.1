@@ -59,8 +59,8 @@ const ExperienceSection = () => {
         ease: "power2.out",
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 60%", // triggers dark mode when top of section is 60% down the viewport
-          end: "bottom 40%", // triggers light mode when bottom of section is 40% down the viewport
+          start: "top bottom", // triggers dark mode when top of section enters viewport
+          end: "bottom top", // triggers light mode when bottom of section leaves viewport
           toggleActions: "play reverse play reverse", // play on enter, reverse on leave, play on enterBack, reverse on leaveBack
           invalidateOnRefresh: true,
         },
