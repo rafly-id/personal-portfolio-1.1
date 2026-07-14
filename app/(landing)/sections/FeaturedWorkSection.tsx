@@ -17,10 +17,6 @@ const FeaturedWorkSection = () => {
   const pinRef = useRef<HTMLDivElement>(null);
   const stickyRef = useRef<HTMLDivElement>(null);
   const scrollTrackRef = useRef<HTMLDivElement>(null);
-  const tooltipRef = useRef<HTMLDivElement>(null);
-
-  const xTo = useRef<any>(null);
-  const yTo = useRef<any>(null);
 
   useGSAP(
     () => {
@@ -190,12 +186,6 @@ const FeaturedWorkSection = () => {
         });
       });
 
-      // Initialize high-performance cursor tracking
-      if (tooltipRef.current) {
-        xTo.current = gsap.quickTo(tooltipRef.current, "x", { duration: 0.35, ease: "power3.out" });
-        yTo.current = gsap.quickTo(tooltipRef.current, "y", { duration: 0.35, ease: "power3.out" });
-      }
-
       return () => {
         mm.revert();
       };
@@ -203,57 +193,9 @@ const FeaturedWorkSection = () => {
     { scope: sectionRef }
   );
 
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (xTo.current && yTo.current) {
-      xTo.current(e.clientX);
-      yTo.current(e.clientY);
-    }
-  };
-
-  const handleSectionMouseEnter = () => {
-    // Fade out global custom cursor
-    const globalCursor = document.querySelector("div[class*='z-9999']");
-    if (globalCursor) {
-      gsap.to(globalCursor, { scale: 0, opacity: 0, duration: 0.15 });
-    }
-  };
-
-  const handleSectionMouseLeave = () => {
-    // Restore global custom cursor
-    const globalCursor = document.querySelector("div[class*='z-9999']");
-    if (globalCursor) {
-      gsap.to(globalCursor, { scale: 1, opacity: 1, duration: 0.2 });
-    }
-  };
-
-  const handleCardMouseEnter = () => {
-    if (tooltipRef.current) {
-      gsap.to(tooltipRef.current, {
-        scale: 1,
-        opacity: 1,
-        duration: 0.3,
-        ease: "power3.out",
-      });
-    }
-  };
-
-  const handleCardMouseLeave = () => {
-    if (tooltipRef.current) {
-      gsap.to(tooltipRef.current, {
-        scale: 0,
-        opacity: 0,
-        duration: 0.25,
-        ease: "power3.out",
-      });
-    }
-  };
-
   return (
     <section
       ref={sectionRef}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={handleSectionMouseEnter}
-      onMouseLeave={handleSectionMouseLeave}
       className="w-full relative select-none"
     >
       <div ref={pinRef} className="relative w-full overflow-hidden md:overflow-visible my-12 md:my-0">
@@ -284,8 +226,8 @@ const FeaturedWorkSection = () => {
             {featuredProjects.map((project, index) => (
               <div
                 key={index}
-                onMouseEnter={handleCardMouseEnter}
-                onMouseLeave={handleCardMouseLeave}
+                data-cursor="view"
+                data-cursor-text="view project"
                 className="project-card relative w-full md:w-[750px] lg:w-[900px] shrink-0 group flex flex-col justify-between"
               >
                 {/* Flat / Sharp cornered Image Card */}
@@ -340,16 +282,6 @@ const FeaturedWorkSection = () => {
         </div>
       </div>
 
-      {/* Floating Dynamic Tooltip (desktop only) */}
-      <div
-        ref={tooltipRef}
-        className="fixed top-0 left-0 pointer-events-none z-50 hidden md:flex flex-col justify-center items-center rounded-full bg-foreground text-background px-5 py-2.5 shadow-2xl scale-0 opacity-0 transform -translate-x-1/2 -translate-y-1/2 border border-background/10 backdrop-blur-md select-none"
-        style={{ willChange: "transform" }}
-      >
-        <span className="font-sans text-xs tracking-wider text-background/85 font-medium flex items-center gap-1.5 lowercase leading-none">
-          view project
-        </span>
-      </div>
     </section>
   );
 };

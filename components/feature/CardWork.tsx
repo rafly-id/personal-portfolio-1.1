@@ -53,7 +53,11 @@ const CardWork = ({
   });
 
   return (
-    <Card className={cn("rounded-none border-0 p-0 shadow-none bg-transparent", className)}>
+    <Card
+      className={cn("rounded-none border-0 p-0 shadow-none bg-transparent", className)}
+      data-cursor="view"
+      data-cursor-text="view project"
+    >
       <Link href={`/work/${slug}`} className="block group/card">
         <ParallaxImage
           src={imageSrc}
