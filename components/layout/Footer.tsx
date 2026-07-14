@@ -5,17 +5,24 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SplitText from "gsap/SplitText";
-import { ArrowUpRight } from "lucide-react";
 import { FaLinkedin, FaInstagram, FaGithub, FaWhatsapp } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
-import { getWhatsAppLink } from "@/lib/utils";
+import { socialLinks } from "@/lib/data";
+import Button from "@/components/ui/button";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
+
+const iconMap: Record<string, React.ComponentType<{ size?: number }>> = {
+  LinkedIn: FaLinkedin,
+  Instagram: FaInstagram,
+  Github: FaGithub,
+  Email: MdEmail,
+  Whatsapp: FaWhatsapp,
+};
 
 const Footer = () => {
   const footerRef = useRef<HTMLDivElement>(null);
   const nameRef = useRef<HTMLHeadingElement>(null);
-  const whatsappLink = getWhatsAppLink("Halo Rafly");
 
   useGSAP(
     () => {
@@ -119,55 +126,22 @@ const Footer = () => {
             <div className="flex flex-col items-start gap-4 w-full">
               <span className="font-mono text-xs text-foreground/45 uppercase tracking-widest">[ Follow me ]</span>
               <div className="flex flex-wrap items-center gap-4">
-                <a
-                  href="https://www.linkedin.com/in/rafly-adriansyah-35587225b/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-full border border-foreground/15 flex items-center justify-center backdrop-blur-sm text-foreground/75 hover:text-foreground hover:bg-foreground/5 hover:border-foreground/40 hover:scale-105 active:scale-95 transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] cursor-pointer"
-                  aria-label="LinkedIn"
-                >
-                  <FaLinkedin size={20} />
-                </a>
-
-                <a
-                  href="https://www.instagram.com/__rafllyy/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-full border border-foreground/15 flex items-center justify-center backdrop-blur-sm text-foreground/75 hover:text-foreground hover:bg-foreground/5 hover:border-foreground/40 hover:scale-105 active:scale-95 transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] cursor-pointer"
-                  aria-label="Instagram"
-                >
-                  <FaInstagram size={20} />
-                </a>
-
-                <a
-                  href="https://github.com/rafly-id"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-full border border-foreground/15 flex items-center justify-center backdrop-blur-sm text-foreground/75 hover:text-foreground hover:bg-foreground/5 hover:border-foreground/40 hover:scale-105 active:scale-95 transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] cursor-pointer"
-                  aria-label="GitHub"
-                >
-                  <FaGithub size={20} />
-                </a>
-
-                <a
-                  href="mailto:muhr0417@gmail.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-full border border-foreground/15 flex items-center justify-center backdrop-blur-sm text-foreground/75 hover:text-foreground hover:bg-foreground/5 hover:border-foreground/40 hover:scale-105 active:scale-95 transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] cursor-pointer"
-                  aria-label="Email"
-                >
-                  <MdEmail size={20} />
-                </a>
-
-                <a
-                  href={whatsappLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-full border border-foreground/15 flex items-center justify-center backdrop-blur-sm text-foreground/75 hover:text-foreground hover:bg-foreground/5 hover:border-foreground/40 hover:scale-105 active:scale-95 transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] cursor-pointer"
-                  aria-label="WhatsApp"
-                >
-                  <FaWhatsapp size={20} />
-                </a>
+                {socialLinks.map((link) => {
+                  const Icon = iconMap[link.name];
+                  if (!Icon) return null;
+                  return (
+                    <a
+                      key={link.name}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-12 h-12 rounded-full border border-foreground/15 flex items-center justify-center backdrop-blur-sm text-foreground/75 hover:text-foreground hover:bg-foreground/5 hover:border-foreground/40 hover:scale-105 active:scale-95 transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] cursor-pointer"
+                      aria-label={link.name}
+                    >
+                      <Icon size={20} />
+                    </a>
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -177,26 +151,22 @@ const Footer = () => {
             <span className="font-mono text-xs text-foreground/45 uppercase tracking-widest md:hidden">[ Contact ]</span>
 
             {/* CTA 1 */}
-            <a
-              href={whatsappLink}
+            <Button
+              href={socialLinks.find((l) => l.name === "Whatsapp")?.href || "#"}
+              text="Call Rafly"
+              variant="outline"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-2 px-5 py-2.5 rounded-full border border-foreground/15 backdrop-blur-sm text-foreground/80 hover:text-foreground hover:bg-foreground/5 hover:border-foreground/40 hover:scale-105 active:scale-95 transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] font-sans text-sm font-semibold cursor-pointer"
-            >
-              <span>Call Rafly</span>
-              <ArrowUpRight size={16} className="text-foreground/75 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </a>
+            />
 
             {/* CTA 2 */}
-            <a
+            <Button
               href="/CV_Rafly_Adriansyah.pdf"
+              text="Download CV"
+              variant="outline"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-2 px-5 py-2.5 rounded-full border border-foreground/15 backdrop-blur-sm text-foreground/80 hover:text-foreground hover:bg-foreground/5 hover:border-foreground/40 hover:scale-105 active:scale-95 transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] font-sans text-sm font-semibold cursor-pointer"
-            >
-              <span>Download CV</span>
-              <ArrowUpRight size={16} className="text-foreground/75 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </a>
+            />
           </div>
 
         </div>

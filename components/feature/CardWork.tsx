@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef } from "react";
-import Image from "next/image";
 import Link from "next/link";
 
 import {
@@ -12,12 +11,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-import ButtonCTA from "@/components/ui/ButtonCTA";
 import { Project } from "@/types";
-
 import { useTextReveal } from "@/hooks/useTextReveal";
-import { useParallaxImage } from "@/hooks/useParallaxImage";
-
+import ParallaxImage from "@/components/ui/ParallaxImage";
 import { cn } from "@/lib/utils";
 
 type CardWorkProps = Pick<
@@ -35,23 +31,11 @@ const CardWork = ({
   imageAlt,
   title,
   tech,
-  link,
-  github,
   hideDetailsOnDesktop = false,
   className,
 }: CardWorkProps) => {
-  const imageContainerRef = useRef<HTMLDivElement>(null);
-  const imageRef = useRef<HTMLImageElement>(null);
-
   const titleRef = useRef<HTMLHeadingElement>(null);
   const techRef = useRef<HTMLParagraphElement>(null);
-
-  useParallaxImage({
-    containerRef: imageContainerRef,
-    imageRef,
-    y: 30,
-    enableReveal: true,
-  });
 
   useTextReveal({
     ref: titleRef,
@@ -71,24 +55,16 @@ const CardWork = ({
   return (
     <Card className={cn("rounded-none border-0 p-0 shadow-none bg-transparent", className)}>
       <Link href={`/work/${slug}`} className="block group/card">
-        {/* Borderless Image Container */}
-        <div
-          ref={imageContainerRef}
-          className="relative w-full h-[400px] md:h-[600px] lg:h-[700px] overflow-hidden rounded-[2rem] shadow-[inset_0_1px_2.5px_rgba(0,0,0,0.08)]"
-        >
-          {/* Scale wrapper that transition-scales on hover to avoid clashing with GSAP parallax */}
-          <div className="w-full h-full transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover/card:scale-[1.03]">
-            <Image
-              ref={imageRef}
-              src={imageSrc}
-              alt={imageAlt}
-              fill
-              className="object-cover grayscale group-hover/card:grayscale-0 transition-[filter] duration-700 ease-[cubic-bezier(0.32,0.72,0,1)]"
-              sizes="(max-width: 768px) 100vw, 50vw"
-              priority
-            />
-          </div>
-        </div>
+        <ParallaxImage
+          src={imageSrc}
+          alt={imageAlt}
+          fill
+          containerClassName="w-full h-[400px] md:h-[600px] lg:h-[700px] rounded-[2rem] shadow-[inset_0_1px_2.5px_rgba(0,0,0,0.08)]"
+          className="grayscale group-hover/card:grayscale-0 transition-[filter] duration-700 ease-[cubic-bezier(0.32,0.72,0,1)]"
+          sizes="(max-width: 768px) 100vw, 50vw"
+          priority
+          hoverScale
+        />
       </Link>
 
       {/* Render text details statically below the image */}
@@ -117,3 +93,4 @@ const CardWork = ({
 };
 
 export default CardWork;
+

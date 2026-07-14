@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 
-import ButtonCTA from "@/components/ui/ButtonCTA";
 import HeroSection from "./sections/HeroSection";
 import ProfileSection from "./sections/ProfileSection";
 import MarqueeSection from "./sections/MarqueeSection";
@@ -40,10 +39,6 @@ const Landing = () => {
 
       <div className="mt-14 md:mt-16">
         <FeaturedWorkSection />
-      </div>
-
-      <div className="mt-2 md:mt-10">
-        <ButtonCTA link="/work" text="See All My Work" className="md:p-10" />
       </div>
 
       {/* Certificates Section with Hover Media Reveal */}

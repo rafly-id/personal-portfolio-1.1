@@ -75,20 +75,18 @@ Make sure you have **Node.js** installed.
 ```bash
 .
 ├── app/                  # Next.js App Router pages
-│   ├── (landing)/        # Landing page route group
-│   ├── about/            # About page
-│   ├── contact/          # Contact page
-│   ├── work/             # Work/Projects page
+│   ├── (landing)/        # Landing page route group & sections
+│   ├── work/             # Work/Projects list & dynamic details
 │   ├── layout.tsx        # Root layout
-│   └── template.tsx      # Template for page transitions
+│   └── template.tsx      # Template wrapper
 ├── components/           # Reusable React components
-│   ├── feature/          # Feature-specific components (e.g., CardWork)
-│   ├── global/           # Global components (Cursor, Loader, SmoothScroll)
+│   ├── feature/          # Feature-specific components (e.g., CardWork, Onboarding)
+│   ├── global/           # Global components (Cursor, PageLoader, SmoothScroll)
 │   ├── layout/           # Layout components (Navbar, Footer)
-│   └── ui/               # UI primitives (Buttons, Cards, Titles)
+│   └── ui/               # UI primitives (SectionHeader, Title, button, card)
 ├── hooks/                # Custom React hooks (Parallax, Scroll, etc.)
 ├── lib/                  # Utility functions and static data
-├── public/               # Static assets (images, fonts)
+├── public/               # Static assets (images, pdf)
 └── styles/               # Global styles (Tailwind, CSS variables)
 ```
 

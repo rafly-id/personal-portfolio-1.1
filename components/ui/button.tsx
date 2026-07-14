@@ -1,60 +1,83 @@
-import * as React from "react"
-import { Slot } from "@radix-ui/react-slot"
-import { cva, type VariantProps } from "class-variance-authority"
+"use client";
 
-import { cn } from "@/lib/utils"
+import React, { useRef } from "react";
+import Link from "next/link";
+import { cn } from "@/lib/utils";
+import TextSwap from "@/components/ui/TextSwap";
 
-const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
-  {
-    variants: {
-      variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
-        destructive:
-          "bg-destructive text-white hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
-        outline:
-          "border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
-        secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost:
-          "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
-        link: "text-primary underline-offset-4 hover:underline",
-      },
-      size: {
-        default: "h-9 px-4 py-2 has-[>svg]:px-3",
-        sm: "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
-        lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
-        icon: "size-9",
-        "icon-sm": "size-8",
-        "icon-lg": "size-10",
-      },
-    },
-    defaultVariants: {
-      variant: "default",
-      size: "default",
-    },
-  }
-)
-
-function Button({
-  className,
-  variant,
-  size,
-  asChild = false,
-  ...props
-}: React.ComponentProps<"button"> &
-  VariantProps<typeof buttonVariants> & {
-    asChild?: boolean
-  }) {
-  const Comp = asChild ? Slot : "button"
-
-  return (
-    <Comp
-      data-slot="button"
-      className={cn(buttonVariants({ variant, size, className }))}
-      {...props}
-    />
-  )
+interface ButtonProps {
+  children?: React.ReactNode;
+  text?: string; // Text to be swapped on hover
+  href?: string;
+  onClick?: (e: React.MouseEvent) => void;
+  className?: string;
+  variant?: "solid" | "outline" | "ghost";
+  target?: string;
+  rel?: string;
 }
 
-export { Button, buttonVariants }
+export default function Button({
+  children,
+  text,
+  href,
+  onClick,
+  className,
+  variant = "solid",
+  target,
+  rel,
+}: ButtonProps) {
+  const buttonRef = useRef<any>(null);
+
+  const baseClasses = cn(
+    "group flex items-center justify-center gap-2 px-6 py-3 rounded-full font-sans text-sm font-semibold select-none cursor-pointer transition-all duration-300 active:scale-95",
+    variant === "solid" && "bg-foreground text-background border border-foreground/10 hover:opacity-90 shadow-sm",
+    variant === "outline" && "border border-foreground/15 text-foreground/80 hover:text-foreground hover:bg-foreground/5 hover:border-foreground/45 backdrop-blur-sm",
+    variant === "ghost" && "text-foreground hover:bg-foreground/5",
+    className
+  );
+
+  const displayText = text || (typeof children === "string" ? children : "");
+
+  const renderContent = () => {
+    return (
+      <>
+        {/* Text Area with Swap Animation */}
+        {displayText ? (
+          <TextSwap text={displayText} className="h-4" triggerRef={buttonRef} />
+        ) : (
+          <span className="leading-none">{children}</span>
+        )}
+      </>
+    );
+  };
+
+  if (href) {
+    const isInternal = href.startsWith("/") && !href.startsWith("//");
+    if (isInternal) {
+      return (
+        <Link ref={buttonRef} href={href} className={baseClasses} onClick={onClick}>
+          {renderContent()}
+        </Link>
+      );
+    } else {
+      return (
+        <a
+          ref={buttonRef}
+          href={href}
+          className={baseClasses}
+          onClick={onClick}
+          target={target || "_blank"}
+          rel={rel || "noopener noreferrer"}
+        >
+          {renderContent()}
+        </a>
+      );
+    }
+  }
+
+  return (
+    <button ref={buttonRef} type="button" className={baseClasses} onClick={onClick}>
+      {renderContent()}
+    </button>
+  );
+}

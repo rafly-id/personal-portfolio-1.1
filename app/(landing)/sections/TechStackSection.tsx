@@ -6,6 +6,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ChevronDown } from "lucide-react";
 import { techStack } from "@/lib/data";
+import SectionHeader from "@/components/ui/SectionHeader";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -40,39 +41,24 @@ const TechStackSection = () => {
     () => {
       if (!sectionRef.current) return;
 
-      const title = sectionRef.current.querySelector(".tech-title");
       const cards = gsap.utils.toArray(".tech-card");
 
       // Set initial states to prevent visual flash
-      gsap.set(title, { y: 80, opacity: 0 });
       gsap.set(cards, { y: 50, opacity: 0, scale: 0.98 });
 
-      const tl = gsap.timeline({
+      gsap.to(cards, {
+        y: 0,
+        opacity: 1,
+        scale: 1,
+        stagger: 0.15,
+        duration: 0.8,
+        ease: "power3.out",
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 80%",
           toggleActions: "play none none none",
         },
       });
-
-      tl.to(title, {
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        ease: "power3.out",
-      })
-      .to(
-        cards,
-        {
-          y: 0,
-          opacity: 1,
-          scale: 1,
-          stagger: 0.15,
-          duration: 0.8,
-          ease: "power3.out",
-        },
-        "-=0.4"
-      );
     },
     { scope: sectionRef }
   );
@@ -131,14 +117,8 @@ const TechStackSection = () => {
 
   return (
     <section ref={sectionRef} className="mt-20 md:mt-32 py-10 overflow-hidden">
-      {/* Title */}
-      <div className="flex justify-center text-center mb-16 overflow-hidden">
-        <div className="text-5xl font-bold uppercase font-instrument_serif">
-          <h2 className="tech-title" style={{ willChange: "transform, opacity" }}>
-            tech stack
-          </h2>
-        </div>
-      </div>
+      <SectionHeader title="tech stack" />
+
 
       {/* Accordion Stack */}
       <div className="flex flex-col gap-6 max-w-4xl mx-auto px-4">

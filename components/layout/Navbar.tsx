@@ -2,19 +2,39 @@
 
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import gsap from "gsap";
-import SplitText from "gsap/SplitText";
 import { useGSAP } from "@gsap/react";
+import { socialLinks } from "@/lib/data";
+import TextSwap from "@/components/ui/TextSwap";
 
-gsap.registerPlugin(SplitText);
+interface NavbarSocialLinkProps {
+  href: string;
+  label: string;
+}
+
+const NavbarSocialLink = ({ href, label }: NavbarSocialLinkProps) => {
+  const linkRef = useRef<HTMLAnchorElement>(null);
+  return (
+    <a
+      ref={linkRef}
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="hover:text-background transition-colors duration-300"
+    >
+      <TextSwap text={label} triggerRef={linkRef} />
+    </a>
+  );
+};
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
   const buttonRef = useRef<HTMLButtonElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   const linksRef = useRef<(HTMLAnchorElement | null)[]>([]);
   const isFirstRender = useRef(true);
-  const splitRef = useRef<SplitText | null>(null);
 
   // Body scroll lock
   useEffect(() => {
@@ -68,12 +88,6 @@ const Navbar = () => {
 
       if (!overlay || !button) return;
 
-      // Revert any stale SplitText instances before triggering new animations
-      if (splitRef.current) {
-        splitRef.current.revert();
-        splitRef.current = null;
-      }
-
       if (isOpen) {
         isFirstRender.current = false;
 
@@ -106,20 +120,14 @@ const Navbar = () => {
 
         // 3. Stagger links reveal
         if (links.length > 0) {
-          // Reset link styles before splitting to ensure visibility
-          gsap.set(links, { y: 0, opacity: 1 });
-
-          const split = new SplitText(links, { type: "chars" });
-          splitRef.current = split;
-
           gsap.fromTo(
-            split.chars,
-            { y: 50, opacity: 0 },
+            links,
+            { y: 30, opacity: 0 },
             {
               y: 0,
               opacity: 1,
-              duration: 0.6,
-              stagger: 0.02,
+              duration: 0.5,
+              stagger: 0.08,
               ease: "power3.out",
               delay: 0.2,
             }
@@ -153,21 +161,13 @@ const Navbar = () => {
           },
         });
 
-        // 3. Animate links out and revert SplitText
+        // 3. Animate links out
         if (links.length > 0) {
           gsap.to(links, {
             y: 30,
             opacity: 0,
             duration: 0.4,
             ease: "power3.in",
-            onComplete: () => {
-              if (splitRef.current) {
-                splitRef.current.revert();
-                splitRef.current = null;
-              }
-              // Reset styles for the next open sequence
-              gsap.set(links, { y: 0, opacity: 1 });
-            },
           });
         }
       }
@@ -214,7 +214,7 @@ const Navbar = () => {
         }`}
       />
 
-      {/* Floating Menu Card Overlay (Desktop: Compact Widget 360x480px, Mobile: Full overlay with margins) */}
+      {/* Floating Menu Card Overlay */}
       <div
         ref={overlayRef}
         className="fixed top-4 bottom-4 left-4 right-4 md:top-5 md:right-5 md:left-auto md:bottom-auto md:w-[360px] md:h-[480px] bg-foreground text-background rounded-[2rem] p-8 flex flex-col justify-between z-50 shadow-2xl overflow-hidden invisible"
@@ -235,19 +235,34 @@ const Navbar = () => {
 
         {/* Navigation Links */}
         <div className="flex flex-col gap-4 my-auto text-left">
-          {navLinks.map((link, idx) => (
-            <Link
-              key={idx}
-              href={link.href}
-              onClick={() => setIsOpen(false)}
-              ref={(el) => {
-                linksRef.current[idx] = el;
-              }}
-              className="text-4xl md:text-5xl font-light font-sans tracking-tight text-background hover:opacity-60 transition-opacity duration-300 lowercase block overflow-hidden py-1"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {navLinks.map((link, idx) => {
+            const linkRef = useRef<HTMLAnchorElement>(null);
+            return (
+              <Link
+                key={idx}
+                href={link.href}
+                onClick={(e) => {
+                  setIsOpen(false);
+                  if (link.href.startsWith("/#") && pathname === "/") {
+                    e.preventDefault();
+                    const id = link.href.replace("/#", "");
+                    const targetEl = document.getElementById(id);
+                    if (targetEl) {
+                      targetEl.scrollIntoView({ behavior: "smooth" });
+                    }
+                  }
+                }}
+                ref={(el) => {
+                  linksRef.current[idx] = el;
+                  // Keep a local ref reference for TextSwap triggerRef
+                  (linkRef as any).current = el;
+                }}
+                className="text-4xl md:text-5xl font-light font-sans tracking-tight text-background hover:opacity-80 transition-opacity duration-300 lowercase block overflow-hidden py-1"
+              >
+                <TextSwap text={link.label} triggerRef={linkRef} />
+              </Link>
+            );
+          })}
         </div>
 
         {/* Bottom Section */}
@@ -256,30 +271,23 @@ const Navbar = () => {
             [rafly]
           </div>
           <div className="flex gap-4 text-xs uppercase tracking-wider text-background/50 font-sans font-medium">
-            <a
-              href="https://www.instagram.com/__rafllyy/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-background transition-colors duration-300"
-            >
-              insta
-            </a>
-            <a
-              href="https://github.com/rafly-id"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-background transition-colors duration-300"
-            >
-              github
-            </a>
-            <a
-              href="https://www.linkedin.com/in/rafly-adriansyah-35587225b/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-background transition-colors duration-300"
-            >
-              linkedin
-            </a>
+            {socialLinks
+              .filter((link) => ["Instagram", "Github", "LinkedIn"].includes(link.name))
+              .map((link) => {
+                const labelMap: Record<string, string> = {
+                  Instagram: "insta",
+                  Github: "github",
+                  LinkedIn: "linkedin",
+                };
+                const label = labelMap[link.name] || link.name.toLowerCase();
+                return (
+                  <NavbarSocialLink
+                    key={link.name}
+                    href={link.href}
+                    label={label}
+                  />
+                );
+              })}
           </div>
         </div>
       </div>

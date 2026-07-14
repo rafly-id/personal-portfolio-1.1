@@ -7,6 +7,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { certificates } from "@/lib/data";
+import SectionHeader from "@/components/ui/SectionHeader";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,18 +18,13 @@ const CertificatesSection = () => {
 
   useGSAP(
     () => {
-      if (!portalRef.current || !containerRef.current) return;
+      if (!containerRef.current) return;
 
-      const portal = portalRef.current;
       const container = containerRef.current;
-
-      // Reveal animation setup
-      const title = container.querySelector(".cert-title");
       const borders = gsap.utils.toArray(".cert-border");
       const textWraps = gsap.utils.toArray(".cert-text-wrap");
       const arrowWraps = gsap.utils.toArray(".cert-arrow-wrap");
 
-      gsap.set(title, { y: 100, opacity: 0 });
       gsap.set(borders, { scaleX: 0 });
       gsap.set(textWraps, { y: 80, opacity: 0 });
       gsap.set(arrowWraps, { scale: 0.8, opacity: 0 });
@@ -41,22 +37,12 @@ const CertificatesSection = () => {
         },
       });
 
-      revealTl.to(title, {
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        ease: "power3.out",
+      revealTl.to(borders, {
+        scaleX: 1,
+        stagger: 0.1,
+        duration: 1,
+        ease: "power3.inOut",
       })
-      .to(
-        borders,
-        {
-          scaleX: 1,
-          stagger: 0.1,
-          duration: 1,
-          ease: "power3.inOut",
-        },
-        "-=0.4"
-      )
       .to(
         textWraps,
         {
@@ -79,69 +65,53 @@ const CertificatesSection = () => {
         },
         "-=0.6"
       );
-
-      // Mouse-Following Floating Image Portal Logic (Desktop only)
-      const rect = portal.getBoundingClientRect();
-      const halfWidth = rect.width / 2;
-      const halfHeight = rect.height / 2;
-
-      const xTo = gsap.quickTo(portal, "x", { duration: 0.4, ease: "power3.out" });
-      const yTo = gsap.quickTo(portal, "y", { duration: 0.4, ease: "power3.out" });
-
-      const handleMouseMove = (e: MouseEvent) => {
-        xTo(e.clientX - halfWidth);
-        yTo(e.clientY - halfHeight);
-      };
-
-      const handleMouseEnterRow = (imgSrc: string) => {
-        setActiveImage(imgSrc);
-        gsap.to(portal, {
-          autoAlpha: 1,
-          scale: 1,
-          duration: 0.4,
-          ease: "power3.out",
-        });
-      };
-
-      const handleMouseLeaveRow = () => {
-        gsap.to(portal, {
-          autoAlpha: 0,
-          scale: 0.75,
-          duration: 0.4,
-          ease: "power3.out",
-        });
-      };
-
-      container.addEventListener("mousemove", handleMouseMove);
-
-      const rows = gsap.utils.toArray(".cert-row") as HTMLElement[];
-      rows.forEach((row) => {
-        const imgSrc = row.getAttribute("data-image") || "";
-        row.addEventListener("mouseenter", () => handleMouseEnterRow(imgSrc));
-        row.addEventListener("mouseleave", handleMouseLeaveRow);
-      });
-
-      return () => {
-        container.removeEventListener("mousemove", handleMouseMove);
-        rows.forEach((row) => {
-          row.removeEventListener("mouseenter", () => {});
-          row.removeEventListener("mouseleave", () => {});
-        });
-      };
     },
     { scope: containerRef }
   );
 
+  const handleMouseMove = (e: React.MouseEvent) => {
+    const portal = portalRef.current;
+    if (!portal) return;
+    const rect = portal.getBoundingClientRect();
+    const halfWidth = rect.width / 2;
+    const halfHeight = rect.height / 2;
+    gsap.to(portal, {
+      x: e.clientX - halfWidth,
+      y: e.clientY - halfHeight,
+      duration: 0.4,
+      ease: "power3.out",
+      overwrite: "auto",
+    });
+  };
+
+  const handleMouseEnterRow = (imgSrc: string) => {
+    setActiveImage(imgSrc);
+    const portal = portalRef.current;
+    if (!portal) return;
+    gsap.to(portal, {
+      autoAlpha: 1,
+      scale: 1,
+      duration: 0.4,
+      ease: "power3.out",
+      overwrite: "auto",
+    });
+  };
+
+  const handleMouseLeaveRow = () => {
+    const portal = portalRef.current;
+    if (!portal) return;
+    gsap.to(portal, {
+      autoAlpha: 0,
+      scale: 0.75,
+      duration: 0.4,
+      ease: "power3.out",
+      overwrite: "auto",
+    });
+  };
+
   return (
-    <section ref={containerRef} className="mt-20 md:mt-32 mb-24 relative overflow-hidden">
-      {/* Scroll reveal title */}
-      <div className="flex justify-center text-center mb-16 overflow-hidden">
-        <div className="text-5xl font-bold uppercase font-instrument_serif">
-          <h2 className="cert-title" style={{ willChange: "transform, opacity" }}>
-            certificates
-          </h2>
-        </div>
-      </div>
+    <section ref={containerRef} onMouseMove={handleMouseMove} className="mt-20 md:mt-32 mb-24 relative overflow-hidden">
+      <SectionHeader title="certificates" />
 
       {/* Floating Image Portal (Desktop only) */}
       <div
@@ -174,10 +144,11 @@ const CertificatesSection = () => {
             href={cert.link}
             target="_blank"
             rel="noopener noreferrer"
-            data-image={cert.imageSrc}
+            onMouseEnter={() => handleMouseEnterRow(cert.imageSrc)}
+            onMouseLeave={handleMouseLeaveRow}
             className="cert-row relative flex flex-col md:flex-row md:items-center justify-between py-8 transition-colors duration-300 group cursor-pointer overflow-hidden"
           >
-            {/* Title & Tech stack (with mask reveal container) */}
+            {/* Title & Tech stack */}
             <div className="overflow-hidden">
               <div className="cert-text-wrap flex flex-col gap-2" style={{ willChange: "transform, opacity" }}>
                 <h3 className="font-instrument_serif text-2xl md:text-4xl uppercase tracking-tight text-foreground/80 group-hover:text-foreground group-hover:pl-2 transition-all duration-300">
@@ -196,16 +167,11 @@ const CertificatesSection = () => {
               </div>
             </div>
 
-            {/* Link arrow and hover indicators */}
+            {/* Link arrow and hover indicators (text only, no arrow icon) */}
             <div className="cert-arrow-wrap flex items-center gap-4 self-end md:self-auto mt-4 md:mt-0" style={{ willChange: "transform, opacity" }}>
-              <span className="text-xs uppercase tracking-widest font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:inline">
+              <span className="text-xs uppercase tracking-widest font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 View Certificate
               </span>
-              <div className="w-10 h-10 rounded-full border border-foreground/10 flex items-center justify-center group-hover:bg-foreground group-hover:text-background transition-all duration-300">
-                <span className="text-sm font-semibold tracking-tighter transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300">
-                  ↗
-                </span>
-              </div>
             </div>
 
             {/* Bottom boundary border */}
@@ -218,3 +184,4 @@ const CertificatesSection = () => {
 };
 
 export default CertificatesSection;
+

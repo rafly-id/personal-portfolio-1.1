@@ -1,12 +1,13 @@
 "use client";
 
 import { useRef } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { projects } from "@/lib/data";
 import { Project } from "@/types";
 import { useTextReveal } from "@/hooks/useTextReveal";
-import { useParallaxImage } from "@/hooks/useParallaxImage";
+import ParallaxImage from "@/components/ui/ParallaxImage";
+import Button from "@/components/ui/button";
+import TextSwap from "@/components/ui/TextSwap";
 
 interface ProjectDetailClientProps {
   project: Project;
@@ -16,20 +17,12 @@ const ProjectDetailClient = ({ project }: ProjectDetailClientProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const summaryRef = useRef<HTMLParagraphElement>(null);
-  const imageContainerRef = useRef<HTMLDivElement>(null);
-  const imageRef = useRef<HTMLImageElement>(null);
+  const backLinkRef = useRef<HTMLAnchorElement>(null);
+  const nextLinkRef = useRef<HTMLAnchorElement>(null);
 
   // Find next project for the footer loop
   const currentIndex = projects.findIndex((p) => p.slug === project.slug);
   const nextProject = projects[(currentIndex + 1) % projects.length];
-
-  // Set up animations
-  useParallaxImage({
-    containerRef: imageContainerRef,
-    imageRef,
-    y: 30,
-    enableReveal: true,
-  });
 
   useTextReveal({
     ref: titleRef,
@@ -50,13 +43,11 @@ const ProjectDetailClient = ({ project }: ProjectDetailClientProps) => {
       {/* Navigation and Back button */}
       <div className="mb-10">
         <Link
+          ref={backLinkRef}
           href="/work"
           className="inline-flex items-center gap-2 group text-sm font-bold uppercase font-instrument_serif tracking-widest text-foreground/60 hover:text-foreground transition-colors duration-300"
         >
-          <span className="transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:-translate-x-2">
-            ←
-          </span>
-          <span>Back to Work</span>
+          <TextSwap text="Back to Work" triggerRef={backLinkRef} />
         </Link>
       </div>
 
@@ -82,21 +73,18 @@ const ProjectDetailClient = ({ project }: ProjectDetailClientProps) => {
       </div>
 
       {/* Double-Bezel Hero Image Enclosure */}
-      <div
-        ref={imageContainerRef}
-        className="relative w-full h-[350px] md:h-[600px] lg:h-[700px] overflow-hidden rounded-[2.5rem] bg-secondary/30 border border-foreground/5 p-2 md:p-4 mb-20"
-      >
-        <div className="relative w-full h-full overflow-hidden rounded-[calc(2.5rem-0.5rem)]">
-          <Image
-            ref={imageRef}
-            src={project.imageSrc}
-            alt={project.imageAlt}
-            fill
-            priority
-            className="object-cover grayscale"
-            sizes="100vw"
-          />
-        </div>
+      <div className="w-full h-[350px] md:h-[600px] lg:h-[700px] overflow-hidden rounded-[2.5rem] bg-secondary/30 border border-foreground/5 p-2 md:p-4 mb-20">
+        <ParallaxImage
+          src={project.imageSrc}
+          alt={project.imageAlt}
+          fill
+          priority
+          containerClassName="w-full h-full rounded-[calc(2.5rem-0.5rem)]"
+          className="object-cover grayscale"
+          sizes="100vw"
+          y={30}
+          enableReveal
+        />
       </div>
 
       {/* Editorial Content Split */}
@@ -139,32 +127,26 @@ const ProjectDetailClient = ({ project }: ProjectDetailClientProps) => {
             </div>
           </div>
 
-          {/* Action CTAs: Button-in-Button Architecture */}
+          {/* Action CTAs */}
           <div className="flex flex-col sm:flex-row lg:flex-col xl:flex-row gap-4 pt-4">
-            <a
+            <Button
               href={project.link}
+              text="Visit Live Site"
+              variant="solid"
+              className="flex-1"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative flex items-center justify-between pl-6 pr-2 py-3 bg-foreground text-background font-bold uppercase font-instrument_serif rounded-full text-sm tracking-wider transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:scale-[1.02] active:scale-[0.98] shadow-sm flex-1 text-center"
-            >
-              <span className="mr-4">Visit Live Site</span>
-              <span className="w-8 h-8 rounded-full bg-background text-foreground flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:-rotate-45">
-                ↗
-              </span>
-            </a>
+            />
 
             {project.github && (
-              <a
+              <Button
                 href={project.github}
+                text="Source Code"
+                variant="outline"
+                className="flex-1"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative flex items-center justify-between pl-6 pr-2 py-3 bg-background border border-foreground/20 text-foreground font-bold uppercase font-instrument_serif rounded-full text-sm tracking-wider transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:border-foreground hover:scale-[1.02] active:scale-[0.98] flex-1 text-center"
-              >
-                <span className="mr-4">Source Code</span>
-                <span className="w-8 h-8 rounded-full bg-foreground/5 flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:bg-foreground group-hover:text-background group-hover:-rotate-45">
-                  ↗
-                </span>
-              </a>
+              />
             )}
           </div>
         </div>
@@ -219,12 +201,9 @@ const ProjectDetailClient = ({ project }: ProjectDetailClientProps) => {
         <span className="block text-[10px] uppercase tracking-[0.25em] text-foreground/50 font-bold mb-4">
           Up Next
         </span>
-        <Link href={`/work/${nextProject.slug}`} className="group inline-block">
+        <Link ref={nextLinkRef} href={`/work/${nextProject.slug}`} className="group inline-block">
           <h2 className="font-instrument_serif font-black text-4xl md:text-7xl uppercase tracking-tighter transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] text-foreground group-hover:scale-105 group-hover:font-instrument_serif">
-            {nextProject.title}{" "}
-            <span className="inline-block transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-2 group-hover:-translate-y-2">
-              ↗
-            </span>
+            <TextSwap text={nextProject.title} triggerRef={nextLinkRef} />
           </h2>
         </Link>
       </div>
