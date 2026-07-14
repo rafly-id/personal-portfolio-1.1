@@ -110,10 +110,10 @@ const Footer = () => {
     <footer
       ref={footerRef}
       id="contact"
-      className="w-full min-h-[100dvh] flex flex-col justify-between items-center pt-20 pb-6 md:pt-24 md:pb-8 overflow-hidden animate-fade-in"
+      className="w-full min-h-dvh flex flex-col justify-between items-center pt-20 pb-6 md:pt-24 md:pb-8 overflow-hidden animate-fade-in"
     >
       {/* Centered upper container */}
-      <div className="flex-grow w-full flex items-center justify-center">
+      <div className="grow w-full flex items-center justify-center">
         {/* Top content wrapper - constrained to max-w-6xl */}
         <div className="w-full max-w-6xl mx-auto px-4 md:px-10 grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-12 py-10">
 

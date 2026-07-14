@@ -129,10 +129,10 @@ const TechStackSection = () => {
           return (
             <div
               key={catIdx}
-              className="bg-foreground/[0.02] border border-foreground/10 rounded-[2rem] p-1.5 tech-card transition-all duration-500 hover:border-foreground/20"
+              className="bg-foreground/2 border border-foreground/10 rounded-4xl p-1.5 tech-card transition-all duration-500 hover:border-foreground/20"
               style={{ willChange: "transform, opacity" }}
             >
-              <div className="bg-foreground/[0.01] rounded-[calc(2rem-0.375rem)] p-6 md:p-8 h-full flex flex-col justify-start">
+              <div className="bg-foreground/1 rounded-[calc(2rem-0.375rem)] p-6 md:p-8 h-full flex flex-col justify-start">
                 {/* Header Toggle */}
                 <button
                   onClick={() => handleToggle(catIdx)}
@@ -149,7 +149,7 @@ const TechStackSection = () => {
                   </div>
 
                   {/* Circular Chevron Wrapper */}
-                  <div className="accordion-chevron w-10 h-10 rounded-full border border-foreground/10 flex items-center justify-center bg-foreground/[0.02] text-foreground/60 transition-all duration-500 group-hover/btn:scale-105 group-hover/btn:border-foreground/30 group-hover/btn:text-foreground">
+                  <div className="accordion-chevron w-10 h-10 rounded-full border border-foreground/10 flex items-center justify-center bg-foreground/2 text-foreground/60 transition-all duration-500 group-hover/btn:scale-105 group-hover/btn:border-foreground/30 group-hover/btn:text-foreground">
                     <ChevronDown size={18} strokeWidth={1.5} />
                   </div>
                 </button>
@@ -164,7 +164,7 @@ const TechStackSection = () => {
                       {cat.items.map((tech, techIdx) => (
                         <div
                           key={techIdx}
-                          className="tech-item flex flex-col items-center justify-center p-3 rounded-2xl hover:bg-foreground/[0.02] transition-all duration-300 group/item cursor-default"
+                          className="tech-item flex flex-col items-center justify-center p-3 rounded-2xl hover:bg-foreground/2 transition-all duration-300 group/item cursor-default"
                           style={{ willChange: "transform, opacity" }}
                         >
                           <div className="p-3">

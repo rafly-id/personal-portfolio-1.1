@@ -293,7 +293,7 @@ const FeaturedWorkSection = () => {
                   href={`/work/${project.slug}`}
                   className="block overflow-hidden p-2 md:p-3 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]"
                 >
-                  <div className="relative w-full aspect-video overflow-hidden rounded-[calc(2.5rem-0.5rem)] shadow-[inset_0_1px_2.5px_rgba(0,0,0,0.08)]">
+                  <div className="relative w-full aspect-video overflow-hidden rounded-4xl shadow-[inset_0_1px_2.5px_rgba(0,0,0,0.08)]">
                     {/* Scale wrapper that transition-scales on hover to avoid GSAP layout triggers */}
                     <div className="w-full h-full transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-[1.03]">
                       {/* Main background image */}

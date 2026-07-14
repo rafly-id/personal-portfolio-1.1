@@ -188,12 +188,12 @@ const AboutDetailsSection = () => {
     <section
       ref={triggerRef}
       id="about"
-      className="relative w-full h-[100dvh] min-h-[100dvh] flex flex-col justify-center overflow-hidden bg-background"
+      className="relative w-full h-dvh min-h-dvh flex flex-col justify-center overflow-hidden bg-background"
     >
       {/* 3D Viewport container (Full screen height) */}
       <div
         ref={containerRef}
-        className="w-full h-full flex-1 flex items-center justify-center relative [perspective:1200px] overflow-hidden px-4 md:px-10"
+        className="w-full h-full flex-1 flex items-center justify-center relative perspective-distant overflow-hidden px-4 md:px-10"
       >
         {aboutDetails.map((detail, index) => (
           <div

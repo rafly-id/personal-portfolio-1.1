@@ -115,8 +115,8 @@ const ExperienceSection = () => {
           </p>
 
           {/* Double-Bezel Card Enclosure (adapts to light/dark themes dynamically) */}
-          <div className="bg-foreground/[0.02] border border-foreground/10 rounded-[2rem] p-1.5 transition-all duration-500 hover:border-foreground/20">
-            <div className="bg-foreground/[0.01] rounded-[calc(2rem-0.375rem)] p-6 md:p-8 space-y-5">
+          <div className="bg-foreground/2 border border-foreground/10 rounded-4xl p-1.5 transition-all duration-500 hover:border-foreground/20">
+            <div className="bg-foreground/1 rounded-[calc(2rem-0.375rem)] p-6 md:p-8 space-y-5">
               <ul className="space-y-4 font-sans text-sm md:text-base font-light text-foreground/70 list-none">
                 {experiences[0].bullets.map((bullet, idx) => (
                   <li key={idx} className="leading-relaxed flex items-start gap-3">
@@ -130,7 +130,7 @@ const ExperienceSection = () => {
                 {experiences[0].tech.map((tech, idx) => (
                   <span
                     key={idx}
-                    className="px-3 py-1 text-[10px] uppercase font-mono tracking-wider text-foreground/50 border border-foreground/10 bg-foreground/[0.02] rounded-full hover:text-foreground/80 hover:border-foreground/35 transition-colors duration-300"
+                    className="px-3 py-1 text-[10px] uppercase font-mono tracking-wider text-foreground/50 border border-foreground/10 bg-foreground/2 rounded-full hover:text-foreground/80 hover:border-foreground/35 transition-colors duration-300"
                   >
                     {tech}
                   </span>

@@ -119,7 +119,7 @@ const CertificatesSection = () => {
         className="pointer-events-none fixed top-0 left-0 z-50 opacity-0 scale-75 select-none hidden md:block"
         style={{ willChange: "transform, opacity" }}
       >
-        <div className="relative w-[340px] aspect-[4/3] overflow-hidden shadow-2xl">
+        <div className="relative w-[340px] aspect-4/3 overflow-hidden shadow-2xl">
           {activeImage && (
             <Image
               src={activeImage}
@@ -136,7 +136,7 @@ const CertificatesSection = () => {
       {/* Certificates List */}
       <div className="max-w-5xl mx-auto px-4 relative">
         {/* Top boundary border */}
-        <span className="cert-border absolute top-0 left-0 w-full h-[1px] bg-foreground/10 origin-left" style={{ willChange: "transform" }} />
+        <span className="cert-border absolute top-0 left-0 w-full h-px bg-foreground/10 origin-left" style={{ willChange: "transform" }} />
 
         {certificates.map((cert, index) => (
           <Link
@@ -175,7 +175,7 @@ const CertificatesSection = () => {
             </div>
 
             {/* Bottom boundary border */}
-            <span className="cert-border absolute bottom-0 left-0 w-full h-[1px] bg-foreground/10 origin-left" style={{ willChange: "transform" }} />
+            <span className="cert-border absolute bottom-0 left-0 w-full h-px bg-foreground/10 origin-left" style={{ willChange: "transform" }} />
           </Link>
         ))}
       </div>
