@@ -39,13 +39,7 @@ export default function ParallaxImage({
       ref={containerRef}
       className={cn("relative overflow-hidden w-full h-full", containerClassName)}
     >
-      <div
-        className={cn(
-          "w-full h-full",
-          hoverScale &&
-            "transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover/card:scale-[1.03] group-hover:scale-[1.03]"
-        )}
-      >
+      <div className="w-full h-full">
         <Image
           ref={imageRef}
           alt={alt}

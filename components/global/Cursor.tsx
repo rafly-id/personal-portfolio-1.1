@@ -175,7 +175,7 @@ const Cursor = () => {
     >
       <div
         ref={ballRef}
-        className="flex items-center justify-center bg-foreground rounded-full w-[10px] h-[10px]"
+        className="flex items-center justify-center bg-foreground rounded-full w-2.5 h-2.5"
         style={{
           willChange: "width, height, transform, background-color, border-radius",
         }}

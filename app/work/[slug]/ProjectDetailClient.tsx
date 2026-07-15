@@ -119,7 +119,7 @@ const ProjectDetailClient = ({ project }: ProjectDetailClientProps) => {
               {project.tech.map((t, idx) => (
                 <span
                   key={idx}
-                  className="px-3 py-1 text-xs uppercase font-medium bg-secondary text-foreground rounded-full"
+                  className="px-3 py-1 text-xs uppercase font-medium text-foreground rounded-full"
                 >
                   {t}
                 </span>
