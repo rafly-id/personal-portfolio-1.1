@@ -19,27 +19,21 @@ export default function TextSwap({
   active = true,
 }: TextSwapProps) {
   const containerRef = useRef<HTMLSpanElement>(null);
-  const text1Ref = useRef<HTMLSpanElement>(null);
-  const text2Ref = useRef<HTMLSpanElement>(null);
+  const wrapperRef = useRef<HTMLSpanElement>(null);
 
   useGSAP(
     () => {
       if (!active) return;
       const trigger = triggerRef?.current || containerRef.current;
-      const t1 = text1Ref.current;
-      const t2 = text2Ref.current;
-      if (!trigger || !t1 || !t2) return;
+      const wrapper = wrapperRef.current;
+      if (!trigger || !wrapper) return;
 
       const tl = gsap.timeline({ paused: true });
-      tl.to(t1, {
-        yPercent: -100,
+      tl.to(wrapper, {
+        yPercent: -50,
         duration: 0.35,
         ease: "power2.inOut",
-      }, 0).to(t2, {
-        yPercent: -100,
-        duration: 0.35,
-        ease: "power2.inOut",
-      }, 0);
+      });
 
       const onHover = () => tl.play();
       const onUnhover = () => tl.reverse();
@@ -59,15 +53,17 @@ export default function TextSwap({
     <span
       ref={containerRef}
       className={cn(
-        "relative inline-block overflow-hidden h-[1.1em] leading-[1.1em] align-middle",
+        "relative inline-block overflow-hidden [clip-path:inset(0px)] h-[1.3em] leading-[1.3em] align-middle",
         className
       )}
     >
-      <span ref={text1Ref} className="block select-none">
-        {text}
-      </span>
-      <span ref={text2Ref} className="absolute block select-none top-full left-0 w-full">
-        {text}
+      <span ref={wrapperRef} className="block">
+        <span className="block select-none">
+          {text}
+        </span>
+        <span className="block select-none">
+          {text}
+        </span>
       </span>
     </span>
   );

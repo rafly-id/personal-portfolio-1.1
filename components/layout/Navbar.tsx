@@ -34,6 +34,11 @@ const Navbar = () => {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   const linksRef = useRef<(HTMLAnchorElement | null)[]>([]);
+  const linkRefs = [
+    useRef<HTMLAnchorElement>(null),
+    useRef<HTMLAnchorElement>(null),
+    useRef<HTMLAnchorElement>(null),
+  ];
   const isFirstRender = useRef(true);
 
   // Body scroll lock
@@ -236,7 +241,7 @@ const Navbar = () => {
         {/* Navigation Links */}
         <div className="flex flex-col gap-4 my-auto text-left">
           {navLinks.map((link, idx) => {
-            const linkRef = useRef<HTMLAnchorElement>(null);
+            const currentRef = linkRefs[idx];
             return (
               <Link
                 key={idx}
@@ -246,11 +251,11 @@ const Navbar = () => {
                 }}
                 ref={(el) => {
                   linksRef.current[idx] = el;
-                  (linkRef as any).current = el;
+                  (currentRef as any).current = el;
                 }}
                 className="text-4xl md:text-5xl font-light font-sans tracking-tight text-background hover:opacity-80 transition-opacity duration-300 lowercase block overflow-hidden py-1"
               >
-                <TextSwap text={link.label} triggerRef={linkRef} />
+                <TextSwap text={link.label} triggerRef={currentRef} />
               </Link>
             );
           })}
