@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef } from "react";
-import Link from "next/link";
+import Link from "@/components/global/TransitionLink";
 import { cn } from "@/lib/utils";
 import TextSwap from "@/components/ui/TextSwap";
 

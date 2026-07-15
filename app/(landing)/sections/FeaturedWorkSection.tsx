@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/global/TransitionLink";
 import { projects } from "@/lib/data";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";

@@ -59,7 +59,7 @@ export function useTextReveal({
         gsap.from(targets, {
           y,
           duration,
-          delay,
+          delay: delay + 0.3, // Add a tiny delay to offset curtain wipe
           stagger,
           filter: "blur(20px)",
           ease: "power3.out",

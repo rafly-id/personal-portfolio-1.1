@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import Link from "next/link";
+import Link from "@/components/global/TransitionLink";
 import { projects } from "@/lib/data";
 import { Project } from "@/types";
 import { useTextReveal } from "@/hooks/useTextReveal";

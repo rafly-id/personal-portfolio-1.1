@@ -3,7 +3,7 @@ import { DM_Sans , Instrument_Serif} from "next/font/google";
 import "@/styles/globals.css";
 import Navbar from "@/components/layout/Navbar";
 import SmoothScroll from "@/components/global/SmoothScroll";
-import PageLoader from "@/components/global/PageLoader";
+import TransitionProvider from "@/components/global/TransitionProvider";
 import Cursor from "@/components/global/Cursor";
 
 const dm_sans = DM_Sans({
@@ -85,11 +85,11 @@ export default function RootLayout({
     >
       <body>
         <SmoothScroll>
-          <PageLoader>
+          <TransitionProvider>
             <Cursor />
             <Navbar />
             {children}
-          </PageLoader>
+          </TransitionProvider>
         </SmoothScroll>
       </body>
     </html>

@@ -41,9 +41,7 @@ const SmoothScroll = ({ children }: { children: React.ReactNode }) => {
     if (lenisRef.current) {
       if (window.location.hash) {
         const hash = window.location.hash;
-        setTimeout(() => {
-          lenisRef.current?.scrollTo(hash, { duration: 1.2 });
-        }, 100);
+        lenisRef.current.scrollTo(hash, { immediate: true });
       } else {
         lenisRef.current.scrollTo(0, { immediate: true });
       }

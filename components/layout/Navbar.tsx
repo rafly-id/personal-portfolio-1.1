@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/global/TransitionLink";
 import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import gsap from "gsap";
@@ -178,7 +178,7 @@ const Navbar = () => {
   const navLinks = [
     { label: "home", href: "/" },
     { label: "projects", href: "/work" },
-    { label: "get in touch", href: "/#contact" },
+    { label: "get in touch", href: "#contact" },
   ];
 
   return (
@@ -241,23 +241,11 @@ const Navbar = () => {
               <Link
                 key={idx}
                 href={link.href}
-                onClick={(e) => {
+                onClick={() => {
                   setIsOpen(false);
-                  if (link.href === "/" && pathname === "/") {
-                    e.preventDefault();
-                    window.scrollTo({ top: 0, behavior: "smooth" });
-                  } else if (link.href.startsWith("/#")) {
-                    const id = link.href.replace("/#", "");
-                    const targetEl = document.getElementById(id);
-                    if (targetEl) {
-                      e.preventDefault();
-                      targetEl.scrollIntoView({ behavior: "smooth" });
-                    }
-                  }
                 }}
                 ref={(el) => {
                   linksRef.current[idx] = el;
-                  // Keep a local ref reference for TextSwap triggerRef
                   (linkRef as any).current = el;
                 }}
                 className="text-4xl md:text-5xl font-light font-sans tracking-tight text-background hover:opacity-80 transition-opacity duration-300 lowercase block overflow-hidden py-1"
