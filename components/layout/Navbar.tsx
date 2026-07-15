@@ -243,11 +243,14 @@ const Navbar = () => {
                 href={link.href}
                 onClick={(e) => {
                   setIsOpen(false);
-                  if (link.href.startsWith("/#") && pathname === "/") {
+                  if (link.href === "/" && pathname === "/") {
                     e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  } else if (link.href.startsWith("/#")) {
                     const id = link.href.replace("/#", "");
                     const targetEl = document.getElementById(id);
                     if (targetEl) {
+                      e.preventDefault();
                       targetEl.scrollIntoView({ behavior: "smooth" });
                     }
                   }
