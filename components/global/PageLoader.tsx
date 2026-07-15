@@ -8,12 +8,17 @@ export default function PageLoader({
 }: {
   children: React.ReactNode;
 }) {
-  const [loading, setLoading] = useState(true);
+  const [status, setStatus] = useState<"loading" | "exiting" | "done">("loading");
 
   return (
     <>
-      {loading && <Onboarding onFinish={() => setLoading(false)} />}
-      {!loading && children}
+      {status !== "done" && (
+        <Onboarding
+          onExitStart={() => setStatus("exiting")}
+          onFinish={() => setStatus("done")}
+        />
+      )}
+      {status !== "loading" && children}
     </>
   );
 }

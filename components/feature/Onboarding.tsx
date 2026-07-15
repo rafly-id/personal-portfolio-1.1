@@ -1,60 +1,144 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
-import { useTextReveal } from "@/hooks/useTextReveal";
+import { useGSAP } from "@gsap/react";
 
 interface OnboardingProps {
+  onExitStart: () => void;
   onFinish: () => void;
 }
 
-const Onboarding = ({ onFinish }: OnboardingProps) => {
+const Onboarding = ({ onExitStart, onFinish }: OnboardingProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const textRef = useRef<HTMLHeadingElement>(null);
+  const textWrapperRef = useRef<HTMLDivElement>(null);
+  const nameRef = useRef<HTMLHeadingElement>(null);
+  const pathRef = useRef<SVGPathElement>(null);
 
-  useTextReveal({
-    ref: textRef,
-    y: 150,
-    duration: 1,
-    stagger: 0.5,
-    type: "words",
-    trigger: containerRef,
-    start: "top bottom",
-  });
+  useGSAP(
+    () => {
+      const letters =
+        containerRef.current?.querySelectorAll(".name-letter-inner");
 
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
+      // 1. Initial State Setup: Prepare letters for staggered mask entry
+      if (letters && letters.length > 0) {
+        gsap.set(letters, {
+          yPercent: 120,
+        });
+      }
 
-    const tl = gsap.timeline({
-      delay: 1.5,
-      onComplete: () => {
-        onFinish();
-        document.body.style.overflow = "auto";
-      },
-    });
+      // Prevent body scroll during onboarding
+      document.body.style.overflow = "hidden";
 
-    tl.to(containerRef.current, {
-      y: "-100%",
-      duration: 1.5,
-      ease: "expo.inOut",
-    });
+      const tl = gsap.timeline({
+        onComplete: () => {
+          document.body.style.overflow = "";
+          onFinish();
+        },
+      });
 
-    return () => {
-      tl.kill();
-    };
-  }, [onFinish]);
+      // 2. Reveal wrapper and slide up letters from the overflow masks
+      tl.set(textWrapperRef.current, { autoAlpha: 1 });
+
+      if (letters && letters.length > 0) {
+        tl.to(letters, {
+          yPercent: 0,
+          duration: 0.9,
+          stagger: 0.025,
+          ease: "power4.out",
+        });
+      }
+
+      // 3. Hold Name
+      tl.to({}, { duration: 1.3 })
+
+        // 4. Exit Transition Start
+        .add(() => {
+          onExitStart();
+        });
+
+      // 5. Kinetic Wipe Lift-up + SVG wave morph in parallel
+      tl.to(
+        textWrapperRef.current,
+        {
+          y: -140,
+          opacity: 0,
+          filter: "blur(20px)",
+          duration: 0.75,
+          ease: "power3.inOut",
+        },
+        "exit",
+      );
+
+      if (pathRef.current) {
+        tl.to(
+          pathRef.current,
+          {
+            attr: { d: "M 0 0 L 100 0 L 100 50 Q 50 -20 0 50 Z" },
+            duration: 0.65,
+            ease: "power2.in",
+          },
+          "exit",
+        ).to(pathRef.current, {
+          attr: { d: "M 0 0 L 100 0 L 100 0 Q 50 0 0 0 Z" },
+          duration: 0.65,
+          ease: "power2.out",
+        });
+      }
+
+      return () => {
+        document.body.style.overflow = "";
+      };
+    },
+    { scope: containerRef },
+  );
+
+  const nameWords = "Rafly Adriansyah".split(" ");
 
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 z-9999 flex items-center justify-center bg-foreground text-background"
+      className="fixed inset-0 z-9999 flex items-center justify-center overflow-hidden bg-transparent select-none pointer-events-auto"
     >
-      <div className="relative overflow-hidden p-4 text-center">
+      {/* Fullscreen SVG path background overlay */}
+      <svg
+        className="absolute inset-0 w-full h-full pointer-events-none"
+        viewBox="0 0 100 100"
+        preserveAspectRatio="none"
+      >
+        <path
+          ref={pathRef}
+          className="fill-[#1c1a19]"
+          d="M 0 0 L 100 0 L 100 100 Q 50 100 0 100 Z"
+        />
+      </svg>
+
+      {/* Centered text container - Hidden on load via opacity-0 invisible */}
+      <div
+        ref={textWrapperRef}
+        className="relative z-10 w-screen select-none overflow-hidden py-6 md:py-8 opacity-0 invisible flex items-center justify-center"
+      >
         <h1
-          ref={textRef}
-          className="text-5xl md:text-8xl font-bold font-instrument_serif tracking-tighter uppercase opacity-0 invisible"
+          ref={nameRef}
+          className="font-instrument_serif text-[clamp(4.5rem,14vw,20rem)] italic font-normal tracking-tighter text-[#f4f3ef] text-center leading-none w-full will-change-transform whitespace-nowrap py-4"
         >
-          RAFLY ADRIANSYAH
+          {nameWords.map((word, wordIdx) => (
+            <span
+              key={wordIdx}
+              className="inline-block mx-[0.05em] whitespace-nowrap"
+            >
+              {word.split("").map((letter, letterIdx) => (
+                <span
+                  key={letterIdx}
+                  className="inline-block overflow-hidden px-[0.25em] -mx-[0.25em] py-12 -my-12"
+                >
+                  <span className="inline-block name-letter-inner">
+                    {letter}
+                  </span>
+                </span>
+              ))}
+            </span>
+          ))}
         </h1>
       </div>
     </div>
