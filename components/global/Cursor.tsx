@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import { ANIM_DURATIONS, ANIM_EASES } from "@/lib/animation";
 
 const Cursor = () => {
   const cursorRef = useRef<HTMLDivElement>(null);
@@ -59,16 +60,16 @@ const Cursor = () => {
             backgroundColor: "var(--foreground)",
             opacity: 1,
             mixBlendMode: "normal",
-            duration: 0.4,
-            ease: "power3.out",
+            duration: ANIM_DURATIONS.fast,
+            ease: ANIM_EASES.entry,
           });
 
           // Reveal text
           gsap.to(span, {
             opacity: 1,
             scale: 1,
-            duration: 0.4,
-            ease: "power3.out",
+            duration: ANIM_DURATIONS.fast,
+            ease: ANIM_EASES.entry,
           });
         } else if (newMode === "interactive") {
           // Large semi-transparent foreground circle for links/buttons
@@ -79,16 +80,16 @@ const Cursor = () => {
             backgroundColor: "var(--foreground)",
             opacity: 0.3,
             mixBlendMode: "normal",
-            duration: 0.3,
-            ease: "power3.out",
+            duration: ANIM_DURATIONS.fast,
+            ease: ANIM_EASES.entry,
           });
 
           // Hide text
           gsap.to(span, {
             opacity: 0,
             scale: 0.5,
-            duration: 0.2,
-            ease: "power3.out",
+            duration: ANIM_DURATIONS.fast * 0.5,
+            ease: ANIM_EASES.entry,
             onComplete: () => {
               if (currentMode !== "view") span.textContent = "";
             },
@@ -102,16 +103,16 @@ const Cursor = () => {
             backgroundColor: "var(--foreground)",
             opacity: 1,
             mixBlendMode: "normal",
-            duration: 0.3,
-            ease: "power3.out",
+            duration: ANIM_DURATIONS.fast,
+            ease: ANIM_EASES.entry,
           });
 
           // Hide text
           gsap.to(span, {
             opacity: 0,
             scale: 0.5,
-            duration: 0.2,
-            ease: "power3.out",
+            duration: ANIM_DURATIONS.fast * 0.5,
+            ease: ANIM_EASES.entry,
             onComplete: () => {
               if (currentMode !== "view") span.textContent = "";
             },

@@ -8,6 +8,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { certificates } from "@/lib/data";
 import SectionHeader from "@/components/ui/SectionHeader";
+import { ANIM_DURATIONS, ANIM_EASES, ANIM_STAGGERS } from "@/lib/animation";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -39,8 +40,8 @@ const CertificatesSection = () => {
 
       revealTl.to(borders, {
         scaleX: 1,
-        stagger: 0.1,
-        duration: 1,
+        stagger: ANIM_STAGGERS.slow,
+        duration: ANIM_DURATIONS.slow,
         ease: "power3.inOut",
       })
       .to(
@@ -48,9 +49,9 @@ const CertificatesSection = () => {
         {
           y: 0,
           opacity: 1,
-          stagger: 0.08,
-          duration: 0.8,
-          ease: "power3.out",
+          stagger: ANIM_STAGGERS.standard,
+          duration: ANIM_DURATIONS.standard,
+          ease: ANIM_EASES.entry,
         },
         "-=0.8"
       )
@@ -59,8 +60,8 @@ const CertificatesSection = () => {
         {
           scale: 1,
           opacity: 1,
-          stagger: 0.08,
-          duration: 0.6,
+          stagger: ANIM_STAGGERS.standard,
+          duration: ANIM_DURATIONS.standard,
           ease: "back.out(1.7)",
         },
         "-=0.6"
@@ -78,8 +79,8 @@ const CertificatesSection = () => {
     gsap.to(portal, {
       x: e.clientX - halfWidth,
       y: e.clientY - halfHeight,
-      duration: 0.4,
-      ease: "power3.out",
+      duration: ANIM_DURATIONS.fast,
+      ease: ANIM_EASES.entry,
       overwrite: "auto",
     });
   };
@@ -91,8 +92,8 @@ const CertificatesSection = () => {
     gsap.to(portal, {
       autoAlpha: 1,
       scale: 1,
-      duration: 0.4,
-      ease: "power3.out",
+      duration: ANIM_DURATIONS.fast,
+      ease: ANIM_EASES.entry,
       overwrite: "auto",
     });
   };
@@ -103,8 +104,8 @@ const CertificatesSection = () => {
     gsap.to(portal, {
       autoAlpha: 0,
       scale: 0.75,
-      duration: 0.4,
-      ease: "power3.out",
+      duration: ANIM_DURATIONS.fast,
+      ease: ANIM_EASES.entry,
       overwrite: "auto",
     });
   };

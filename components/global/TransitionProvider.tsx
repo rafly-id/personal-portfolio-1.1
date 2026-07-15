@@ -5,6 +5,7 @@ import { useRouter, usePathname } from "next/navigation";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import Onboarding from "../feature/Onboarding";
+import { ANIM_DURATIONS } from "@/lib/animation";
 
 export type TransitionStatus = "loading" | "exiting" | "entering" | "idle";
 
@@ -133,11 +134,11 @@ export default function TransitionProvider({ children }: { children: React.React
 
           tl.to(pathRef.current, {
             attr: { d: "M 0 0 L 100 0 L 100 50 Q 50 120 0 50 Z" },
-            duration: 0.65,
+            duration: ANIM_DURATIONS.standard,
             ease: "power2.in",
           }).to(pathRef.current, {
             attr: { d: "M 0 0 L 100 0 L 100 100 Q 50 100 0 100 Z" },
-            duration: 0.65,
+            duration: ANIM_DURATIONS.standard,
             ease: "power2.out",
           });
         }
@@ -158,11 +159,11 @@ export default function TransitionProvider({ children }: { children: React.React
           
           tl.to(pathRef.current, {
             attr: { d: "M 0 0 L 100 0 L 100 50 Q 50 -20 0 50 Z" },
-            duration: 0.65,
+            duration: ANIM_DURATIONS.standard,
             ease: "power2.in",
           }).to(pathRef.current, {
             attr: { d: "M 0 0 L 100 0 L 100 0 Q 50 0 0 0 Z" },
-            duration: 0.65,
+            duration: ANIM_DURATIONS.standard,
             ease: "power2.out",
           });
         }

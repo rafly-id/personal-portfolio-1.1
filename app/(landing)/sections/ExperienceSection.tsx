@@ -6,6 +6,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Briefcase, Calendar, MapPin } from "lucide-react";
 import { experiences } from "@/lib/data";
+import { ANIM_DURATIONS, ANIM_EASES } from "@/lib/animation";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -33,21 +34,21 @@ const ExperienceSection = () => {
       tlContent.to(leftCol, {
         y: 0,
         opacity: 1,
-        duration: 0.8,
-        ease: "power3.out",
+        duration: ANIM_DURATIONS.standard,
+        ease: ANIM_EASES.entry,
       })
       .to(
         rightCol,
         {
           y: 0,
           opacity: 1,
-          duration: 1.0,
-          ease: "power3.out",
+          duration: ANIM_DURATIONS.slow,
+          ease: ANIM_EASES.entry,
         },
         "-=0.5"
       );
 
-      // 2. Dynamic Theme Switching (Discrete 0.6s smooth transition, non-scrubbed)
+      // 2. Dynamic Theme Switching (Discrete smooth transition, non-scrubbed)
       // Animates `--background` and `--foreground` CSS variables on the root document element.
       // Uses `toggleActions` for robust play/reverse triggers on entry and exit.
       const root = document.documentElement;
@@ -55,7 +56,7 @@ const ExperienceSection = () => {
       gsap.to(root, {
         "--background": "#1c1a19",
         "--foreground": "#f4f3ef",
-        duration: 0.3,
+        duration: ANIM_DURATIONS.fast,
         ease: "power1.inOut",
         scrollTrigger: {
           trigger: sectionRef.current,

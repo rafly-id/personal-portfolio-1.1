@@ -9,6 +9,7 @@ import { FaLinkedin, FaInstagram, FaGithub, FaWhatsapp } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { socialLinks } from "@/lib/data";
 import Button from "@/components/ui/button";
+import { ANIM_DURATIONS, ANIM_EASES, ANIM_STAGGERS } from "@/lib/animation";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -35,7 +36,7 @@ const Footer = () => {
       gsap.to(root, {
         "--background": "#1c1a19",
         "--foreground": "#f4f3ef",
-        duration: 0.4,
+        duration: ANIM_DURATIONS.fast,
         ease: "power1.inOut",
         scrollTrigger: {
           trigger: footerRef.current,
@@ -54,9 +55,9 @@ const Footer = () => {
           {
             y: 0,
             opacity: 1,
-            duration: 0.8,
-            stagger: 0.15,
-            ease: "power3.out",
+            duration: ANIM_DURATIONS.standard,
+            stagger: ANIM_STAGGERS.slow,
+            ease: ANIM_EASES.entry,
             scrollTrigger: {
               trigger: footerRef.current,
               start: "top 75%",
@@ -80,9 +81,9 @@ const Footer = () => {
             yPercent: 0,
             opacity: 1,
             filter: "blur(0px)",
-            duration: 1.0,
-            stagger: 0.03,
-            ease: "power4.out",
+            duration: ANIM_DURATIONS.slow,
+            stagger: ANIM_STAGGERS.fast,
+            ease: ANIM_EASES.entry,
             scrollTrigger: {
               trigger: footerRef.current,
               start: "top 70%",

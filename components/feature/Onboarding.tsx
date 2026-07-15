@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import { ANIM_DURATIONS, ANIM_EASES, ANIM_STAGGERS } from "@/lib/animation";
 
 interface OnboardingProps {
   onExitStart: () => void;
@@ -43,9 +44,9 @@ const Onboarding = ({ onExitStart, onFinish }: OnboardingProps) => {
       if (letters && letters.length > 0) {
         tl.to(letters, {
           yPercent: 0,
-          duration: 0.9,
-          stagger: 0.025,
-          ease: "power4.out",
+          duration: ANIM_DURATIONS.slow,
+          stagger: ANIM_STAGGERS.fast,
+          ease: ANIM_EASES.entry,
         });
       }
 
@@ -64,8 +65,8 @@ const Onboarding = ({ onExitStart, onFinish }: OnboardingProps) => {
           y: -140,
           opacity: 0,
           filter: "blur(20px)",
-          duration: 0.75,
-          ease: "power3.inOut",
+          duration: ANIM_DURATIONS.standard,
+          ease: ANIM_EASES.exit,
         },
         "exit",
       );
@@ -75,13 +76,13 @@ const Onboarding = ({ onExitStart, onFinish }: OnboardingProps) => {
           pathRef.current,
           {
             attr: { d: "M 0 0 L 100 0 L 100 50 Q 50 -20 0 50 Z" },
-            duration: 0.65,
+            duration: ANIM_DURATIONS.standard,
             ease: "power2.in",
           },
           "exit",
         ).to(pathRef.current, {
           attr: { d: "M 0 0 L 100 0 L 100 0 Q 50 0 0 0 Z" },
-          duration: 0.65,
+          duration: ANIM_DURATIONS.standard,
           ease: "power2.out",
         });
       }

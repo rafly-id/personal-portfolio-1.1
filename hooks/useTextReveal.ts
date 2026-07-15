@@ -5,6 +5,7 @@ import SplitText from "gsap/SplitText";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { RefObject } from "react";
+import { ANIM_DURATIONS, ANIM_EASES, ANIM_STAGGERS } from "@/lib/animation";
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
@@ -26,9 +27,9 @@ interface UseTextRevealOptions {
 export function useTextReveal({
   ref,
   y,
-  duration = 1,
+  duration = ANIM_DURATIONS.standard,
   delay = 0,
-  stagger = 0.1,
+  stagger = ANIM_STAGGERS.standard,
   trigger,
   type = "lines",
   enableSplit = true,
@@ -62,7 +63,7 @@ export function useTextReveal({
           delay: delay + 0.3, // Add a tiny delay to offset curtain wipe
           stagger,
           filter: "blur(20px)",
-          ease: "power3.out",
+          ease: ANIM_EASES.entry,
           scrollTrigger: {
             trigger:
               typeof trigger === "object" && "current" in trigger

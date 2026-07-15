@@ -4,6 +4,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { RefObject } from "react";
+import { ANIM_DURATIONS, ANIM_EASES } from "@/lib/animation";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -71,8 +72,8 @@ export function useParallaxImage({
           {
             autoAlpha: 1,
             clipPath: "inset(0% 0% 0% 0%)",
-            ease: "power3.out",
-            duration: 2,
+            ease: ANIM_EASES.entry,
+            duration: ANIM_DURATIONS.reveal,
             scrollTrigger: {
               trigger: containerRef.current,
               start: "top 85%",

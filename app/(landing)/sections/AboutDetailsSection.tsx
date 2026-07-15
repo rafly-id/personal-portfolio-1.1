@@ -5,6 +5,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { aboutDetails } from "@/lib/data";
+import { ANIM_DURATIONS } from "@/lib/animation";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -50,7 +51,7 @@ const AboutDetailsSection = () => {
           xPercent: -20,
           pointerEvents: "auto",
           ease: "power2.out",
-          duration: 1,
+          duration: ANIM_DURATIONS.slow,
         })
         .to(paragraphs[0] as Element, {
           z: 600,
@@ -59,7 +60,7 @@ const AboutDetailsSection = () => {
           xPercent: -35,
           pointerEvents: "none",
           ease: "power2.in",
-          duration: 1,
+          duration: ANIM_DURATIONS.slow,
         }, "+=0.4");
 
         // Paragraph 2 (Float Right)
@@ -70,7 +71,7 @@ const AboutDetailsSection = () => {
           xPercent: 20,
           pointerEvents: "auto",
           ease: "power2.out",
-          duration: 1,
+          duration: ANIM_DURATIONS.slow,
         })
         .to(paragraphs[1] as Element, {
           z: 600,
@@ -79,7 +80,7 @@ const AboutDetailsSection = () => {
           xPercent: 35,
           pointerEvents: "none",
           ease: "power2.in",
-          duration: 1,
+          duration: ANIM_DURATIONS.slow,
         }, "+=0.4");
 
         // Paragraph 3 (Float Left)
@@ -90,7 +91,7 @@ const AboutDetailsSection = () => {
           xPercent: -20,
           pointerEvents: "auto",
           ease: "power2.out",
-          duration: 1,
+          duration: ANIM_DURATIONS.slow,
         })
         .to(paragraphs[2] as Element, {
           z: 600,
@@ -99,7 +100,7 @@ const AboutDetailsSection = () => {
           xPercent: -35,
           pointerEvents: "none",
           ease: "power2.in",
-          duration: 1,
+          duration: ANIM_DURATIONS.slow,
         }, "+=0.4");
       });
 
@@ -124,7 +125,7 @@ const AboutDetailsSection = () => {
           xPercent: 0,
           pointerEvents: "auto",
           ease: "power2.out",
-          duration: 1,
+          duration: ANIM_DURATIONS.slow,
         })
         .to(paragraphs[0] as Element, {
           z: 600,
@@ -133,7 +134,7 @@ const AboutDetailsSection = () => {
           xPercent: 0,
           pointerEvents: "none",
           ease: "power2.in",
-          duration: 1,
+          duration: ANIM_DURATIONS.slow,
         }, "+=0.4");
 
         // Paragraph 2 (Centered)
@@ -144,7 +145,7 @@ const AboutDetailsSection = () => {
           xPercent: 0,
           pointerEvents: "auto",
           ease: "power2.out",
-          duration: 1,
+          duration: ANIM_DURATIONS.slow,
         })
         .to(paragraphs[1] as Element, {
           z: 600,
@@ -153,7 +154,7 @@ const AboutDetailsSection = () => {
           xPercent: 0,
           pointerEvents: "none",
           ease: "power2.in",
-          duration: 1,
+          duration: ANIM_DURATIONS.slow,
         }, "+=0.4");
 
         // Paragraph 3 (Centered)
@@ -164,7 +165,7 @@ const AboutDetailsSection = () => {
           xPercent: 0,
           pointerEvents: "auto",
           ease: "power2.out",
-          duration: 1,
+          duration: ANIM_DURATIONS.slow,
         })
         .to(paragraphs[2] as Element, {
           z: 600,
@@ -173,7 +174,7 @@ const AboutDetailsSection = () => {
           xPercent: 0,
           pointerEvents: "none",
           ease: "power2.in",
-          duration: 1,
+          duration: ANIM_DURATIONS.slow,
         }, "+=0.4");
       });
 

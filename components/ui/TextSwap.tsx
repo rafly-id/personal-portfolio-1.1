@@ -4,6 +4,7 @@ import React, { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { cn } from "@/lib/utils";
+import { ANIM_DURATIONS, ANIM_EASES } from "@/lib/animation";
 
 interface TextSwapProps {
   text: string;
@@ -31,8 +32,8 @@ export default function TextSwap({
       const tl = gsap.timeline({ paused: true });
       tl.to(wrapper, {
         yPercent: -50,
-        duration: 0.35,
-        ease: "power2.inOut",
+        duration: ANIM_DURATIONS.fast,
+        ease: ANIM_EASES.hover,
       });
 
       const onHover = () => tl.play();

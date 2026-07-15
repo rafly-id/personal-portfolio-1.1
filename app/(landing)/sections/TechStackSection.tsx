@@ -7,6 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ChevronDown } from "lucide-react";
 import { techStack } from "@/lib/data";
 import SectionHeader from "@/components/ui/SectionHeader";
+import { ANIM_DURATIONS, ANIM_EASES, ANIM_STAGGERS } from "@/lib/animation";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -50,9 +51,9 @@ const TechStackSection = () => {
         y: 0,
         opacity: 1,
         scale: 1,
-        stagger: 0.15,
-        duration: 0.8,
-        ease: "power3.out",
+        stagger: ANIM_STAGGERS.slow,
+        duration: ANIM_DURATIONS.standard,
+        ease: ANIM_EASES.entry,
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 80%",
@@ -75,7 +76,7 @@ const TechStackSection = () => {
         // Animate height
         gsap.to(content, {
           height: isOpen ? "auto" : 0,
-          duration: 0.6,
+          duration: ANIM_DURATIONS.standard,
           ease: "power4.inOut",
           overwrite: "auto",
           onStart: () => {
@@ -88,8 +89,8 @@ const TechStackSection = () => {
                   scale: 1,
                   opacity: 1,
                   y: 0,
-                  stagger: 0.05,
-                  duration: 0.5,
+                  stagger: ANIM_STAGGERS.fast,
+                  duration: ANIM_DURATIONS.standard,
                   ease: "back.out(1.2)",
                   overwrite: "auto",
                 }
@@ -101,7 +102,7 @@ const TechStackSection = () => {
         // Animate chevron rotation
         gsap.to(chevrons[idx], {
           rotate: isOpen ? 180 : 0,
-          duration: 0.5,
+          duration: ANIM_DURATIONS.standard,
           ease: "power3.inOut",
           overwrite: "auto",
         });

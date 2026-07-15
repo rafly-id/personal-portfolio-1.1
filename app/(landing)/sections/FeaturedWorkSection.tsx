@@ -7,6 +7,7 @@ import { projects } from "@/lib/data";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ANIM_DURATIONS, ANIM_EASES } from "@/lib/animation";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -77,8 +78,8 @@ const FeaturedWorkSection = () => {
             {
               clipPath: "inset(0% 0% 0% 0%)",
               autoAlpha: 1,
-              duration: 1.6,
-              ease: "power3.out",
+              duration: 1.2 * ANIM_DURATIONS.reveal,
+              ease: ANIM_EASES.entry,
               scrollTrigger: {
                 trigger: sectionRef.current,
                 start: "top 85%",
@@ -102,9 +103,9 @@ const FeaturedWorkSection = () => {
               {
                 clipPath: "inset(0% 0% 0% 0%)",
                 autoAlpha: 1,
-                duration: 1.4,
-                delay: 0.2, // small delay after title reveal starts
-                ease: "power3.out",
+                duration: ANIM_DURATIONS.reveal,
+                delay: ANIM_DURATIONS.fast * 0.5, // small delay after title reveal starts
+                ease: ANIM_EASES.entry,
                 scrollTrigger: {
                   trigger: sectionRef.current,
                   start: "top 80%",
@@ -123,8 +124,8 @@ const FeaturedWorkSection = () => {
               {
                 clipPath: "inset(0% 0% 0% 0%)",
                 autoAlpha: 1,
-                duration: 1.2,
-                ease: "power3.out",
+                duration: 0.85 * ANIM_DURATIONS.reveal,
+                ease: ANIM_EASES.entry,
                 scrollTrigger: {
                   trigger: card,
                   containerAnimation: tl,
@@ -152,8 +153,8 @@ const FeaturedWorkSection = () => {
             {
               clipPath: "inset(0% 0% 0% 0%)",
               autoAlpha: 1,
-              duration: 1.2,
-              ease: "power3.out",
+              duration: 0.85 * ANIM_DURATIONS.reveal,
+              ease: ANIM_EASES.entry,
               scrollTrigger: {
                 trigger: sectionRef.current,
                 start: "top 85%",
@@ -174,8 +175,8 @@ const FeaturedWorkSection = () => {
             {
               clipPath: "inset(0% 0% 0% 0%)",
               autoAlpha: 1,
-              duration: 1.2,
-              ease: "power3.out",
+              duration: 0.85 * ANIM_DURATIONS.reveal,
+              ease: ANIM_EASES.entry,
               scrollTrigger: {
                 trigger: card,
                 start: "top 85%",

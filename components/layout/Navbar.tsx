@@ -7,6 +7,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { socialLinks } from "@/lib/data";
 import TextSwap from "@/components/ui/TextSwap";
+import { ANIM_DURATIONS, ANIM_EASES, ANIM_STAGGERS } from "@/lib/animation";
 
 interface NavbarSocialLinkProps {
   href: string;
@@ -100,8 +101,8 @@ const Navbar = () => {
         gsap.to(button, {
           scale: 0.8,
           opacity: 0,
-          duration: 0.4,
-          ease: "power3.inOut",
+          duration: ANIM_DURATIONS.fast,
+          ease: ANIM_EASES.exit,
         });
 
         // 2. Open overlay card
@@ -118,8 +119,8 @@ const Navbar = () => {
             scale: 1,
             opacity: 1,
             borderRadius: "2rem",
-            duration: 0.8,
-            ease: "power4.out",
+            duration: ANIM_DURATIONS.slow,
+            ease: ANIM_EASES.entry,
           }
         );
 
@@ -131,10 +132,10 @@ const Navbar = () => {
             {
               y: 0,
               opacity: 1,
-              duration: 0.5,
-              stagger: 0.08,
-              ease: "power3.out",
-              delay: 0.2,
+              duration: ANIM_DURATIONS.standard,
+              stagger: ANIM_STAGGERS.standard,
+              ease: ANIM_EASES.entry,
+              delay: ANIM_DURATIONS.fast * 0.5,
             }
           );
         }
@@ -149,9 +150,9 @@ const Navbar = () => {
         gsap.to(button, {
           scale: 1,
           opacity: 1,
-          duration: 0.5,
-          ease: "power3.out",
-          delay: 0.2,
+          duration: ANIM_DURATIONS.standard,
+          ease: ANIM_EASES.entry,
+          delay: ANIM_DURATIONS.fast * 0.5,
         });
 
         // 2. Close overlay card
@@ -159,8 +160,8 @@ const Navbar = () => {
           scale: 0.1,
           opacity: 0,
           borderRadius: "100px",
-          duration: 0.6,
-          ease: "power4.inOut",
+          duration: ANIM_DURATIONS.standard,
+          ease: ANIM_EASES.exit,
           onComplete: () => {
             gsap.set(overlay, { visibility: "hidden" });
           },
@@ -171,8 +172,8 @@ const Navbar = () => {
           gsap.to(links, {
             y: 30,
             opacity: 0,
-            duration: 0.4,
-            ease: "power3.in",
+            duration: ANIM_DURATIONS.fast,
+            ease: ANIM_EASES.exit,
           });
         }
       }
