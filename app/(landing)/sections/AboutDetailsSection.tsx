@@ -189,7 +189,7 @@ const AboutDetailsSection = () => {
     <section
       ref={triggerRef}
       id="about"
-      className="relative w-full h-dvh min-h-dvh flex flex-col justify-center overflow-hidden bg-background"
+      className="relative w-full h-dvh min-h-dvh flex flex-col justify-center overflow-hidden"
     >
       {/* 3D Viewport container (Full screen height) */}
       <div

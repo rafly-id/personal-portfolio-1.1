@@ -40,7 +40,7 @@ const Footer = () => {
         ease: "power1.inOut",
         scrollTrigger: {
           trigger: footerRef.current,
-          start: "top bottom",
+          start: "top 40%",
           end: "bottom center",
           toggleActions: "play reverse play reverse",
           invalidateOnRefresh: true,
