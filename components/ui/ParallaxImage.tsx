@@ -37,7 +37,7 @@ export default function ParallaxImage({
       ref={containerRef}
       className={cn("relative overflow-hidden w-full h-full", containerClassName)}
     >
-      <div className="w-full h-full">
+      <div className="relative w-full h-full">
         <Image
           ref={imageRef}
           alt={alt}

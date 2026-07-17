@@ -64,7 +64,12 @@ const Footer = () => {
 
           // Staggered reveal for the massive bottom name text (blur only on desktop)
           let splitName: SplitText | null = null;
-          if (nameRef.current) {
+          let isSplitActive = true;
+
+          const initSplit = async () => {
+            await document.fonts.ready;
+            if (!isSplitActive || !nameRef.current) return;
+
             splitName = new SplitText(nameRef.current, {
               type: "chars",
               charsClass: "overflow-visible inline-block px-[0.05em] -mx-[0.05em]"
@@ -87,9 +92,12 @@ const Footer = () => {
                 },
               }
             );
-          }
+          };
+
+          initSplit();
 
           return () => {
+            isSplitActive = false;
             splitName?.revert();
           };
         }

@@ -41,9 +41,11 @@ export function useTextReveal({
       let split: SplitText | null = null;
       let targets: gsap.TweenTarget;
       let mm: gsap.MatchMedia | null = null;
+      let isActive = true;
 
       const init = async () => {
         await document.fonts.ready;
+        if (!isActive || !ref.current) return;
 
         if (enableSplit) {
           split = new SplitText(ref.current!, { type });
@@ -87,6 +89,7 @@ export function useTextReveal({
       init();
 
       return () => {
+        isActive = false;
         split?.revert();
         mm?.revert();
       };
