@@ -2,16 +2,15 @@
 
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import SplitText from "gsap/SplitText";
+import { gsap, SplitText } from "@/lib/gsap";
+import { ScrollTrigger } from "@/lib/gsap";
 import { FaLinkedin, FaInstagram, FaGithub, FaWhatsapp } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { socialLinks } from "@/lib/data";
 import Button from "@/components/ui/button";
 import { ANIM_DURATIONS, ANIM_EASES, ANIM_STAGGERS } from "@/lib/animation";
-
-gsap.registerPlugin(ScrollTrigger, SplitText);
+import { useThemeToggle } from "@/hooks/useThemeToggle";
+import SectionLabel from "@/components/ui/SectionLabel";
 
 const iconMap: Record<string, React.ComponentType<{ size?: number }>> = {
   LinkedIn: FaLinkedin,
@@ -25,12 +24,14 @@ const Footer = () => {
   const footerRef = useRef<HTMLDivElement>(null);
   const nameRef = useRef<HTMLHeadingElement>(null);
 
+  // Dark-mode theme toggle via shared hook (desktop only)
+  useThemeToggle({ triggerRef: footerRef, start: "top 40%", end: "bottom center" });
+
   useGSAP(
     () => {
       if (!footerRef.current) return;
 
       const columns = footerRef.current.querySelectorAll(".footer-col");
-      const root = document.documentElement;
       const mm = gsap.matchMedia();
 
       mm.add(
@@ -41,24 +42,7 @@ const Footer = () => {
         (context) => {
           const { isDesktop } = context.conditions as { isDesktop: boolean };
 
-          // 1. Dynamic Theme Switching (only on desktop view >= 768px)
-          if (isDesktop) {
-            gsap.to(root, {
-              "--background": "#1c1a19",
-              "--foreground": "#f4f3ef",
-              duration: ANIM_DURATIONS.fast,
-              ease: "power1.inOut",
-              scrollTrigger: {
-                trigger: footerRef.current,
-                start: "top 40%",
-                end: "bottom center",
-                toggleActions: "play reverse play reverse",
-                invalidateOnRefresh: true,
-              },
-            });
-          }
-
-          // 2. Entrance Animation for Content Columns
+          // Entrance Animation for Content Columns
           if (columns.length > 0) {
             gsap.fromTo(
               columns,
@@ -78,7 +62,7 @@ const Footer = () => {
             );
           }
 
-          // 3. Staggered reveal for the massive bottom name text (blur only on desktop)
+          // Staggered reveal for the massive bottom name text (blur only on desktop)
           let splitName: SplitText | null = null;
           if (nameRef.current) {
             splitName = new SplitText(nameRef.current, {
@@ -107,18 +91,12 @@ const Footer = () => {
 
           return () => {
             splitName?.revert();
-            if (isDesktop) {
-              root.style.removeProperty("--background");
-              root.style.removeProperty("--foreground");
-            }
           };
         }
       );
 
       return () => {
         mm.revert();
-        root.style.removeProperty("--background");
-        root.style.removeProperty("--foreground");
       };
     },
     { scope: footerRef }
@@ -142,7 +120,7 @@ const Footer = () => {
             </p>
 
             <div className="flex flex-col items-start gap-4 w-full">
-              <span className="font-mono text-xs text-foreground/45 uppercase tracking-widest">[ Follow me ]</span>
+              <SectionLabel text="[ Follow me ]" variant="text" />
               <div className="flex flex-wrap items-center gap-4">
                 {socialLinks.map((link) => {
                   const Icon = iconMap[link.name];
@@ -166,7 +144,7 @@ const Footer = () => {
 
           {/* Right Column (Simple CTAs stacked) */}
           <div className="footer-col md:col-span-4 md:col-start-9 flex flex-col items-start md:items-end justify-start md:justify-center text-left md:text-right gap-4">
-            <span className="font-mono text-xs text-foreground/45 uppercase tracking-widest md:hidden">[ Contact ]</span>
+            <SectionLabel text="[ Contact ]" variant="text" className="md:hidden" />
 
             {/* CTA 1 */}
             <Button

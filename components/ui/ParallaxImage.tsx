@@ -10,7 +10,6 @@ interface ParallaxImageProps extends Omit<ImageProps, "ref"> {
   y?: number;
   enableReveal?: boolean;
   scrub?: boolean | number;
-  hoverScale?: boolean;
 }
 
 export default function ParallaxImage({
@@ -18,7 +17,6 @@ export default function ParallaxImage({
   y = 30,
   enableReveal = true,
   scrub = 1.5,
-  hoverScale = false,
   className,
   alt,
   ...props

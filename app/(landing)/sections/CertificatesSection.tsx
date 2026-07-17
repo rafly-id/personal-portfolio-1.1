@@ -4,13 +4,11 @@ import { useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { certificates } from "@/lib/data";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { ANIM_DURATIONS, ANIM_EASES, ANIM_STAGGERS } from "@/lib/animation";
-
-gsap.registerPlugin(ScrollTrigger);
+import TechBadge from "@/components/ui/TechBadge";
 
 const CertificatesSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -157,12 +155,7 @@ const CertificatesSection = () => {
                 </h3>
                 <div className="flex flex-wrap gap-1.5">
                   {cert.tech.map((t, idx) => (
-                    <span
-                      key={idx}
-                      className="px-2.5 py-0.5 text-[9px] uppercase tracking-widest font-bold text-foreground/50 rounded-full bg-foreground/5 border border-foreground/5"
-                    >
-                      {t}
-                    </span>
+                    <TechBadge key={idx} tech={t} />
                   ))}
                 </div>
               </div>

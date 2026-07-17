@@ -3,7 +3,7 @@
 import Link from "@/components/global/TransitionLink";
 import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
-import gsap from "gsap";
+import { gsap } from "@/lib/gsap";
 import { useGSAP } from "@gsap/react";
 import { socialLinks } from "@/lib/data";
 import TextSwap from "@/components/ui/TextSwap";
@@ -34,12 +34,8 @@ const Navbar = () => {
   const pathname = usePathname();
   const buttonRef = useRef<HTMLButtonElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
+  // Single ref array used for both GSAP targeting and TextSwap triggerRef
   const linksRef = useRef<(HTMLAnchorElement | null)[]>([]);
-  const linkRefs = [
-    useRef<HTMLAnchorElement>(null),
-    useRef<HTMLAnchorElement>(null),
-    useRef<HTMLAnchorElement>(null),
-  ];
   const isFirstRender = useRef(true);
 
   // Body scroll lock
@@ -67,7 +63,7 @@ const Navbar = () => {
       y: y * 0.35,
       rotateX: -y * 0.1,
       rotateY: x * 0.1,
-      duration: 0.3,
+      duration: ANIM_DURATIONS.fast,
       ease: "power2.out",
     });
   };
@@ -80,8 +76,8 @@ const Navbar = () => {
       y: 0,
       rotateX: 0,
       rotateY: 0,
-      duration: 0.5,
-      ease: "elastic.out(1, 0.3)",
+      duration: ANIM_DURATIONS.standard,
+      ease: ANIM_EASES.elasticOut,
     });
   };
 
@@ -241,25 +237,22 @@ const Navbar = () => {
 
         {/* Navigation Links */}
         <div className="flex flex-col gap-4 my-auto text-left">
-          {navLinks.map((link, idx) => {
-            const currentRef = linkRefs[idx];
-            return (
-              <Link
-                key={idx}
-                href={link.href}
-                onClick={() => {
-                  setIsOpen(false);
-                }}
-                ref={(el) => {
-                  linksRef.current[idx] = el;
-                  (currentRef as any).current = el;
-                }}
-                className="text-4xl md:text-5xl font-light font-sans tracking-tight text-background hover:opacity-80 transition-opacity duration-300 lowercase block overflow-hidden py-1"
-              >
-                <TextSwap text={link.label} triggerRef={currentRef} />
-              </Link>
-            );
-          })}
+          {navLinks.map((link, idx) => (
+            <Link
+              key={idx}
+              href={link.href}
+              onClick={() => setIsOpen(false)}
+              ref={(el) => {
+                linksRef.current[idx] = el;
+              }}
+              className="text-4xl md:text-5xl font-light font-sans tracking-tight text-background hover:opacity-80 transition-opacity duration-300 lowercase block overflow-hidden py-1"
+            >
+              <TextSwap
+                text={link.label}
+                triggerRef={{ current: linksRef.current[idx] } as React.RefObject<HTMLAnchorElement>}
+              />
+            </Link>
+          ))}
         </div>
 
         {/* Bottom Section */}

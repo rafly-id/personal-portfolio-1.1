@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import gsap from "gsap";
+import { gsap } from "@/lib/gsap";
 import { ANIM_DURATIONS, ANIM_EASES } from "@/lib/animation";
 
 const Cursor = () => {
@@ -29,8 +29,8 @@ const Cursor = () => {
       gsap.set(cursor, { xPercent: -50, yPercent: -50 });
 
       // High-performance quickTo positioning
-      const xTo = gsap.quickTo(cursor, "x", { duration: 0.3, ease: "power3.out" });
-      const yTo = gsap.quickTo(cursor, "y", { duration: 0.3, ease: "power3.out" });
+      const xTo = gsap.quickTo(cursor, "x", { duration: ANIM_DURATIONS.fast, ease: "power3.out" });
+      const yTo = gsap.quickTo(cursor, "y", { duration: ANIM_DURATIONS.fast, ease: "power3.out" });
 
       const moveCursor = (e: MouseEvent) => {
         xTo(e.clientX);

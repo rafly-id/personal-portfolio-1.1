@@ -1,12 +1,10 @@
 "use client";
 
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { useGSAP } from "@gsap/react";
 import { RefObject } from "react";
 import { ANIM_DURATIONS, ANIM_EASES } from "@/lib/animation";
 
-gsap.registerPlugin(ScrollTrigger);
 
 interface UseParallaxImageOptions {
   containerRef: RefObject<HTMLElement | null>;

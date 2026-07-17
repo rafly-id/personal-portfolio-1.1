@@ -8,13 +8,14 @@ import { useTextReveal } from "@/hooks/useTextReveal";
 import ParallaxImage from "@/components/ui/ParallaxImage";
 import Button from "@/components/ui/button";
 import TextSwap from "@/components/ui/TextSwap";
+import TechBadge from "@/components/ui/TechBadge";
+import SectionLabel from "@/components/ui/SectionLabel";
 
 interface ProjectDetailClientProps {
   project: Project;
 }
 
 const ProjectDetailClient = ({ project }: ProjectDetailClientProps) => {
-  const containerRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const summaryRef = useRef<HTMLParagraphElement>(null);
   const backLinkRef = useRef<HTMLAnchorElement>(null);
@@ -39,7 +40,7 @@ const ProjectDetailClient = ({ project }: ProjectDetailClientProps) => {
   });
 
   return (
-    <div ref={containerRef} className="min-h-screen pt-24 px-5 md:px-12 lg:px-24 bg-background text-foreground">
+    <div className="min-h-screen pt-24 px-5 md:px-12 lg:px-24 bg-background text-foreground">
       {/* Navigation and Back button */}
       <div className="mb-10">
         <Link
@@ -54,9 +55,7 @@ const ProjectDetailClient = ({ project }: ProjectDetailClientProps) => {
       {/* Header Info */}
       <div className="max-w-6xl mb-12">
         <div className="mb-4">
-          <span className="inline-block px-3 py-1 text-[10px] uppercase tracking-[0.25em] font-medium border border-foreground/15 rounded-full text-foreground/60">
-            [ Project Deep Dive ]
-          </span>
+          <SectionLabel text="[ Project Deep Dive ]" />
         </div>
         <h1
           ref={titleRef}
@@ -117,12 +116,7 @@ const ProjectDetailClient = ({ project }: ProjectDetailClientProps) => {
             </span>
             <div className="flex flex-wrap gap-2 mt-2">
               {project.tech.map((t, idx) => (
-                <span
-                  key={idx}
-                  className="px-2.5 py-0.5 text-[10px] uppercase font-bold tracking-wider text-foreground/75 rounded-full border border-foreground/10 bg-foreground/2"
-                >
-                  {t}
-                </span>
+                <TechBadge key={idx} tech={t} />
               ))}
             </div>
           </div>

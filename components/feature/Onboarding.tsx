@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import gsap from "gsap";
+import { gsap } from "@/lib/gsap";
 import { useGSAP } from "@gsap/react";
 import { ANIM_DURATIONS, ANIM_EASES, ANIM_STAGGERS } from "@/lib/animation";
 
@@ -122,7 +122,7 @@ const Onboarding = ({ onExitStart, onFinish }: OnboardingProps) => {
       >
         <path
           ref={pathRef}
-          className="fill-[#1c1a19]"
+          className="fill-foreground"
           d="M 0 0 L 100 0 L 100 100 Q 50 100 0 100 Z"
         />
       </svg>
@@ -134,7 +134,7 @@ const Onboarding = ({ onExitStart, onFinish }: OnboardingProps) => {
       >
         <h1
           ref={nameRef}
-          className="font-instrument_serif text-[clamp(2.75rem,14vw,20rem)] italic font-normal tracking-tighter text-[#f4f3ef] text-center leading-none w-full will-change-transform whitespace-nowrap py-4"
+          className="font-instrument_serif text-[clamp(2.75rem,14vw,20rem)] italic font-normal tracking-tighter text-background text-center leading-none w-full will-change-transform whitespace-nowrap py-4"
         >
           {nameWords.map((word, wordIdx) => (
             <span

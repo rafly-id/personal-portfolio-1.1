@@ -1,13 +1,9 @@
 "use client";
 
-import gsap from "gsap";
-import SplitText from "gsap/SplitText";
-import ScrollTrigger from "gsap/ScrollTrigger";
+import { gsap, SplitText, ScrollTrigger } from "@/lib/gsap";
 import { useGSAP } from "@gsap/react";
 import { RefObject } from "react";
 import { ANIM_DURATIONS, ANIM_EASES, ANIM_STAGGERS } from "@/lib/animation";
-
-gsap.registerPlugin(SplitText, ScrollTrigger);
 
 export type SplitType = "lines" | "words" | "chars";
 

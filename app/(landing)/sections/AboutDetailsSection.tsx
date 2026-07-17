@@ -2,12 +2,9 @@
 
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { aboutDetails } from "@/lib/data";
 import { ANIM_DURATIONS } from "@/lib/animation";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const AboutDetailsSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);

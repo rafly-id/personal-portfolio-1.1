@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { useTextReveal } from "@/hooks/useTextReveal";
 import { cn } from "@/lib/utils";
+import SectionLabel from "./SectionLabel";
 
 interface SectionHeaderProps {
   title: string;
@@ -20,6 +21,8 @@ export default function SectionHeader({
   const titleRef = useRef<HTMLHeadingElement>(null);
   const tagRef = useRef<HTMLSpanElement>(null);
 
+  // Always call hooks unconditionally (Rules of Hooks compliance).
+  // The hook itself guards with the active flag when tag is absent.
   useTextReveal({
     ref: titleRef,
     y: 80,
@@ -27,15 +30,14 @@ export default function SectionHeader({
     type: "lines",
   });
 
-  if (tag) {
-    useTextReveal({
-      ref: tagRef,
-      y: 30,
-      duration: 0.6,
-      type: "words",
-      delay: 0.1,
-    });
-  }
+  useTextReveal({
+    ref: tagRef,
+    y: 30,
+    duration: 0.6,
+    type: "words",
+    delay: 0.1,
+    // When there is no tag, the ref will be null so the hook does nothing.
+  });
 
   return (
     <div
@@ -50,9 +52,9 @@ export default function SectionHeader({
       {tag && (
         <span
           ref={tagRef}
-          className="text-[10px] uppercase tracking-[0.2em] text-foreground/50 font-bold mb-4 block overflow-hidden"
+          className="mb-4 block overflow-hidden"
         >
-          {tag}
+          <SectionLabel text={tag} variant="text" className="text-[10px] font-bold text-foreground/50 tracking-[0.2em] font-sans" />
         </span>
       )}
       <div className="text-5xl font-bold uppercase font-instrument_serif overflow-hidden">

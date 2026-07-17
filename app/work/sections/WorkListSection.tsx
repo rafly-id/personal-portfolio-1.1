@@ -4,11 +4,8 @@ import { useRef } from "react";
 import CardWork from "@/components/feature/CardWork";
 import { projects } from "@/lib/data";
 import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { Project } from "@/types";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const WorkListSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -20,8 +17,8 @@ const WorkListSection = () => {
 
   useGSAP(
     () => {
-      // 1. Parallax Racing Columns (Desktop only)
-      let mm = gsap.matchMedia();
+      // Parallax Racing Columns (Desktop only)
+      const mm = gsap.matchMedia();
 
       mm.add("(min-width: 768px)", () => {
         if (!rightColumnRef.current || !containerRef.current) return;
@@ -43,8 +40,6 @@ const WorkListSection = () => {
         );
       });
 
-
-
       return () => {
         mm.revert();
       };
@@ -57,45 +52,33 @@ const WorkListSection = () => {
       ref={containerRef}
       className="relative w-full py-16 select-none"
     >
-      {/* Mobile Unified Sequential List */}
+      {/* Mobile: single-column sequential list */}
       <div className="flex flex-col gap-12 w-full md:hidden">
         {projects.map((project, index) => (
-          <div
+          <CardWork
             key={`mobile-${index}`}
-            className="w-full"
-          >
+            slug={project.slug}
+            imageSrc={project.imageSrc}
+            imageAlt={project.imageAlt}
+            title={project.title}
+            tech={project.tech}
+          />
+        ))}
+      </div>
+
+      {/* Desktop: asymmetric dual-column grid with parallax */}
+      <div className="hidden md:grid md:grid-cols-2 md:gap-24 items-start w-full">
+        {/* Left Column (standard speed) */}
+        <div className="flex flex-col gap-24 w-full">
+          {leftProjects.map((project, index) => (
             <CardWork
+              key={`left-${index}`}
               slug={project.slug}
               imageSrc={project.imageSrc}
               imageAlt={project.imageAlt}
               title={project.title}
               tech={project.tech}
-              link={project.link}
-              github={project.github}
             />
-          </div>
-        ))}
-      </div>
-
-      {/* Desktop Asymmetric Dual-Column Grid */}
-      <div className="hidden md:grid md:grid-cols-2 md:gap-24 items-start w-full">
-        {/* Left Column (standard speed) */}
-        <div className="flex flex-col gap-24 w-full">
-          {leftProjects.map((project, index) => (
-            <div
-              key={`left-${index}`}
-              className="w-full"
-            >
-              <CardWork
-                slug={project.slug}
-                imageSrc={project.imageSrc}
-                imageAlt={project.imageAlt}
-                title={project.title}
-                tech={project.tech}
-                link={project.link}
-                github={project.github}
-              />
-            </div>
           ))}
         </div>
 
@@ -105,24 +88,17 @@ const WorkListSection = () => {
           className="flex flex-col gap-24 w-full md:mt-24"
         >
           {rightProjects.map((project, index) => (
-            <div
+            <CardWork
               key={`right-${index}`}
-              className="w-full"
-            >
-              <CardWork
-                slug={project.slug}
-                imageSrc={project.imageSrc}
-                imageAlt={project.imageAlt}
-                title={project.title}
-                tech={project.tech}
-                link={project.link}
-                github={project.github}
-              />
-            </div>
+              slug={project.slug}
+              imageSrc={project.imageSrc}
+              imageAlt={project.imageAlt}
+              title={project.title}
+              tech={project.tech}
+            />
           ))}
         </div>
       </div>
-
     </div>
   );
 };

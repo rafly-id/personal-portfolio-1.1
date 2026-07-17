@@ -5,13 +5,14 @@
   --background: #f4f3ef;
   --foreground: #1c1a19;
   --secondary: #eeeeee;
+  --muted-foreground: #6b7280;
 }
 
 @theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-secondary: var(--secondary);
-  --color-special: var(--special);
+  --color-muted-foreground: var(--muted-foreground);
   --font-sans: var(--font-dm-sans);
   --font-instrument_serif: var(--font-instrument-serif);
 }

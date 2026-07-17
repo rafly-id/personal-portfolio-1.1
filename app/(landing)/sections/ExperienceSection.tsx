@@ -1,17 +1,21 @@
 "use client";
 
 import { useRef } from "react";
+import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Briefcase, Calendar, MapPin } from "lucide-react";
 import { experiences } from "@/lib/data";
 import { ANIM_DURATIONS, ANIM_EASES } from "@/lib/animation";
-
-gsap.registerPlugin(ScrollTrigger);
+import { useThemeToggle } from "@/hooks/useThemeToggle";
+import BezelCard from "@/components/ui/BezelCard";
+import TechBadge from "@/components/ui/TechBadge";
+import SectionLabel from "@/components/ui/SectionLabel";
 
 const ExperienceSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
+
+  // Dark-mode theme toggle via shared hook (desktop only)
+  useThemeToggle({ triggerRef: sectionRef });
 
   useGSAP(
     () => {
@@ -20,7 +24,7 @@ const ExperienceSection = () => {
       const leftCol = sectionRef.current.querySelector(".exp-left");
       const rightCol = sectionRef.current.querySelector(".exp-right");
 
-      // 1. Entry scroll reveal for section text/content
+      // Entry scroll reveal for section text/content
       gsap.set([leftCol, rightCol], { y: 60, opacity: 0 });
 
       const tlContent = gsap.timeline({
@@ -47,36 +51,6 @@ const ExperienceSection = () => {
         },
         "-=0.5"
       );
-
-      // 2. Dynamic Theme Switching (Discrete smooth transition, non-scrubbed)
-      // Animates `--background` and `--foreground` CSS variables on the root document element.
-      // Uses `toggleActions` for robust play/reverse triggers on entry and exit.
-      // Only runs on desktop view >= 768px.
-      const root = document.documentElement;
-      const mm = gsap.matchMedia();
-
-      mm.add("(min-width: 768px)", () => {
-        gsap.to(root, {
-          "--background": "#1c1a19",
-          "--foreground": "#f4f3ef",
-          duration: ANIM_DURATIONS.fast,
-          ease: "power1.inOut",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 40%", // triggers dark mode when top of section is 40% into viewport
-            end: "bottom center", // triggers light mode when bottom of section leaves viewport
-            toggleActions: "play reverse play reverse", // play on enter, reverse on leave, play on enterBack, reverse on leaveBack
-            invalidateOnRefresh: true,
-          },
-        });
-      });
-
-      return () => {
-        // Safe cleanup: remove custom style overrides on documentElement unmount
-        mm.revert();
-        root.style.removeProperty("--background");
-        root.style.removeProperty("--foreground");
-      };
     },
     { scope: sectionRef }
   );
@@ -91,9 +65,7 @@ const ExperienceSection = () => {
 
         {/* Left Column: Sticky-like info */}
         <div className="exp-left md:col-span-5 text-left md:sticky md:top-24 flex flex-col justify-center">
-          <span className="w-fit text-[10px] uppercase tracking-[0.2em] font-medium text-foreground/50 border border-foreground/10 rounded-full px-3.5 py-1">
-            [ My Experience ]
-          </span>
+          <SectionLabel text="[ My Experience ]" />
           <h2 className="font-instrument_serif text-5xl md:text-7xl font-light italic text-foreground mt-6 mb-3 capitalize leading-none tracking-tight">
             {experiences[0].company}
           </h2>
@@ -120,30 +92,23 @@ const ExperienceSection = () => {
             {experiences[0].description}
           </p>
 
-          {/* Double-Bezel Card Enclosure (adapts to light/dark themes dynamically) */}
-          <div className="bg-foreground/2 border border-foreground/10 rounded-4xl p-1.5 transition-all duration-500 hover:border-foreground/20">
-            <div className="bg-foreground/1 rounded-[calc(2rem-0.375rem)] p-5 md:p-8 space-y-5">
-              <ul className="space-y-4 font-sans text-sm md:text-base font-light text-foreground/70 list-none">
-                {experiences[0].bullets.map((bullet, idx) => (
-                  <li key={idx} className="leading-relaxed flex items-start gap-3">
-                    <span className="text-foreground/45 font-mono text-xs mt-1">0{idx + 1}.</span>
-                    <span>{bullet}</span>
-                  </li>
-                ))}
-              </ul>
+          {/* Double-Bezel Card Enclosure */}
+          <BezelCard innerClassName="space-y-5">
+            <ul className="space-y-4 font-sans text-sm md:text-base font-light text-foreground/70 list-none">
+              {experiences[0].bullets.map((bullet, idx) => (
+                <li key={idx} className="leading-relaxed flex items-start gap-3">
+                  <span className="text-foreground/45 font-mono text-xs mt-1">0{idx + 1}.</span>
+                  <span>{bullet}</span>
+                </li>
+              ))}
+            </ul>
 
-              <div className="pt-4 border-t border-foreground/10 flex flex-wrap gap-2">
-                {experiences[0].tech.map((tech, idx) => (
-                  <span
-                    key={idx}
-                    className="px-3 py-1 text-[10px] uppercase font-mono tracking-wider text-foreground/50 border border-foreground/10 bg-foreground/2 rounded-full hover:text-foreground/80 hover:border-foreground/35 transition-colors duration-300"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
+            <div className="pt-4 border-t border-foreground/10 flex flex-wrap gap-2">
+              {experiences[0].tech.map((tech, idx) => (
+                <TechBadge key={idx} tech={tech} />
+              ))}
             </div>
-          </div>
+          </BezelCard>
         </div>
 
       </div>

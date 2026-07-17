@@ -3,7 +3,8 @@
 import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import Lenis from "lenis";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollTrigger } from "@/lib/gsap";
+import { LENIS_EASING } from "@/lib/config";
 import "lenis/dist/lenis.css";
 
 const SmoothScroll = ({ children }: { children: React.ReactNode }) => {
@@ -13,7 +14,7 @@ const SmoothScroll = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      easing: LENIS_EASING,
     });
 
     lenisRef.current = lenis;
@@ -23,14 +24,17 @@ const SmoothScroll = ({ children }: { children: React.ReactNode }) => {
       ScrollTrigger.update();
     });
 
+    let rafId: number;
+
     function raf(time: number) {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      rafId = requestAnimationFrame(raf);
     }
 
-    requestAnimationFrame(raf);
+    rafId = requestAnimationFrame(raf);
 
     return () => {
+      cancelAnimationFrame(rafId);
       lenis.destroy();
       lenisRef.current = null;
     };

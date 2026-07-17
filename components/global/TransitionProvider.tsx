@@ -2,10 +2,11 @@
 
 import React, { createContext, useContext, useState, useRef, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import gsap from "gsap";
+import { gsap } from "@/lib/gsap";
 import { useGSAP } from "@gsap/react";
 import Onboarding from "../feature/Onboarding";
 import { ANIM_DURATIONS } from "@/lib/animation";
+import { THEME_COLORS } from "@/lib/config";
 
 export type TransitionStatus = "loading" | "exiting" | "entering" | "idle";
 
@@ -28,7 +29,7 @@ export default function TransitionProvider({ children }: { children: React.React
 
   const targetHref = useRef<string | null>(null);
   const isHashScroll = useRef<boolean>(false);
-  const curtainColorRef = useRef<string>("#1c1a19");
+  const curtainColorRef = useRef<string>(THEME_COLORS.dark);
 
   const pathRef = useRef<SVGPathElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -96,11 +97,10 @@ export default function TransitionProvider({ children }: { children: React.React
         // If targetHref is null, we are exiting from the onboarding screen, not a page transition.
         if (!targetHref.current) return;
 
-        // Dynamic curtain theme coloring (opposite of current background CSS property)
-        const root = document.documentElement;
-        const currentBg = (root.style.getPropertyValue("--background") || getComputedStyle(root).getPropertyValue("--background") || "").trim();
-        const isDark = currentBg.includes("#1c1a19") || currentBg.includes("rgb(28") || currentBg.includes("28,");
-        curtainColorRef.current = isDark ? "#f4f3ef" : "#1c1a19";
+        // Dynamic curtain theme coloring — read the data-theme attribute set by useThemeToggle
+        // instead of fragile string-matching on computed CSS values.
+        const isDark = document.documentElement.dataset.theme === "dark";
+        curtainColorRef.current = isDark ? THEME_COLORS.light : THEME_COLORS.dark;
 
         document.body.style.overflow = "hidden";
 
@@ -127,9 +127,9 @@ export default function TransitionProvider({ children }: { children: React.React
 
         if (pathRef.current) {
           gsap.set(containerRef.current, { visibility: "visible", pointerEvents: "auto" });
-          gsap.set(pathRef.current, { 
+          gsap.set(pathRef.current, {
             fill: curtainColorRef.current,
-            attr: { d: "M 0 0 L 100 0 L 100 0 Q 50 0 0 0 Z" } 
+            attr: { d: "M 0 0 L 100 0 L 100 0 Q 50 0 0 0 Z" },
           });
 
           tl.to(pathRef.current, {
@@ -156,7 +156,7 @@ export default function TransitionProvider({ children }: { children: React.React
         if (pathRef.current) {
           gsap.set(containerRef.current, { visibility: "visible", pointerEvents: "auto" });
           gsap.set(pathRef.current, { fill: curtainColorRef.current });
-          
+
           tl.to(pathRef.current, {
             attr: { d: "M 0 0 L 100 0 L 100 50 Q 50 -20 0 50 Z" },
             duration: ANIM_DURATIONS.standard,
@@ -202,7 +202,7 @@ export default function TransitionProvider({ children }: { children: React.React
           >
             <path
               ref={pathRef}
-              className="fill-[#1c1a19]"
+              style={{ fill: THEME_COLORS.dark }}
               d="M 0 0 L 100 0 L 100 0 Q 50 0 0 0 Z"
             />
           </svg>

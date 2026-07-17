@@ -1,11 +1,8 @@
 "use client";
 
 import { RefObject, useLayoutEffect, useState } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { useGSAP } from "@gsap/react";
-
-gsap.registerPlugin(ScrollTrigger);
 
 function wrap(min: number, max: number, v: number) {
   return ((((v - min) % (max - min)) + (max - min)) % (max - min)) + min;

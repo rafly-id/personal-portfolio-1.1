@@ -3,6 +3,7 @@ export const ANIM_DURATIONS = {
   standard: 0.6,
   slow: 1.0,
   reveal: 2.0, // Dedicated slow reveal for images
+  extended: 2.4, // 1.2× reveal — used for background heading reveals
 } as const;
 
 export const ANIM_EASES = {

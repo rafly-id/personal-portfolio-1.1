@@ -2,14 +2,12 @@
 
 import { useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { ChevronDown } from "lucide-react";
 import { techStack } from "@/lib/data";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { ANIM_DURATIONS, ANIM_EASES, ANIM_STAGGERS } from "@/lib/animation";
-
-gsap.registerPlugin(ScrollTrigger);
+import BezelCard from "@/components/ui/BezelCard";
 
 const TechStackSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -128,12 +126,11 @@ const TechStackSection = () => {
           const numStr = `0${catIdx + 1} /`;
 
           return (
-            <div
+            <BezelCard
               key={catIdx}
-              className="bg-foreground/2 border border-foreground/10 rounded-4xl p-1.5 tech-card transition-all duration-500 hover:border-foreground/20"
-              style={{ willChange: "transform, opacity" }}
+              className="tech-card"
+              innerClassName="flex flex-col justify-start"
             >
-              <div className="bg-foreground/1 rounded-[calc(2rem-0.375rem)] p-5 md:p-8 h-full flex flex-col justify-start">
                 {/* Header Toggle */}
                 <button
                   onClick={() => handleToggle(catIdx)}
@@ -181,8 +178,7 @@ const TechStackSection = () => {
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
+            </BezelCard>
           );
         })}
       </div>

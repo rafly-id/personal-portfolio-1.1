@@ -5,11 +5,9 @@ import Image from "next/image";
 import Link from "@/components/global/TransitionLink";
 import { projects } from "@/lib/data";
 import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { ANIM_DURATIONS, ANIM_EASES } from "@/lib/animation";
-
-gsap.registerPlugin(ScrollTrigger);
+import TechBadge from "@/components/ui/TechBadge";
 
 const FeaturedWorkSection = () => {
   const featuredProjects = projects.filter((project) => project.featured);
@@ -78,7 +76,7 @@ const FeaturedWorkSection = () => {
             {
               clipPath: "inset(0% 0% 0% 0%)",
               autoAlpha: 1,
-              duration: 1.2 * ANIM_DURATIONS.reveal,
+              duration: ANIM_DURATIONS.extended,
               ease: ANIM_EASES.entry,
               scrollTrigger: {
                 trigger: sectionRef.current,
@@ -268,12 +266,7 @@ const FeaturedWorkSection = () => {
                   </div>
                   <div className="flex flex-wrap gap-1.5 shrink-0 self-start md:self-auto mt-2 md:mt-0">
                     {project.tech.map((t, idx) => (
-                      <span
-                        key={idx}
-                        className="px-2.5 py-0.5 text-[10px] uppercase font-bold tracking-wider text-foreground/75 rounded-full border border-foreground/10"
-                      >
-                        {t}
-                      </span>
+                      <TechBadge key={idx} tech={t} />
                     ))}
                   </div>
                 </div>

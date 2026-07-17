@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { memo, useRef } from "react";
 import Link from "@/components/global/TransitionLink";
 
 import {
@@ -18,22 +18,19 @@ import { cn } from "@/lib/utils";
 
 type CardWorkProps = Pick<
   Project,
-  "slug" | "imageSrc" | "imageAlt" | "title" | "tech" | "link"
+  "slug" | "imageSrc" | "imageAlt" | "title" | "tech"
 > & {
-  github?: string;
-  hideDetailsOnDesktop?: boolean;
   className?: string;
 };
 
-const CardWork = ({
+const CardWork = memo(function CardWork({
   slug,
   imageSrc,
   imageAlt,
   title,
   tech,
-  hideDetailsOnDesktop = false,
   className,
-}: CardWorkProps) => {
+}: CardWorkProps) {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const techRef = useRef<HTMLParagraphElement>(null);
 
@@ -67,7 +64,6 @@ const CardWork = ({
           className="grayscale group-hover/card:grayscale-0 transition-[filter] duration-700 ease-[cubic-bezier(0.32,0.72,0,1)]"
           sizes="(max-width: 768px) 100vw, 50vw"
           priority
-          hoverScale
         />
       </Link>
 
@@ -94,7 +90,6 @@ const CardWork = ({
       </div>
     </Card>
   );
-};
+});
 
 export default CardWork;
-
