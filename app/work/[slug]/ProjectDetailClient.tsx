@@ -45,7 +45,7 @@ const ProjectDetailClient = ({ project }: ProjectDetailClientProps) => {
         <Link
           ref={backLinkRef}
           href="/work"
-          className="inline-flex items-center gap-2 group text-sm font-bold uppercase font-instrument_serif tracking-widest text-foreground/60 hover:text-foreground transition-colors duration-300"
+          className="inline-flex items-center gap-2 group text-sm font-bold uppercase font-sans tracking-widest text-foreground/60 hover:text-foreground transition-colors duration-300"
         >
           <TextSwap text="Back to Work" triggerRef={backLinkRef} />
         </Link>
@@ -73,7 +73,7 @@ const ProjectDetailClient = ({ project }: ProjectDetailClientProps) => {
       </div>
 
       {/* Double-Bezel Hero Image Enclosure */}
-      <div className="w-full h-[350px] md:h-[600px] lg:h-[700px] overflow-hidden rounded-[2.5rem] bg-secondary/30 border border-foreground/5 p-2 md:p-4 mb-20">
+      <div className="w-full h-[350px] md:h-[600px] lg:h-[700px] overflow-hidden rounded-[2.5rem] bg-secondary/30 border border-foreground/5 p-2 md:p-4 mb-12 md:mb-20">
         <ParallaxImage
           src={project.imageSrc}
           alt={project.imageAlt}
@@ -119,7 +119,7 @@ const ProjectDetailClient = ({ project }: ProjectDetailClientProps) => {
               {project.tech.map((t, idx) => (
                 <span
                   key={idx}
-                  className="px-3 py-1 text-xs uppercase font-medium text-foreground rounded-full"
+                  className="px-2.5 py-0.5 text-[10px] uppercase font-bold tracking-wider text-foreground/75 rounded-full border border-foreground/10 bg-foreground/2"
                 >
                   {t}
                 </span>
@@ -152,7 +152,7 @@ const ProjectDetailClient = ({ project }: ProjectDetailClientProps) => {
         </div>
 
         {/* Right Column: Narrative Details */}
-        <div className="lg:col-span-7 space-y-12">
+        <div className="lg:col-span-7 space-y-10 md:space-y-12">
           {/* Overview */}
           <div>
             <h2 className="font-instrument_serif text-xl font-bold uppercase tracking-widest mb-4 text-foreground/90">

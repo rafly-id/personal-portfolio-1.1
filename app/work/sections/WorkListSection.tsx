@@ -57,10 +57,30 @@ const WorkListSection = () => {
       ref={containerRef}
       className="relative w-full py-16 select-none"
     >
-      {/* Dual-Column Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-start w-full">
+      {/* Mobile Unified Sequential List */}
+      <div className="flex flex-col gap-12 w-full md:hidden">
+        {projects.map((project, index) => (
+          <div
+            key={`mobile-${index}`}
+            className="w-full"
+          >
+            <CardWork
+              slug={project.slug}
+              imageSrc={project.imageSrc}
+              imageAlt={project.imageAlt}
+              title={project.title}
+              tech={project.tech}
+              link={project.link}
+              github={project.github}
+            />
+          </div>
+        ))}
+      </div>
+
+      {/* Desktop Asymmetric Dual-Column Grid */}
+      <div className="hidden md:grid md:grid-cols-2 md:gap-24 items-start w-full">
         {/* Left Column (standard speed) */}
-        <div className="flex flex-col gap-12 md:gap-24 w-full">
+        <div className="flex flex-col gap-24 w-full">
           {leftProjects.map((project, index) => (
             <div
               key={`left-${index}`}
@@ -82,7 +102,7 @@ const WorkListSection = () => {
         {/* Right Column (asymmetrical parallax speed) */}
         <div
           ref={rightColumnRef}
-          className="flex flex-col gap-12 md:gap-24 w-full md:mt-24"
+          className="flex flex-col gap-24 w-full md:mt-24"
         >
           {rightProjects.map((project, index) => (
             <div

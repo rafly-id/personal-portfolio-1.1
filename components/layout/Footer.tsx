@@ -31,75 +31,92 @@ const Footer = () => {
 
       const columns = footerRef.current.querySelectorAll(".footer-col");
       const root = document.documentElement;
+      const mm = gsap.matchMedia();
 
-      // 1. Dynamic Theme Switching
-      gsap.to(root, {
-        "--background": "#1c1a19",
-        "--foreground": "#f4f3ef",
-        duration: ANIM_DURATIONS.fast,
-        ease: "power1.inOut",
-        scrollTrigger: {
-          trigger: footerRef.current,
-          start: "top 40%",
-          end: "bottom center",
-          toggleActions: "play reverse play reverse",
-          invalidateOnRefresh: true,
+      mm.add(
+        {
+          isDesktop: "(min-width: 768px)",
+          isMobile: "(max-width: 767px)",
         },
-      });
+        (context) => {
+          const { isDesktop } = context.conditions as { isDesktop: boolean };
 
-      // 2. Entrance Animation for Content Columns
-      if (columns.length > 0) {
-        gsap.fromTo(
-          columns,
-          { y: 50, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: ANIM_DURATIONS.standard,
-            stagger: ANIM_STAGGERS.slow,
-            ease: ANIM_EASES.entry,
-            scrollTrigger: {
-              trigger: footerRef.current,
-              start: "top 75%",
-              toggleActions: "play none none none",
-            },
+          // 1. Dynamic Theme Switching (only on desktop view >= 768px)
+          if (isDesktop) {
+            gsap.to(root, {
+              "--background": "#1c1a19",
+              "--foreground": "#f4f3ef",
+              duration: ANIM_DURATIONS.fast,
+              ease: "power1.inOut",
+              scrollTrigger: {
+                trigger: footerRef.current,
+                start: "top 40%",
+                end: "bottom center",
+                toggleActions: "play reverse play reverse",
+                invalidateOnRefresh: true,
+              },
+            });
           }
-        );
-      }
 
-      // 3. Staggered reveal for the massive bottom name text
-      if (nameRef.current) {
-        const splitName = new SplitText(nameRef.current, {
-          type: "chars",
-          charsClass: "overflow-visible inline-block px-[0.05em] -mx-[0.05em]"
-        });
-
-        gsap.fromTo(
-          splitName.chars,
-          { yPercent: 105, opacity: 0, filter: "blur(8px)" },
-          {
-            yPercent: 0,
-            opacity: 1,
-            filter: "blur(0px)",
-            duration: ANIM_DURATIONS.slow,
-            stagger: ANIM_STAGGERS.fast,
-            ease: ANIM_EASES.entry,
-            scrollTrigger: {
-              trigger: footerRef.current,
-              start: "top 70%",
-              toggleActions: "play none none none",
-            },
+          // 2. Entrance Animation for Content Columns
+          if (columns.length > 0) {
+            gsap.fromTo(
+              columns,
+              { y: 50, opacity: 0 },
+              {
+                y: 0,
+                opacity: 1,
+                duration: ANIM_DURATIONS.standard,
+                stagger: ANIM_STAGGERS.slow,
+                ease: ANIM_EASES.entry,
+                scrollTrigger: {
+                  trigger: footerRef.current,
+                  start: "top 75%",
+                  toggleActions: "play none none none",
+                },
+              }
+            );
           }
-        );
 
-        return () => {
-          splitName.revert();
-          root.style.removeProperty("--background");
-          root.style.removeProperty("--foreground");
-        };
-      }
+          // 3. Staggered reveal for the massive bottom name text (blur only on desktop)
+          let splitName: SplitText | null = null;
+          if (nameRef.current) {
+            splitName = new SplitText(nameRef.current, {
+              type: "chars",
+              charsClass: "overflow-visible inline-block px-[0.05em] -mx-[0.05em]"
+            });
+
+            gsap.fromTo(
+              splitName.chars,
+              { yPercent: 105, opacity: 0, filter: isDesktop ? "blur(8px)" : "none" },
+              {
+                yPercent: 0,
+                opacity: 1,
+                filter: "blur(0px)",
+                duration: ANIM_DURATIONS.slow,
+                stagger: ANIM_STAGGERS.fast,
+                ease: ANIM_EASES.entry,
+                scrollTrigger: {
+                  trigger: footerRef.current,
+                  start: "top 70%",
+                  toggleActions: "play none none none",
+                },
+              }
+            );
+          }
+
+          return () => {
+            splitName?.revert();
+            if (isDesktop) {
+              root.style.removeProperty("--background");
+              root.style.removeProperty("--foreground");
+            }
+          };
+        }
+      );
 
       return () => {
+        mm.revert();
         root.style.removeProperty("--background");
         root.style.removeProperty("--foreground");
       };
@@ -177,7 +194,7 @@ const Footer = () => {
       <div className="w-screen select-none overflow-hidden py-6 md:py-8">
         <h2
           ref={nameRef}
-          className="font-instrument_serif text-[clamp(4.5rem,14vw,20rem)] italic font-normal lowercase tracking-tighter text-foreground text-center leading-none w-full will-change-transform whitespace-nowrap py-4"
+          className="font-instrument_serif text-[clamp(2.75rem,14vw,20rem)] italic font-normal lowercase tracking-tighter text-foreground text-center leading-none w-full will-change-transform whitespace-nowrap py-4"
         >
           rafly adriansyah
         </h2>

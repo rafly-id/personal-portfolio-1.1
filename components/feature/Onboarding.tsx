@@ -24,71 +24,84 @@ const Onboarding = ({ onExitStart, onFinish }: OnboardingProps) => {
       // 1. Initial State Setup: Prepare letters for staggered mask entry
       if (letters && letters.length > 0) {
         gsap.set(letters, {
-          yPercent: 120,
+          yPercent: 180,
         });
       }
 
       // Prevent body scroll during onboarding
       document.body.style.overflow = "hidden";
 
-      const tl = gsap.timeline({
-        onComplete: () => {
-          document.body.style.overflow = "";
-          onFinish();
-        },
-      });
+      const mm = gsap.matchMedia();
 
-      // 2. Reveal wrapper and slide up letters from the overflow masks
-      tl.set(textWrapperRef.current, { autoAlpha: 1 });
-
-      if (letters && letters.length > 0) {
-        tl.to(letters, {
-          yPercent: 0,
-          duration: ANIM_DURATIONS.slow,
-          stagger: ANIM_STAGGERS.fast,
-          ease: ANIM_EASES.entry,
-        });
-      }
-
-      // 3. Hold Name
-      tl.to({}, { duration: 1.3 })
-
-        // 4. Exit Transition Start
-        .add(() => {
-          onExitStart();
-        });
-
-      // 5. Kinetic Wipe Lift-up + SVG wave morph in parallel
-      tl.to(
-        textWrapperRef.current,
+      mm.add(
         {
-          y: -140,
-          opacity: 0,
-          filter: "blur(20px)",
-          duration: ANIM_DURATIONS.standard,
-          ease: ANIM_EASES.exit,
+          isDesktop: "(min-width: 768px)",
+          isMobile: "(max-width: 767px)",
         },
-        "exit",
-      );
+        (context) => {
+          const { isDesktop } = context.conditions as { isDesktop: boolean };
 
-      if (pathRef.current) {
-        tl.to(
-          pathRef.current,
-          {
-            attr: { d: "M 0 0 L 100 0 L 100 50 Q 50 -20 0 50 Z" },
-            duration: ANIM_DURATIONS.standard,
-            ease: "power2.in",
-          },
-          "exit",
-        ).to(pathRef.current, {
-          attr: { d: "M 0 0 L 100 0 L 100 0 Q 50 0 0 0 Z" },
-          duration: ANIM_DURATIONS.standard,
-          ease: "power2.out",
-        });
-      }
+          const tl = gsap.timeline({
+            onComplete: () => {
+              document.body.style.overflow = "";
+              onFinish();
+            },
+          });
+
+          // 2. Reveal wrapper and slide up letters from the overflow masks
+          tl.set(textWrapperRef.current, { autoAlpha: 1 });
+
+          if (letters && letters.length > 0) {
+            tl.to(letters, {
+              yPercent: 0,
+              duration: ANIM_DURATIONS.slow,
+              stagger: ANIM_STAGGERS.fast,
+              ease: ANIM_EASES.entry,
+            });
+          }
+
+          // 3. Hold Name (shorter on mobile)
+          tl.to({}, { duration: isDesktop ? 1.3 : 0.8 })
+
+            // 4. Exit Transition Start
+            .add(() => {
+              onExitStart();
+            });
+
+          // 5. Kinetic Wipe Lift-up + SVG wave morph in parallel
+          tl.to(
+            textWrapperRef.current,
+            {
+              y: -140,
+              opacity: 0,
+              filter: isDesktop ? "blur(20px)" : "none",
+              duration: ANIM_DURATIONS.standard,
+              ease: ANIM_EASES.exit,
+            },
+            "exit",
+          );
+
+          if (pathRef.current) {
+            tl.to(
+              pathRef.current,
+              {
+                attr: { d: "M 0 0 L 100 0 L 100 50 Q 50 -20 0 50 Z" },
+                duration: ANIM_DURATIONS.standard,
+                ease: "power2.in",
+              },
+              "exit",
+            ).to(pathRef.current, {
+              attr: { d: "M 0 0 L 100 0 L 100 0 Q 50 0 0 0 Z" },
+              duration: ANIM_DURATIONS.standard,
+              ease: "power2.out",
+            });
+          }
+        }
+      );
 
       return () => {
         document.body.style.overflow = "";
+        mm.revert();
       };
     },
     { scope: containerRef },
@@ -121,7 +134,7 @@ const Onboarding = ({ onExitStart, onFinish }: OnboardingProps) => {
       >
         <h1
           ref={nameRef}
-          className="font-instrument_serif text-[clamp(4.5rem,14vw,20rem)] italic font-normal tracking-tighter text-[#f4f3ef] text-center leading-none w-full will-change-transform whitespace-nowrap py-4"
+          className="font-instrument_serif text-[clamp(2.75rem,14vw,20rem)] italic font-normal tracking-tighter text-[#f4f3ef] text-center leading-none w-full will-change-transform whitespace-nowrap py-4"
         >
           {nameWords.map((word, wordIdx) => (
             <span

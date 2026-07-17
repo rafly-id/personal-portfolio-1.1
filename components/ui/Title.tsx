@@ -19,8 +19,8 @@ const Title = ({ text, className }: TitleProps) => {
   });
 
   return (
-    <div className="flex justify-start items-center text-center">
-      <div className="text-5xl font-bold uppercase font-instrument_serif">
+    <div className="flex justify-start items-center text-left">
+      <div className="font-bold uppercase font-instrument_serif">
         <h1 ref={titleRef} className={className}>{text}</h1>
       </div>
     </div>

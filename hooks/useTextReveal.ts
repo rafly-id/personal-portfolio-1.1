@@ -44,6 +44,7 @@ export function useTextReveal({
 
       let split: SplitText | null = null;
       let targets: gsap.TweenTarget;
+      let mm: gsap.MatchMedia | null = null;
 
       const init = async () => {
         await document.fonts.ready;
@@ -57,29 +58,41 @@ export function useTextReveal({
 
         gsap.set(ref.current, { autoAlpha: 1 });
 
-        gsap.from(targets, {
-          y,
-          duration,
-          delay: delay + 0.3, // Add a tiny delay to offset curtain wipe
-          stagger,
-          filter: "blur(20px)",
-          ease: ANIM_EASES.entry,
-          scrollTrigger: {
-            trigger:
-              typeof trigger === "object" && "current" in trigger
-                ? trigger.current
-                : trigger || ref.current,
-            start,
-            end,
-            toggleActions: "play none none none",
+        mm = gsap.matchMedia();
+        mm.add(
+          {
+            isDesktop: "(min-width: 768px)",
+            isMobile: "(max-width: 767px)",
           },
-        });
+          (context) => {
+            const { isDesktop } = context.conditions as { isDesktop: boolean };
+
+            gsap.from(targets, {
+              y: isDesktop ? y : Math.min(y, 60),
+              duration,
+              delay: delay + 0.3, // Add a tiny delay to offset curtain wipe
+              stagger,
+              filter: isDesktop ? "blur(20px)" : "none",
+              ease: ANIM_EASES.entry,
+              scrollTrigger: {
+                trigger:
+                  typeof trigger === "object" && "current" in trigger
+                    ? trigger.current
+                    : trigger || ref.current,
+                start,
+                end,
+                toggleActions: "play none none none",
+              },
+            });
+          }
+        );
       };
 
       init();
 
       return () => {
         split?.revert();
+        mm?.revert();
       };
     },
     { scope: ref }

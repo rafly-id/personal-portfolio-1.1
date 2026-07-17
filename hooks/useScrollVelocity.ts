@@ -50,17 +50,7 @@ export function useScrollVelocity({
       let x = 0;
       let scrollVelocity = 0;
       let lastY = window.scrollY;
-
-      const trigger = ScrollTrigger.create({
-        trigger: document.body,
-        start: "top top",
-        end: "bottom bottom",
-        onUpdate: () => {
-          const y = window.scrollY;
-          scrollVelocity = ((y - lastY) / 1000) * 5;
-          lastY = y;
-        },
-      });
+      let active = false;
 
       const update = (_: number, delta: number) => {
         const dt = delta / 1000;
@@ -68,15 +58,47 @@ export function useScrollVelocity({
 
         x += dir * baseVelocity * dt + dir * baseVelocity * dt * scrollVelocity;
 
-        gsap.set(scrollerRef.current!, {
-          x: wrap(-width, 0, x),
-        });
+        if (scrollerRef.current) {
+          gsap.set(scrollerRef.current, {
+            x: wrap(-width, 0, x),
+          });
+        }
       };
 
-      gsap.ticker.add(update);
+      const trigger = ScrollTrigger.create({
+        trigger: scrollerRef.current,
+        start: "top bottom",
+        end: "bottom top",
+        onToggle: (self) => {
+          if (self.isActive) {
+            if (!active) {
+              gsap.ticker.add(update);
+              active = true;
+            }
+          } else {
+            if (active) {
+              gsap.ticker.remove(update);
+              active = false;
+            }
+          }
+        },
+        onUpdate: () => {
+          const y = window.scrollY;
+          scrollVelocity = ((y - lastY) / 1000) * 5;
+          lastY = y;
+        },
+      });
+
+      // If initially in view, start the ticker
+      if (trigger.isActive) {
+        gsap.ticker.add(update);
+        active = true;
+      }
 
       return () => {
-        gsap.ticker.remove(update);
+        if (active) {
+          gsap.ticker.remove(update);
+        }
         trigger.kill();
       };
     },

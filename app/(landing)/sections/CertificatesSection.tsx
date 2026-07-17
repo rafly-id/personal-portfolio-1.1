@@ -111,7 +111,7 @@ const CertificatesSection = () => {
   };
 
   return (
-    <section ref={containerRef} onMouseMove={handleMouseMove} className="mt-20 md:mt-32 mb-24 relative overflow-hidden">
+    <section ref={containerRef} onMouseMove={handleMouseMove} className="mt-20 md:mt-32 mb-16 md:mb-24 relative overflow-hidden">
       <SectionHeader title="certificates" />
 
       {/* Floating Image Portal (Desktop only) */}
@@ -147,7 +147,7 @@ const CertificatesSection = () => {
             rel="noopener noreferrer"
             onMouseEnter={() => handleMouseEnterRow(cert.imageSrc)}
             onMouseLeave={handleMouseLeaveRow}
-            className="cert-row relative flex flex-col md:flex-row md:items-center justify-between py-8 transition-colors duration-300 group cursor-pointer overflow-hidden"
+            className="cert-row relative flex flex-col md:flex-row md:items-center justify-between py-5 md:py-8 transition-colors duration-300 group cursor-pointer overflow-hidden"
           >
             {/* Title & Tech stack */}
             <div className="overflow-hidden">
@@ -169,7 +169,7 @@ const CertificatesSection = () => {
             </div>
 
             {/* Link arrow and hover indicators (text only, no arrow icon) */}
-            <div className="cert-arrow-wrap flex items-center gap-4 self-end md:self-auto mt-4 md:mt-0" style={{ willChange: "transform, opacity" }}>
+            <div className="cert-arrow-wrap flex items-center gap-4 self-end md:self-auto mt-2 md:mt-0" style={{ willChange: "transform, opacity" }}>
               <span className="text-xs uppercase tracking-widest font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 View Certificate
               </span>

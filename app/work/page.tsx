@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 const Work = () => {
   return (
     <div className="mx-5 mt-35">
-      <Title text="Work" className="text-7xl md:text-9xl" />
+      <Title text="Work" className="text-[clamp(3.5rem,14vw,6rem)] md:text-[clamp(6rem,14vw,10rem)]" />
       <WorkListSection />
     </div>
   );

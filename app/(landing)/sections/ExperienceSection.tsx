@@ -51,24 +51,29 @@ const ExperienceSection = () => {
       // 2. Dynamic Theme Switching (Discrete smooth transition, non-scrubbed)
       // Animates `--background` and `--foreground` CSS variables on the root document element.
       // Uses `toggleActions` for robust play/reverse triggers on entry and exit.
+      // Only runs on desktop view >= 768px.
       const root = document.documentElement;
+      const mm = gsap.matchMedia();
 
-      gsap.to(root, {
-        "--background": "#1c1a19",
-        "--foreground": "#f4f3ef",
-        duration: ANIM_DURATIONS.fast,
-        ease: "power1.inOut",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 40%", // triggers dark mode when top of section is 40% into viewport
-          end: "bottom center", // triggers light mode when bottom of section leaves viewport
-          toggleActions: "play reverse play reverse", // play on enter, reverse on leave, play on enterBack, reverse on leaveBack
-          invalidateOnRefresh: true,
-        },
+      mm.add("(min-width: 768px)", () => {
+        gsap.to(root, {
+          "--background": "#1c1a19",
+          "--foreground": "#f4f3ef",
+          duration: ANIM_DURATIONS.fast,
+          ease: "power1.inOut",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 40%", // triggers dark mode when top of section is 40% into viewport
+            end: "bottom center", // triggers light mode when bottom of section leaves viewport
+            toggleActions: "play reverse play reverse", // play on enter, reverse on leave, play on enterBack, reverse on leaveBack
+            invalidateOnRefresh: true,
+          },
+        });
       });
 
       return () => {
         // Safe cleanup: remove custom style overrides on documentElement unmount
+        mm.revert();
         root.style.removeProperty("--background");
         root.style.removeProperty("--foreground");
       };
@@ -80,9 +85,9 @@ const ExperienceSection = () => {
     <section
       ref={sectionRef}
       id="experience"
-      className="w-full text-foreground py-24 md:py-36 overflow-hidden z-10 relative"
+      className="w-full text-foreground py-16 md:py-36 overflow-hidden z-10 relative"
     >
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-start w-full px-4 md:px-10 max-w-6xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 items-start w-full px-4 md:px-10 max-w-6xl mx-auto">
 
         {/* Left Column: Sticky-like info */}
         <div className="exp-left md:col-span-5 text-left md:sticky md:top-24 flex flex-col justify-center">
@@ -92,7 +97,7 @@ const ExperienceSection = () => {
           <h2 className="font-instrument_serif text-5xl md:text-7xl font-light italic text-foreground mt-6 mb-3 capitalize leading-none tracking-tight">
             {experiences[0].company}
           </h2>
-          <h3 className="font-sans text-lg md:text-xl font-medium text-foreground/85 mb-6 flex items-center gap-2">
+          <h3 className="font-sans text-lg md:text-xl font-medium text-foreground/85 mb-4 md:mb-6 flex items-center gap-2">
             <Briefcase size={18} className="text-foreground/40" />
             {experiences[0].role}
           </h3>
@@ -117,7 +122,7 @@ const ExperienceSection = () => {
 
           {/* Double-Bezel Card Enclosure (adapts to light/dark themes dynamically) */}
           <div className="bg-foreground/2 border border-foreground/10 rounded-4xl p-1.5 transition-all duration-500 hover:border-foreground/20">
-            <div className="bg-foreground/1 rounded-[calc(2rem-0.375rem)] p-6 md:p-8 space-y-5">
+            <div className="bg-foreground/1 rounded-[calc(2rem-0.375rem)] p-5 md:p-8 space-y-5">
               <ul className="space-y-4 font-sans text-sm md:text-base font-light text-foreground/70 list-none">
                 {experiences[0].bullets.map((bullet, idx) => (
                   <li key={idx} className="leading-relaxed flex items-start gap-3">

@@ -223,7 +223,7 @@ const Navbar = () => {
       {/* Floating Menu Card Overlay */}
       <div
         ref={overlayRef}
-        className="fixed top-4 bottom-4 left-4 right-4 md:top-5 md:right-5 md:left-auto md:bottom-auto md:w-[360px] md:h-[480px] bg-foreground text-background rounded-4xl p-8 flex flex-col justify-between z-50 shadow-2xl overflow-hidden invisible"
+        className="fixed top-4 right-4 left-auto bottom-auto w-[300px] h-[400px] md:top-5 md:right-5 md:w-[360px] md:h-[480px] bg-foreground text-background rounded-4xl p-6 md:p-8 flex flex-col justify-between z-50 shadow-2xl overflow-hidden invisible"
       >
         {/* Top Section */}
         <div className="flex justify-between items-center w-full">

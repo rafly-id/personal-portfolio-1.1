@@ -133,7 +133,7 @@ const TechStackSection = () => {
               className="bg-foreground/2 border border-foreground/10 rounded-4xl p-1.5 tech-card transition-all duration-500 hover:border-foreground/20"
               style={{ willChange: "transform, opacity" }}
             >
-              <div className="bg-foreground/1 rounded-[calc(2rem-0.375rem)] p-6 md:p-8 h-full flex flex-col justify-start">
+              <div className="bg-foreground/1 rounded-[calc(2rem-0.375rem)] p-5 md:p-8 h-full flex flex-col justify-start">
                 {/* Header Toggle */}
                 <button
                   onClick={() => handleToggle(catIdx)}
@@ -161,16 +161,16 @@ const TechStackSection = () => {
                   style={{ height: catIdx === 0 ? "auto" : 0 }}
                 >
                   <div className="pt-8 md:pt-10">
-                    <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-6 md:gap-8">
+                    <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4 md:gap-8">
                       {cat.items.map((tech, techIdx) => (
                         <div
                           key={techIdx}
-                          className="tech-item flex flex-col items-center justify-center p-3 rounded-2xl hover:bg-foreground/2 transition-all duration-300 group/item cursor-default"
+                          className="tech-item flex flex-col items-center justify-center p-2 md:p-3 rounded-2xl hover:bg-foreground/2 transition-all duration-300 group/item cursor-default"
                           style={{ willChange: "transform, opacity" }}
                         >
-                          <div className="p-3">
+                          <div className="p-2 md:p-3">
                             <tech.icon
-                              className="w-9 h-9 md:w-10 md:h-10 text-foreground/30 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover/item:scale-110 group-hover/item:text-foreground"
+                              className="w-8 h-8 md:w-10 md:h-10 text-foreground/30 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover/item:scale-110 group-hover/item:text-foreground"
                             />
                           </div>
                           <span className="mt-2 text-[9px] md:text-xs uppercase tracking-widest font-mono text-foreground/50 transition-colors duration-300 group-hover/item:text-foreground/80 text-center">

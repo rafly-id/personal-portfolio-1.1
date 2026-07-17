@@ -18,20 +18,19 @@ const AboutDetailsSection = () => {
       if (!containerRef.current || !triggerRef.current) return;
 
       const paragraphs = gsap.utils.toArray(".about-paragraph");
-
-      // Setup initial states
-      gsap.set(paragraphs, {
-        transformPerspective: 1000,
-        z: -1200,
-        opacity: 0,
-        scale: 0.1,
-        pointerEvents: "none",
-      });
-
       let mm = gsap.matchMedia();
 
       // Desktop layout with side-shifting
       mm.add("(min-width: 768px)", () => {
+        // Setup desktop initial states
+        gsap.set(paragraphs, {
+          transformPerspective: 1000,
+          z: -1200,
+          opacity: 0,
+          scale: 0.1,
+          pointerEvents: "none",
+        });
+
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: triggerRef.current,
@@ -104,78 +103,31 @@ const AboutDetailsSection = () => {
         }, "+=0.4");
       });
 
-      // Mobile layout (No side-shifting, centered content only)
+      // Mobile layout (No pinning, simple scroll reveals)
       mm.add("(max-width: 767px)", () => {
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: triggerRef.current,
-            start: "top top",
-            end: "+=280%",
-            pin: true,
-            scrub: 0.2,
-            invalidateOnRefresh: true,
-          },
+        // Setup mobile initial states
+        gsap.set(paragraphs, {
+          transformPerspective: 0,
+          z: 0,
+          scale: 1,
+          opacity: 0,
+          y: 40,
+          pointerEvents: "auto",
         });
 
-        // Paragraph 1 (Centered)
-        tl.to(paragraphs[0] as Element, {
-          z: 0,
-          scale: 1,
-          opacity: 1,
-          xPercent: 0,
-          pointerEvents: "auto",
-          ease: "power2.out",
-          duration: ANIM_DURATIONS.slow,
-        })
-        .to(paragraphs[0] as Element, {
-          z: 600,
-          scale: 1.4,
-          opacity: 0,
-          xPercent: 0,
-          pointerEvents: "none",
-          ease: "power2.in",
-          duration: ANIM_DURATIONS.slow,
-        }, "+=0.4");
-
-        // Paragraph 2 (Centered)
-        tl.to(paragraphs[1] as Element, {
-          z: 0,
-          scale: 1,
-          opacity: 1,
-          xPercent: 0,
-          pointerEvents: "auto",
-          ease: "power2.out",
-          duration: ANIM_DURATIONS.slow,
-        })
-        .to(paragraphs[1] as Element, {
-          z: 600,
-          scale: 1.4,
-          opacity: 0,
-          xPercent: 0,
-          pointerEvents: "none",
-          ease: "power2.in",
-          duration: ANIM_DURATIONS.slow,
-        }, "+=0.4");
-
-        // Paragraph 3 (Centered)
-        tl.to(paragraphs[2] as Element, {
-          z: 0,
-          scale: 1,
-          opacity: 1,
-          xPercent: 0,
-          pointerEvents: "auto",
-          ease: "power2.out",
-          duration: ANIM_DURATIONS.slow,
-        })
-        .to(paragraphs[2] as Element, {
-          z: 600,
-          scale: 1.4,
-          opacity: 0,
-          xPercent: 0,
-          pointerEvents: "none",
-          ease: "power2.in",
-          duration: ANIM_DURATIONS.slow,
-        }, "+=0.4");
+        paragraphs.forEach((p) => {
+          gsap.to(p as Element, {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: p as Element,
+              start: "top 85%",
+              toggleActions: "play none none none",
+            },
+          });
+        });
       });
 
       return () => {
@@ -189,17 +141,17 @@ const AboutDetailsSection = () => {
     <section
       ref={triggerRef}
       id="about"
-      className="relative w-full h-dvh min-h-dvh flex flex-col justify-center overflow-hidden"
+      className="w-full h-auto py-20 md:py-0 md:h-dvh md:min-h-dvh flex flex-col justify-center md:overflow-hidden md:relative"
     >
-      {/* 3D Viewport container (Full screen height) */}
+      {/* Viewport container */}
       <div
         ref={containerRef}
-        className="w-full h-full flex-1 flex items-center justify-center relative perspective-distant overflow-hidden px-4 md:px-10"
+        className="w-full flex flex-col gap-20 items-center px-4 md:relative md:flex-row md:h-full md:flex-1 md:items-center md:justify-center md:perspective-distant md:overflow-hidden md:px-10 md:gap-0"
       >
         {aboutDetails.map((detail, index) => (
           <div
             key={index}
-            className={`about-paragraph absolute max-w-2xl flex flex-col gap-4 md:gap-6 backface-hidden text-center items-center ${
+            className={`about-paragraph relative md:absolute max-w-2xl flex flex-col gap-4 md:gap-6 backface-hidden text-center items-center ${
               index % 2 === 0
                 ? "md:text-left md:items-start"
                 : "md:text-right md:items-end"
