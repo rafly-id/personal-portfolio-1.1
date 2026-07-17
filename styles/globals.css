@@ -17,10 +17,19 @@
   --font-instrument_serif: var(--font-instrument-serif);
 }
 
-@layer base {
-  body {
-    @apply bg-background text-foreground;
-  }
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+*::selection {
+  background-color: #1c1a19 !important;
+  color: #f4f3ef !important;
+}
+
+*::-moz-selection {
+  background-color: #1c1a19 !important;
+  color: #f4f3ef !important;
 }
 
 /* Hide scrollbar entirely across all browsers, elements, and scroll contexts */

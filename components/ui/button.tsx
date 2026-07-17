@@ -43,7 +43,7 @@ export default function Button({
       <>
         {/* Text Area with Swap Animation */}
         {displayText ? (
-          <TextSwap text={displayText} className="h-4" triggerRef={buttonRef} />
+          <TextSwap text={displayText} className="h-[1.3em]" triggerRef={buttonRef} />
         ) : (
           <span className="leading-none">{children}</span>
         )}

@@ -8,6 +8,7 @@ import { useGSAP } from "@gsap/react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { ANIM_DURATIONS, ANIM_EASES } from "@/lib/animation";
 import TechBadge from "@/components/ui/TechBadge";
+import SectionLabel from "@/components/ui/SectionLabel";
 
 const FeaturedWorkSection = () => {
   const featuredProjects = projects.filter((project) => project.featured);
@@ -29,7 +30,8 @@ const FeaturedWorkSection = () => {
 
       // Desktop layout: pin and horizontal scroll
       mm.add("(min-width: 768px)", () => {
-        if (!pinRef.current || !stickyRef.current || !scrollTrackRef.current) return;
+        if (!pinRef.current || !stickyRef.current || !scrollTrackRef.current)
+          return;
 
         const track = scrollTrackRef.current;
         const sticky = stickyRef.current;
@@ -63,7 +65,7 @@ const FeaturedWorkSection = () => {
               x: -150,
               ease: "none",
             },
-            0
+            0,
           );
 
           // Reveal background title
@@ -83,7 +85,7 @@ const FeaturedWorkSection = () => {
                 start: "top 85%",
                 toggleActions: "play none none none",
               },
-            }
+            },
           );
         }
 
@@ -109,7 +111,7 @@ const FeaturedWorkSection = () => {
                   start: "top 80%",
                   toggleActions: "play none none none",
                 },
-              }
+              },
             );
           } else {
             // Subsequent cards reveal horizontally as they enter the screen
@@ -130,7 +132,7 @@ const FeaturedWorkSection = () => {
                   start: "left 85%",
                   toggleActions: "play none none none",
                 },
-              }
+              },
             );
           }
         });
@@ -158,11 +160,13 @@ const FeaturedWorkSection = () => {
                 start: "top 85%",
                 toggleActions: "play none none none",
               },
-            }
+            },
           );
         }
 
-        const cards = Array.from(pinRef.current.querySelectorAll(".project-card"));
+        const cards = Array.from(
+          pinRef.current.querySelectorAll(".project-card"),
+        );
         cards.forEach((card) => {
           gsap.fromTo(
             card,
@@ -180,7 +184,7 @@ const FeaturedWorkSection = () => {
                 start: "top 85%",
                 toggleActions: "play none none none",
               },
-            }
+            },
           );
         });
       });
@@ -189,15 +193,15 @@ const FeaturedWorkSection = () => {
         mm.revert();
       };
     },
-    { scope: sectionRef }
+    { scope: sectionRef },
   );
 
   return (
-    <section
-      ref={sectionRef}
-      className="w-full relative select-none"
-    >
-      <div ref={pinRef} className="relative w-full overflow-hidden md:overflow-visible my-12 md:my-0">
+    <section ref={sectionRef} className="w-full relative select-none">
+      <div
+        ref={pinRef}
+        className="relative w-full overflow-hidden md:overflow-visible my-12 md:my-0"
+      >
         {/* Desktop view with horizontal pin scrolling */}
         <div
           ref={stickyRef}
@@ -212,9 +216,7 @@ const FeaturedWorkSection = () => {
 
           {/* Mobile Header / Divider */}
           <div className="mobile-header px-1 md:hidden mb-6 border-b border-foreground/10 pb-2">
-            <span className="text-[10px] uppercase tracking-[0.2em] text-foreground/50 font-bold">
-              [ Featured Work ]
-            </span>
+            <SectionLabel text="[ Feature Work ]" />
           </div>
 
           {/* Scroll Track */}
@@ -275,7 +277,6 @@ const FeaturedWorkSection = () => {
           </div>
         </div>
       </div>
-
     </section>
   );
 };

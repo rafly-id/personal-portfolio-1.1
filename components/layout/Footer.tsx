@@ -154,20 +154,12 @@ const Footer = () => {
           <div className="footer-col md:col-span-4 md:col-start-9 flex flex-col items-start md:items-end justify-start md:justify-center text-left md:text-right gap-4">
             <SectionLabel text="[ Contact ]" variant="text" className="md:hidden" />
 
-            {/* CTA 1 */}
-            <Button
-              href={socialLinks.find((l) => l.name === "Whatsapp")?.href || "#"}
-              text="Call Rafly"
-              variant="outline"
-              target="_blank"
-              rel="noopener noreferrer"
-            />
-
-            {/* CTA 2 */}
+            {/* CTA */}
             <Button
               href="/CV_Rafly_Adriansyah.pdf"
               text="Download CV"
               variant="outline"
+              className="px-8 py-4 text-base font-bold"
               target="_blank"
               rel="noopener noreferrer"
             />

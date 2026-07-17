@@ -83,7 +83,7 @@ export default function RootLayout({
       lang="en"
       className={`${dm_sans.variable} ${instrument_serif.variable} antialiased`}
     >
-      <body>
+      <body className="selection:bg-foreground selection:text-background">
         <SmoothScroll>
           <TransitionProvider>
             <Cursor />
