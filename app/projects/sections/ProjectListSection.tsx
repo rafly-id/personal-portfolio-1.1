@@ -1,13 +1,13 @@
 "use client";
 
 import { useRef } from "react";
-import CardWork from "@/components/feature/CardWork";
+import CardProject from "@/components/feature/CardProject";
 import { projects } from "@/lib/data";
 import { useGSAP } from "@gsap/react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { Project } from "@/types";
 
-const WorkListSection = () => {
+const ProjectListSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const rightColumnRef = useRef<HTMLDivElement>(null);
 
@@ -55,7 +55,7 @@ const WorkListSection = () => {
       {/* Mobile: single-column sequential list */}
       <div className="flex flex-col gap-12 w-full md:hidden">
         {projects.map((project, index) => (
-          <CardWork
+          <CardProject
             key={`mobile-${index}`}
             slug={project.slug}
             imageSrc={project.imageSrc}
@@ -71,7 +71,7 @@ const WorkListSection = () => {
         {/* Left Column (standard speed) */}
         <div className="flex flex-col gap-24 w-full">
           {leftProjects.map((project, index) => (
-            <CardWork
+            <CardProject
               key={`left-${index}`}
               slug={project.slug}
               imageSrc={project.imageSrc}
@@ -88,7 +88,7 @@ const WorkListSection = () => {
           className="flex flex-col gap-24 w-full md:mt-24"
         >
           {rightProjects.map((project, index) => (
-            <CardWork
+            <CardProject
               key={`right-${index}`}
               slug={project.slug}
               imageSrc={project.imageSrc}
@@ -103,4 +103,4 @@ const WorkListSection = () => {
   );
 };
 
-export default WorkListSection;
+export default ProjectListSection;

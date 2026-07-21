@@ -10,6 +10,7 @@ import { useThemeToggle } from "@/hooks/useThemeToggle";
 import BezelCard from "@/components/ui/BezelCard";
 import TechBadge from "@/components/ui/TechBadge";
 import SectionLabel from "@/components/ui/SectionLabel";
+import Title from "@/components/ui/Title";
 
 const ExperienceSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -65,7 +66,11 @@ const ExperienceSection = () => {
 
         {/* Left Column: Sticky-like info */}
         <div className="exp-left md:col-span-5 text-left md:sticky md:top-24 flex flex-col justify-center">
-          <SectionLabel text="[ My Experience ]" />
+          {/* Mobile Title */}
+          <div className="md:hidden w-full mb-2">
+            <Title text="Experience" index="02" />
+          </div>
+          <SectionLabel text="[ My Experience ]" className="hidden md:inline-block" />
           <h2 className="font-instrument_serif text-5xl md:text-7xl font-light italic text-foreground mt-6 mb-3 capitalize leading-none tracking-tight">
             {experiences[0].company}
           </h2>

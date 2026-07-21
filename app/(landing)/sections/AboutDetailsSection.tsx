@@ -5,6 +5,8 @@ import { useGSAP } from "@gsap/react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { aboutDetails } from "@/lib/data";
 import { ANIM_DURATIONS } from "@/lib/animation";
+import BezelCard from "@/components/ui/BezelCard";
+import Title from "@/components/ui/Title";
 
 const AboutDetailsSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -143,28 +145,44 @@ const AboutDetailsSection = () => {
       {/* Viewport container */}
       <div
         ref={containerRef}
-        className="w-full flex flex-col gap-20 items-center px-4 md:relative md:flex-row md:h-full md:flex-1 md:items-center md:justify-center md:perspective-distant md:overflow-hidden md:px-10 md:gap-0"
+        className="w-full flex flex-col items-center px-4 md:relative md:flex-row md:h-full md:flex-1 md:items-center md:justify-center md:perspective-distant md:overflow-hidden md:px-10 md:gap-0"
       >
-        {aboutDetails.map((detail, index) => (
-          <div
-            key={index}
-            className={`about-paragraph relative md:absolute max-w-2xl flex flex-col gap-4 md:gap-6 backface-hidden text-center items-center ${
-              index % 2 === 0
-                ? "md:text-left md:items-start"
-                : "md:text-right md:items-end"
-            }`}
-            style={{ transformStyle: "preserve-3d" }}
-          >
-            {/* mixed serif title: italicized, capitalized */}
-            <h3 className="font-instrument_serif text-4xl md:text-7xl font-light italic text-foreground tracking-tight leading-none capitalize">
-              {detail.title}
-            </h3>
-            {/* clean sans text: sentence case normal text */}
-            <p className="font-sans text-base md:text-xl font-light leading-relaxed text-foreground/75 max-w-xl mx-auto px-4 normal-case tracking-wide">
-              {detail.text}
-            </p>
-          </div>
-        ))}
+        {/* Mobile Title */}
+        <div className="w-full md:hidden mb-6">
+          <Title text="About" index="01" className="mb-0" />
+        </div>
+
+        <div className="w-full flex flex-col gap-20 md:contents">
+          {aboutDetails.map((detail, index) => (
+            <div
+              key={index}
+              className={`about-paragraph relative md:absolute max-w-2xl flex flex-col gap-4 md:gap-6 backface-hidden text-left items-start ${
+                index % 2 === 0
+                  ? "md:text-left md:items-start"
+                  : "md:text-right md:items-end"
+              }`}
+              style={{ transformStyle: "preserve-3d" }}
+            >
+              <BezelCard
+                className="border-transparent bg-transparent p-0 max-md:bg-foreground/2 max-md:border-foreground/10 max-md:p-1.5 transition-all duration-500 max-md:hover:border-foreground/20 w-full"
+                innerClassName={`bg-transparent p-0 max-md:bg-foreground/1 max-md:p-5 flex flex-col gap-4 md:gap-6 text-left items-start ${
+                  index % 2 === 0
+                    ? "md:text-left md:items-start"
+                    : "md:text-right md:items-end"
+                }`}
+              >
+                {/* mixed serif title: italicized, capitalized */}
+                <h3 className="font-instrument_serif text-4xl md:text-7xl font-light italic text-foreground tracking-tight leading-none capitalize">
+                  {detail.title}
+                </h3>
+                {/* clean sans text: sentence case normal text */}
+                <p className="font-sans text-base md:text-xl font-light leading-relaxed text-foreground/75 max-w-xl md:px-4 normal-case tracking-wide">
+                  {detail.text}
+                </p>
+              </BezelCard>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

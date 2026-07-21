@@ -38,7 +38,8 @@ export function useTextReveal({
 
       gsap.set(ref.current, { autoAlpha: 0 });
 
-      let split: SplitText | null = null;
+      let splitChild: SplitText | null = null;
+      let splitParent: SplitText | null = null;
       let targets: gsap.TweenTarget;
       let mm: gsap.MatchMedia | null = null;
       let isActive = true;
@@ -48,8 +49,20 @@ export function useTextReveal({
         if (!isActive || !ref.current) return;
 
         if (enableSplit) {
-          split = new SplitText(ref.current!, { type });
-          targets = split[type];
+          splitChild = new SplitText(ref.current!, {
+            type,
+            linesClass: "reveal-child",
+            wordsClass: "reveal-child",
+            charsClass: "reveal-child",
+          });
+          splitParent = new SplitText(ref.current!, {
+            type,
+            linesClass: "reveal-parent",
+            wordsClass: "reveal-parent",
+            charsClass: "reveal-parent",
+          });
+          targets = splitChild[type];
+          gsap.set(splitParent[type], { overflow: "hidden" });
         } else {
           targets = ref.current!.children;
         }
@@ -67,6 +80,7 @@ export function useTextReveal({
 
             gsap.from(targets, {
               y: isDesktop ? y : Math.min(y, 60),
+              autoAlpha: 0,
               duration,
               delay: delay + 0.3, // Add a tiny delay to offset curtain wipe
               stagger,
@@ -90,7 +104,8 @@ export function useTextReveal({
 
       return () => {
         isActive = false;
-        split?.revert();
+        splitChild?.revert();
+        splitParent?.revert();
         mm?.revert();
       };
     },

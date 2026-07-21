@@ -22,7 +22,7 @@ export default function BezelCard({
   return (
     <div
       className={cn(
-        "bg-foreground/2 border border-foreground/10 rounded-4xl p-1.5 transition-all duration-500 hover:border-foreground/20",
+        "bg-foreground/2 border border-foreground/10 rounded-4xl p-1.5",
         className
       )}
     >

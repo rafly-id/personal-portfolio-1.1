@@ -116,7 +116,7 @@ const TechStackSection = () => {
 
   return (
     <section ref={sectionRef} className="mt-20 md:mt-32 py-10 overflow-hidden">
-      <SectionHeader title="tech stack" />
+      <SectionHeader title="tech stack" index="03" />
 
 
       {/* Accordion Stack */}

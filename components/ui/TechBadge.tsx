@@ -7,7 +7,7 @@ interface TechBadgeProps {
 
 /**
  * Unified tech-stack pill badge.
- * Replaces the repeated inline badge patterns across FeaturedWorkSection,
+ * Replaces the repeated inline badge patterns across FeaturedProjectsSection,
  * ProjectDetailClient, CertificatesSection, and ExperienceSection.
  */
 export default function TechBadge({ tech, className }: TechBadgeProps) {

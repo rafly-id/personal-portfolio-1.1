@@ -9,8 +9,9 @@ import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { ANIM_DURATIONS, ANIM_EASES } from "@/lib/animation";
 import TechBadge from "@/components/ui/TechBadge";
 import SectionLabel from "@/components/ui/SectionLabel";
+import Title from "@/components/ui/Title";
 
-const FeaturedWorkSection = () => {
+const FeaturedProjectsSection = () => {
   const featuredProjects = projects.filter((project) => project.featured);
 
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -210,13 +211,13 @@ const FeaturedWorkSection = () => {
           {/* Giant Outlined Background Text */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0 md:flex">
             <h2 className="bg-heading font-instrument_serif font-black text-[13vw] tracking-tighter uppercase text-foreground/5 leading-none">
-              Selected Work
+              Selected Projects
             </h2>
           </div>
 
           {/* Mobile Header / Divider */}
-          <div className="mobile-header px-1 md:hidden mb-6 border-b border-foreground/10 pb-2">
-            <SectionLabel text="[ Feature Work ]" />
+          <div className="mobile-header px-1 md:hidden mb-2 w-full">
+            <Title text="Featured Projects" index="04" />
           </div>
 
           {/* Scroll Track */}
@@ -233,7 +234,7 @@ const FeaturedWorkSection = () => {
               >
                 {/* Flat / Sharp cornered Image Card */}
                 <Link
-                  href={`/work/${project.slug}`}
+                  href={`/projects/${project.slug}`}
                   className="block overflow-hidden p-2 md:p-3 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]"
                 >
                   <div className="relative w-full aspect-video overflow-hidden rounded-4xl shadow-[inset_0_1px_2.5px_rgba(0,0,0,0.08)]">
@@ -256,8 +257,8 @@ const FeaturedWorkSection = () => {
                   <div>
                     <h4 className="font-instrument_serif text-2xl lg:text-3xl font-black uppercase tracking-tight leading-none text-foreground">
                       <Link
-                        href={`/work/${project.slug}`}
-                        className="hover:font-instrument_serif hover:text-foreground transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]"
+                        href={`/projects/${project.slug}`}
+                        className="hover:font-instrument_serif hover:text-foreground transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] inline-block"
                       >
                         {project.title}
                       </Link>
@@ -281,4 +282,4 @@ const FeaturedWorkSection = () => {
   );
 };
 
-export default FeaturedWorkSection;
+export default FeaturedProjectsSection;

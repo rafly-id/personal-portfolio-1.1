@@ -119,7 +119,7 @@ export const projects = [
     link: "https://web-client-uas-raflylucky.vercel.app/",
     github: "https://github.com/rafly-id/WebClient-UAS",
     featured: false,
-    role: "UI Developer",
+    role: "Frontend Developer",
     year: "2023",
     description:
       "A static web implementation project featuring a collection of HTML and CSS pages for a university web client practicum assignment.",
@@ -189,16 +189,16 @@ export const techStack = [
 
 export const aboutDetails = [
   {
-    title: "Short description.",
-    text: "I started learning programming in 2023 and gradually developed a strong interest in front-end development, focusing on building clean, responsive, and smooth user interfaces using modern tools like React and Next.js.",
+    title: "About Me",
+    text: "Since starting my programming journey in 2023, I have focused on frontend engineering with React, Next.js, and TypeScript. I specialize in building highly responsive, type-safe web applications that prioritize performance, clean code, and seamless user experiences.",
   },
   {
-    title: "What drives me.",
-    text: "I enjoy solving logical problems and facing technical challenges, especially when transforming ideas or visual designs into interactive, functional, and well-structured web experiences that feel intuitive and engaging.",
+    title: "What Drives Me",
+    text: "I am driven by solving complex logical problems and optimizing technical architecture. From resolving memory leaks to designing scalable structures, I thrive on turning sophisticated visual designs and system requirements into stable, high-performance codebases.",
   },
   {
-    title: "My approach.",
-    text: "I focus on a minimalistic and user-centered approach by maintaining clean layouts, efficient and readable code structures, and thoughtful design choices that result in simple, modern, and polished interfaces.",
+    title: "My Approach",
+    text: "I advocate for a highly modular and structured development process. By strictly adhering to best practices like Feature-Sliced Design (FSD), ensuring type-safety, and writing maintainable code, I deliver lightweight, polished, and easily extensible software systems.",
   },
 ];
 

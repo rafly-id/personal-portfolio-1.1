@@ -16,21 +16,21 @@ import { useTextReveal } from "@/hooks/useTextReveal";
 import ParallaxImage from "@/components/ui/ParallaxImage";
 import { cn } from "@/lib/utils";
 
-type CardWorkProps = Pick<
+type CardProjectProps = Pick<
   Project,
   "slug" | "imageSrc" | "imageAlt" | "title" | "tech"
 > & {
   className?: string;
 };
 
-const CardWork = memo(function CardWork({
+const CardProject = memo(function CardProject({
   slug,
   imageSrc,
   imageAlt,
   title,
   tech,
   className,
-}: CardWorkProps) {
+}: CardProjectProps) {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const techRef = useRef<HTMLParagraphElement>(null);
 
@@ -55,7 +55,7 @@ const CardWork = memo(function CardWork({
       data-cursor="view"
       data-cursor-text="view project"
     >
-      <Link href={`/work/${slug}`} className="block group/card">
+      <Link href={`/projects/${slug}`} className="block group/card">
         <ParallaxImage
           src={imageSrc}
           alt={imageAlt}
@@ -72,7 +72,7 @@ const CardWork = memo(function CardWork({
         <CardHeader className="text-center font-bold text-2xl md:text-3xl uppercase font-instrument_serif p-0 pt-2 pb-1">
           <CardTitle ref={titleRef} className="overflow-hidden">
             <Link
-              href={`/work/${slug}`}
+              href={`/projects/${slug}`}
               className="hover:font-instrument_serif transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] inline-block"
             >
               {title}
@@ -92,4 +92,4 @@ const CardWork = memo(function CardWork({
   );
 });
 
-export default CardWork;
+export default CardProject;

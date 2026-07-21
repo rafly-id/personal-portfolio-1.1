@@ -42,6 +42,11 @@ export default function ParallaxImage({
           ref={imageRef}
           alt={alt}
           className={cn("object-cover", className)}
+          style={{
+            opacity: enableReveal ? 0 : undefined,
+            clipPath: enableReveal ? "inset(100% 0% 0% 0%)" : undefined,
+            ...props.style,
+          }}
           {...props}
         />
       </div>

@@ -6,13 +6,13 @@ import MarqueeSection from "./sections/MarqueeSection";
 import AboutDetailsSection from "./sections/AboutDetailsSection";
 import ExperienceSection from "./sections/ExperienceSection";
 import TechStackSection from "./sections/TechStackSection";
-import FeaturedWorkSection from "./sections/FeaturedWorkSection";
+import FeaturedProjectsSection from "./sections/FeaturedProjectsSection";
 import CertificatesSection from "./sections/CertificatesSection";
 
 export const metadata: Metadata = {
   title: "Home",
   description:
-    "Welcome to my portfolio website. Explore my work and learn more about me.",
+    "Welcome to my portfolio website. Explore my projects and learn more about me.",
 };
 
 const Landing = () => {
@@ -38,7 +38,7 @@ const Landing = () => {
       <TechStackSection />
 
       <div className="mt-14 md:mt-16">
-        <FeaturedWorkSection />
+        <FeaturedProjectsSection />
       </div>
 
       {/* Certificates Section with Hover Media Reveal */}

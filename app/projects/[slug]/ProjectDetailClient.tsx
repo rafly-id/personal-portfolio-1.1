@@ -45,10 +45,10 @@ const ProjectDetailClient = ({ project }: ProjectDetailClientProps) => {
       <div className="mb-10">
         <Link
           ref={backLinkRef}
-          href="/work"
+          href="/projects"
           className="inline-flex items-center gap-2 group text-sm font-bold uppercase font-sans tracking-widest text-foreground/60 hover:text-foreground transition-colors duration-300"
         >
-          <TextSwap text="Back to Work" triggerRef={backLinkRef} />
+          <TextSwap text="Back to Projects Page" triggerRef={backLinkRef} />
         </Link>
       </div>
 
@@ -195,7 +195,7 @@ const ProjectDetailClient = ({ project }: ProjectDetailClientProps) => {
         <span className="block text-[10px] uppercase tracking-[0.25em] text-foreground/50 font-bold mb-4">
           Up Next
         </span>
-        <Link ref={nextLinkRef} href={`/work/${nextProject.slug}`} className="group inline-block">
+        <Link ref={nextLinkRef} href={`/projects/${nextProject.slug}`} className="group inline-block">
           <h2 className="font-instrument_serif font-black text-4xl md:text-7xl uppercase tracking-tighter transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] text-foreground group-hover:scale-105 group-hover:font-instrument_serif">
             <TextSwap text={nextProject.title} triggerRef={nextLinkRef} />
           </h2>

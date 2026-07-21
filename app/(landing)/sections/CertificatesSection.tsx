@@ -110,7 +110,7 @@ const CertificatesSection = () => {
 
   return (
     <section ref={containerRef} onMouseMove={handleMouseMove} className="mt-20 md:mt-32 mb-16 md:mb-24 relative overflow-hidden">
-      <SectionHeader title="certificates" />
+      <SectionHeader title="certificates" index="05" />
 
       {/* Floating Image Portal (Desktop only) */}
       <div
