@@ -44,6 +44,9 @@ export const metadata: Metadata = {
 
   authors: [{ name: "Muhammad Rafly Adriansyah" }],
   creator: "Muhammad Rafly Adriansyah",
+  alternates: {
+    canonical: "./",
+  },
 
   twitter: {
     card: "summary_large_image",
@@ -71,6 +74,9 @@ export const metadata: Metadata = {
     alternateLocale: ["en_US"],
     type: "website",
   },
+  verification: {
+    google: "OZq4Q3y-EnKm0Aolq-VkSUygnartqoQYZLOkimeFtUY",
+  },
 };
 
 export default function RootLayout({
@@ -84,6 +90,38 @@ export default function RootLayout({
       className={`${dm_sans.variable} ${instrument_serif.variable} antialiased`}
     >
       <body className="selection:bg-foreground selection:text-background">
+        {/* Person JSON-LD structured schema markup */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              "name": "Muhammad Rafly Adriansyah",
+              "jobTitle": "Frontend Developer",
+              "url": "https://rafly-id.vercel.app",
+              "sameAs": [
+                "https://github.com/rafly-id",
+                "https://www.linkedin.com/in/rafly-adriansyah-35587225b/",
+                "https://www.instagram.com/__rafllyy/"
+              ],
+              "knowsAbout": [
+                "Frontend Development",
+                "React",
+                "Next.js",
+                "TypeScript",
+                "GSAP",
+                "Tailwind CSS",
+                "UI/UX Design"
+              ],
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Yogyakarta",
+                "addressCountry": "ID"
+              }
+            }),
+          }}
+        />
         <SmoothScroll>
           <TransitionProvider>
             <Cursor />

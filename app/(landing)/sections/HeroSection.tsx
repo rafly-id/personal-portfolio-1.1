@@ -20,20 +20,20 @@ export default function HeroSection() {
 
   return (
     <section className="flex flex-col md:flex-row justify-between gap-10 md:gap-5 mt-24 md:mt-20">
-      <div className="font-bold font-instrument_serif text-[clamp(2.5rem,11vw,5rem)] md:text-8xl mt-5 md:mt-10 leading-none">
-        <div ref={raflyRef} className="overflow-hidden pb-1">
+      <h1 className="font-bold font-instrument_serif text-[clamp(2.5rem,11vw,5rem)] md:text-8xl mt-5 md:mt-10 leading-none">
+        <span ref={raflyRef} className="block overflow-hidden pb-1">
           RAFLY
-        </div>
-        <div ref={adrianRef} className="overflow-hidden pb-1">
+        </span>
+        <span ref={adrianRef} className="block overflow-hidden pb-1">
           ADRIANSYAH
-        </div>
-        <div ref={frontendRef} className="overflow-hidden pb-1 font-instrument_serif">
+        </span>
+        <span ref={frontendRef} className="block overflow-hidden pb-1 font-instrument_serif">
           FRONTEND
-        </div>
-        <div ref={developerRef} className="overflow-hidden pb-1">
+        </span>
+        <span ref={developerRef} className="block overflow-hidden pb-1">
           DEVELOPER
-        </div>
-      </div>
+        </span>
+      </h1>
 
       <div className="flex flex-col justify-end uppercase font-light text-sm md:text-lg tracking-tighter max-w-xl">
         <p ref={descRef} className="overflow-hidden">
