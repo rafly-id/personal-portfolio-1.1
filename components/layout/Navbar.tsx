@@ -29,6 +29,30 @@ const NavbarSocialLink = ({ href, label }: NavbarSocialLinkProps) => {
   );
 };
 
+interface NavbarLinkProps {
+  href: string;
+  label: string;
+  onClick: () => void;
+  setRef: (el: HTMLAnchorElement | null) => void;
+}
+
+const NavbarLink = ({ href, label, onClick, setRef }: NavbarLinkProps) => {
+  const linkRef = useRef<HTMLAnchorElement>(null);
+  return (
+    <Link
+      href={href}
+      onClick={onClick}
+      ref={(el) => {
+        (linkRef as any).current = el;
+        setRef(el);
+      }}
+      className="text-4xl md:text-5xl font-light font-sans tracking-tight text-background hover:opacity-80 transition-opacity duration-300 lowercase block overflow-hidden py-1"
+    >
+      <TextSwap text={label} triggerRef={linkRef} />
+    </Link>
+  );
+};
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
@@ -238,20 +262,15 @@ const Navbar = () => {
         {/* Navigation Links */}
         <div className="flex flex-col gap-4 my-auto text-left">
           {navLinks.map((link, idx) => (
-            <Link
+            <NavbarLink
               key={idx}
               href={link.href}
+              label={link.label}
               onClick={() => setIsOpen(false)}
-              ref={(el) => {
+              setRef={(el) => {
                 linksRef.current[idx] = el;
               }}
-              className="text-4xl md:text-5xl font-light font-sans tracking-tight text-background hover:opacity-80 transition-opacity duration-300 lowercase block overflow-hidden py-1"
-            >
-              <TextSwap
-                text={link.label}
-                triggerRef={{ current: linksRef.current[idx] } as React.RefObject<HTMLAnchorElement>}
-              />
-            </Link>
+            />
           ))}
         </div>
 

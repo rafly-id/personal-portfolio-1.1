@@ -14,6 +14,7 @@ const CertificatesSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const portalRef = useRef<HTMLDivElement>(null);
   const [activeImage, setActiveImage] = useState<string>("");
+  const portalSizeRef = useRef<{ width: number; height: number } | null>(null);
 
   useGSAP(
     () => {
@@ -71,9 +72,16 @@ const CertificatesSection = () => {
   const handleMouseMove = (e: React.MouseEvent) => {
     const portal = portalRef.current;
     if (!portal) return;
-    const rect = portal.getBoundingClientRect();
-    const halfWidth = rect.width / 2;
-    const halfHeight = rect.height / 2;
+
+    if (!portalSizeRef.current) {
+      const rect = portal.getBoundingClientRect();
+      portalSizeRef.current = { width: rect.width, height: rect.height };
+    }
+
+    const { width, height } = portalSizeRef.current;
+    const halfWidth = width / 2;
+    const halfHeight = height / 2;
+
     gsap.to(portal, {
       x: e.clientX - halfWidth,
       y: e.clientY - halfHeight,
@@ -87,6 +95,11 @@ const CertificatesSection = () => {
     setActiveImage(imgSrc);
     const portal = portalRef.current;
     if (!portal) return;
+
+    // Cache dimensions once on hover enter
+    const rect = portal.getBoundingClientRect();
+    portalSizeRef.current = { width: rect.width, height: rect.height };
+
     gsap.to(portal, {
       autoAlpha: 1,
       scale: 1,

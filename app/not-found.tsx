@@ -6,6 +6,24 @@ import TextSwap from "@/components/ui/TextSwap";
 import { gsap } from "@/lib/gsap";
 import { useGSAP } from "@gsap/react";
 
+interface NotFoundLinkProps {
+  href: string;
+  label: string;
+}
+
+const NotFoundLink = ({ href, label }: NotFoundLinkProps) => {
+  const itemRef = useRef<HTMLAnchorElement>(null);
+  return (
+    <Link
+      ref={itemRef}
+      href={href}
+      className="text-foreground/80 hover:text-foreground transition-colors duration-300 font-medium py-1 px-2 relative group overflow-hidden block"
+    >
+      <TextSwap text={label} triggerRef={itemRef} />
+    </Link>
+  );
+};
+
 export default function NotFound() {
   const containerRef = useRef<HTMLDivElement>(null);
   const labelRef = useRef<HTMLSpanElement>(null);
@@ -80,19 +98,9 @@ export default function NotFound() {
         ref={linksContainerRef}
         className="flex flex-col sm:flex-row items-center gap-6 sm:gap-8 font-sans text-sm tracking-wide lowercase"
       >
-        {links.map((link, idx) => {
-          const itemRef = useRef<HTMLAnchorElement>(null);
-          return (
-            <Link
-              key={idx}
-              ref={itemRef}
-              href={link.href}
-              className="text-foreground/80 hover:text-foreground transition-colors duration-300 font-medium py-1 px-2 relative group overflow-hidden block"
-            >
-              <TextSwap text={link.label} triggerRef={itemRef} />
-            </Link>
-          );
-        })}
+        {links.map((link, idx) => (
+          <NotFoundLink key={idx} href={link.href} label={link.label} />
+        ))}
       </div>
     </div>
   );

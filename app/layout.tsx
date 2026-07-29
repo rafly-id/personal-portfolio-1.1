@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     title: "Rafly Adriansyah Portfolio",
     description:
       "Portfolio pribadi Muhammad Rafly Adriansyah — Frontend Developer dengan fokus pada UI/UX dan pengembangan web.",
-    images: ["/images/icon.png"],
+    images: ["/images/icon.webp"],
   },
 
   openGraph: {
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     siteName: "Rafly Adriansyah Portfolio",
     images: [
       {
-        url: "/images/icon.png",
+        url: "/images/icon.webp",
         width: 1200,
         height: 630,
         alt: "Preview Portfolio Muhammad Rafly Adriansyah",

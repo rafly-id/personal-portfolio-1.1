@@ -142,7 +142,9 @@ const Cursor = () => {
           target.closest("button") ||
           target.closest("input") ||
           target.closest("textarea") ||
-          window.getComputedStyle(target).cursor === "pointer";
+          target.closest("[role='button']") ||
+          target.closest(".cursor-pointer") ||
+          (target instanceof HTMLElement && target.style.cursor === "pointer");
 
         if (isInteractive) {
           setCursorState("interactive");

@@ -6,7 +6,7 @@ export default function ProfileSection() {
   return (
     <section className="w-full h-auto">
       <ParallaxImage
-        src="/images/rafly.png"
+        src="/images/rafly.webp"
         alt="Profile"
         fill
         containerClassName="w-full h-[450px] md:h-[750px] rounded-[calc(2.5rem-0.5rem)]"

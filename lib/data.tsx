@@ -40,7 +40,7 @@ export const socialLinks = [
 export const projects = [
   {
     slug: "movie-app",
-    imageSrc: "/images/movie.png",
+    imageSrc: "/images/movie.webp",
     imageAlt: "Movie App Preview",
     title: "Movie App",
     tech: ["React", "Vite", "Tailwind CSS", "Appwrite"],
@@ -64,7 +64,7 @@ export const projects = [
   },
   {
     slug: "zentry-app-awwward",
-    imageSrc: "/images/zentry.png",
+    imageSrc: "/images/zentry.webp",
     imageAlt: "Zentry App Preview",
     title: "Zentry App Awwward",
     tech: ["React", "Vite", "GSAP", "Tailwind CSS"],
@@ -88,7 +88,7 @@ export const projects = [
   },
   {
     slug: "todo-list",
-    imageSrc: "/images/noted.png",
+    imageSrc: "/images/noted.webp",
     imageAlt: "Todo List Preview",
     title: "Todo List",
     tech: ["HTML", "CSS", "JavaScript"],
@@ -112,7 +112,7 @@ export const projects = [
   },
   {
     slug: "onepiece",
-    imageSrc: "/images/onepiece.png",
+    imageSrc: "/images/onepiece.webp",
     imageAlt: "OnePiece Website Preview",
     title: "OnePiece",
     tech: ["HTML", "CSS"],
@@ -136,7 +136,7 @@ export const projects = [
   },
   {
     slug: "sejati-dashboard-bp3kp",
-    imageSrc: "/images/rtlh.png",
+    imageSrc: "/images/rtlh.webp",
     imageAlt: "SEJATI Application Dashboard Preview",
     title: "SEJATI (Klinik PKP) Dashboard",
     tech: ["React", "TypeScript", "Tailwind CSS", "FSD"],
