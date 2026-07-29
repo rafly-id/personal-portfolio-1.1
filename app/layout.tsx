@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DM_Sans , Instrument_Serif} from "next/font/google";
+import { DM_Sans, Instrument_Serif } from "next/font/google";
 import "@/styles/globals.css";
 import Navbar from "@/components/layout/Navbar";
 import SmoothScroll from "@/components/global/SmoothScroll";
@@ -44,9 +44,6 @@ export const metadata: Metadata = {
 
   authors: [{ name: "Muhammad Rafly Adriansyah" }],
   creator: "Muhammad Rafly Adriansyah",
-  alternates: {
-    canonical: "./",
-  },
 
   twitter: {
     card: "summary_large_image",
@@ -97,28 +94,28 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Person",
-              "name": "Muhammad Rafly Adriansyah",
-              "jobTitle": "Frontend Developer",
-              "url": "https://rafly-id.vercel.app",
-              "sameAs": [
+              name: "Muhammad Rafly Adriansyah",
+              jobTitle: "Frontend Developer",
+              url: "https://rafly-id.vercel.app",
+              sameAs: [
                 "https://github.com/rafly-id",
                 "https://www.linkedin.com/in/rafly-adriansyah-35587225b/",
-                "https://www.instagram.com/__rafllyy/"
+                "https://www.instagram.com/__rafllyy/",
               ],
-              "knowsAbout": [
+              knowsAbout: [
                 "Frontend Development",
                 "React",
                 "Next.js",
                 "TypeScript",
                 "GSAP",
                 "Tailwind CSS",
-                "UI/UX Design"
+                "UI/UX Design",
               ],
-              "address": {
+              address: {
                 "@type": "PostalAddress",
-                "addressLocality": "Yogyakarta",
-                "addressCountry": "ID"
-              }
+                addressLocality: "Yogyakarta",
+                addressCountry: "ID",
+              },
             }),
           }}
         />
