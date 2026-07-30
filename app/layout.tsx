@@ -40,10 +40,49 @@ export const metadata: Metadata = {
     "TypeScript",
     "React.js",
     "Next.js",
+    "Node.js",
+    "Express.js",
+    "Web3",
   ],
 
-  authors: [{ name: "Muhammad Rafly Adriansyah" }],
+  authors: [
+    { name: "Muhammad Rafly Adriansyah", url: "https://rafly-id.vercel.app" },
+  ],
   creator: "Muhammad Rafly Adriansyah",
+  publisher: "Muhammad Rafly Adriansyah",
+  category: "technology",
+
+  // Mencegah duplikasi konten (Sangat penting untuk SEO)
+  alternates: {
+    canonical: "/",
+  },
+
+  // Mencegah browser mobile merusak desain UI
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+
+  // Instruksi eksplisit untuk Googlebot
+  robots: {
+    index: true,
+    follow: true,
+    nocache: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+
+  icons: {
+    icon: "/images/icon.webp",
+    shortcut: "/images/icon.webp",
+    apple: "/images/icon.webp",
+  },
 
   twitter: {
     card: "summary_large_image",
@@ -71,6 +110,7 @@ export const metadata: Metadata = {
     alternateLocale: ["en_US"],
     type: "website",
   },
+
   verification: {
     google: "lJeAU8e38pktcVrBABGGPd05ycc_5lQOEW1tWzFW-kY",
   },
@@ -87,7 +127,7 @@ export default function RootLayout({
       className={`${dm_sans.variable} ${instrument_serif.variable} antialiased`}
     >
       <body className="selection:bg-foreground selection:text-background">
-        {/* Person JSON-LD structured schema markup */}
+        {/* Person JSON-LD structured schema markup dengan pengayaan data entitas */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -110,7 +150,17 @@ export default function RootLayout({
                 "GSAP",
                 "Tailwind CSS",
                 "UI/UX Design",
+                "Node.js",
+                "Web3 Development",
               ],
+              alumniOf: {
+                "@type": "CollegeOrUniversity",
+                name: "Universitas Teknologi Digital Indonesia",
+              },
+              worksFor: {
+                "@type": "Organization",
+                name: "Balai Pelaksana Penyedia Perumahan dan Kawasan Pemukiman Jawa III",
+              },
               address: {
                 "@type": "PostalAddress",
                 addressLocality: "Yogyakarta",
