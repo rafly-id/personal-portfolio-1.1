@@ -52,9 +52,9 @@ export const metadata: Metadata = {
   publisher: "Muhammad Rafly Adriansyah",
   category: "technology",
 
-  // Mencegah duplikasi konten (Sangat penting untuk SEO)
+  // Mencegah duplikasi konten dengan resolusi path relatif
   alternates: {
-    canonical: "/",
+    canonical: "./",
   },
 
   // Mencegah browser mobile merusak desain UI
@@ -127,45 +127,62 @@ export default function RootLayout({
       className={`${dm_sans.variable} ${instrument_serif.variable} antialiased`}
     >
       <body className="selection:bg-foreground selection:text-background">
-        {/* Person JSON-LD structured schema markup dengan pengayaan data entitas */}
+        {/* JSON-LD structured schema markup (Person & WebSite) */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Person",
-              name: "Muhammad Rafly Adriansyah",
-              jobTitle: "Frontend Developer",
-              url: "https://rafly-id.vercel.app",
-              sameAs: [
-                "https://github.com/rafly-id",
-                "https://www.linkedin.com/in/rafly-adriansyah-35587225b/",
-                "https://www.instagram.com/__rafllyy/",
+              "@graph": [
+                {
+                  "@type": "Person",
+                  "@id": "https://rafly-id.vercel.app/#person",
+                  name: "Muhammad Rafly Adriansyah",
+                  jobTitle: "Frontend Developer",
+                  url: "https://rafly-id.vercel.app",
+                  sameAs: [
+                    "https://github.com/rafly-id",
+                    "https://www.linkedin.com/in/rafly-adriansyah-35587225b/",
+                    "https://www.instagram.com/__rafllyy/",
+                  ],
+                  knowsAbout: [
+                    "Frontend Development",
+                    "React",
+                    "Next.js",
+                    "TypeScript",
+                    "GSAP",
+                    "Tailwind CSS",
+                    "UI/UX Design",
+                    "Node.js",
+                    "Web3 Development",
+                  ],
+                  alumniOf: {
+                    "@type": "CollegeOrUniversity",
+                    name: "Universitas Teknologi Digital Indonesia",
+                  },
+                  worksFor: {
+                    "@type": "Organization",
+                    name: "Balai Pelaksana Penyedia Perumahan dan Kawasan Pemukiman Jawa III",
+                  },
+                  address: {
+                    "@type": "PostalAddress",
+                    addressLocality: "Yogyakarta",
+                    addressCountry: "ID",
+                  },
+                },
+                {
+                  "@type": "WebSite",
+                  "@id": "https://rafly-id.vercel.app/#website",
+                  url: "https://rafly-id.vercel.app",
+                  name: "Rafly Adriansyah Portfolio",
+                  description:
+                    "Portfolio pribadi Muhammad Rafly Adriansyah — Frontend Developer dengan fokus pada UI/UX dan pengembangan web.",
+                  publisher: {
+                    "@id": "https://rafly-id.vercel.app/#person",
+                  },
+                  inLanguage: "en-US",
+                },
               ],
-              knowsAbout: [
-                "Frontend Development",
-                "React",
-                "Next.js",
-                "TypeScript",
-                "GSAP",
-                "Tailwind CSS",
-                "UI/UX Design",
-                "Node.js",
-                "Web3 Development",
-              ],
-              alumniOf: {
-                "@type": "CollegeOrUniversity",
-                name: "Universitas Teknologi Digital Indonesia",
-              },
-              worksFor: {
-                "@type": "Organization",
-                name: "Balai Pelaksana Penyedia Perumahan dan Kawasan Pemukiman Jawa III",
-              },
-              address: {
-                "@type": "PostalAddress",
-                addressLocality: "Yogyakarta",
-                addressCountry: "ID",
-              },
             }),
           }}
         />

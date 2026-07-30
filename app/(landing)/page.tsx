@@ -10,9 +10,11 @@ import FeaturedProjectsSection from "./sections/FeaturedProjectsSection";
 import CertificatesSection from "./sections/CertificatesSection";
 
 export const metadata: Metadata = {
-  title: "Home",
   description:
-    "Welcome to my portfolio website. Explore my projects and learn more about me.",
+    "Portfolio pribadi Muhammad Rafly Adriansyah — seorang Frontend Developer yang juga berpengalaman dalam UI/UX dan pengembangan aplikasi web modern.",
+  alternates: {
+    canonical: "/",
+  },
 };
 
 const Landing = () => {
