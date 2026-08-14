@@ -1,42 +1,62 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import Lenis from "lenis";
-import { ScrollTrigger } from "@/lib/gsap";
+import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { LENIS_EASING } from "@/lib/config";
 import "lenis/dist/lenis.css";
 
+interface LenisContextType {
+  lenis: Lenis | null;
+}
+
+const LenisContext = createContext<LenisContextType>({ lenis: null });
+
+export const useLenis = () => useContext(LenisContext);
+
 const SmoothScroll = ({ children }: { children: React.ReactNode }) => {
+  const [lenis, setLenis] = useState<Lenis | null>(null);
   const lenisRef = useRef<Lenis | null>(null);
   const pathname = usePathname();
 
   useEffect(() => {
-    const lenis = new Lenis({
+    // Respect prefers-reduced-motion OS accessibility settings
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (prefersReducedMotion) {
+      return;
+    }
+
+    const instance = new Lenis({
       duration: 1.2,
       easing: LENIS_EASING,
+      smoothWheel: true,
     });
 
-    lenisRef.current = lenis;
+    lenisRef.current = instance;
+    setLenis(instance);
 
     // Sync Lenis scroll with ScrollTrigger updates
-    lenis.on("scroll", () => {
+    instance.on("scroll", () => {
       ScrollTrigger.update();
     });
 
-    let rafId: number;
+    // Synchronize Lenis RAF loop with GSAP Ticker for smooth scrub animations
+    const handleTicker = (time: number) => {
+      instance.raf(time * 1000);
+    };
 
-    function raf(time: number) {
-      lenis.raf(time);
-      rafId = requestAnimationFrame(raf);
-    }
-
-    rafId = requestAnimationFrame(raf);
+    gsap.ticker.add(handleTicker);
+    gsap.ticker.lagSmoothing(0);
 
     return () => {
-      cancelAnimationFrame(rafId);
-      lenis.destroy();
+      gsap.ticker.remove(handleTicker);
+      instance.destroy();
       lenisRef.current = null;
+      setLenis(null);
     };
   }, []);
 
@@ -52,7 +72,9 @@ const SmoothScroll = ({ children }: { children: React.ReactNode }) => {
     }
   }, [pathname]);
 
-  return <>{children}</>;
+  return (
+    <LenisContext.Provider value={{ lenis }}>{children}</LenisContext.Provider>
+  );
 };
 
 export default SmoothScroll;
