@@ -126,7 +126,7 @@ export default function RootLayout({
       lang="en"
       className={`${dm_sans.variable} ${instrument_serif.variable} antialiased`}
     >
-      <body className="selection:bg-foreground selection:text-background">
+      <body>
         {/* JSON-LD structured schema markup (Person & WebSite) */}
         <script
           type="application/ld+json"

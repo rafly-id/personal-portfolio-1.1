@@ -23,13 +23,23 @@ body {
 }
 
 *::selection {
-  background-color: #1c1a19 !important;
-  color: #f4f3ef !important;
+  background-color: var(--foreground) !important;
+  color: var(--background) !important;
 }
 
 *::-moz-selection {
-  background-color: #1c1a19 !important;
-  color: #f4f3ef !important;
+  background-color: var(--foreground) !important;
+  color: var(--background) !important;
+}
+
+html[data-theme="dark"] *::selection {
+  background-color: var(--foreground) !important;
+  color: var(--background) !important;
+}
+
+html[data-theme="dark"] *::-moz-selection {
+  background-color: var(--foreground) !important;
+  color: var(--background) !important;
 }
 
 /* Hide scrollbar entirely across all browsers, elements, and scroll contexts */
