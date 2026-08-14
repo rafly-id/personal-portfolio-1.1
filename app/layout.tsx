@@ -164,6 +164,7 @@ export default function RootLayout({
                   "@id": `${SITE_CONFIG.siteUrl}/#website`,
                   url: SITE_CONFIG.siteUrl,
                   name: SITE_CONFIG.title,
+                  alternateName: ["Rafly Adriansyah", "Rafly Portfolio"],
                   description: SITE_CONFIG.description,
                   publisher: {
                     "@id": `${SITE_CONFIG.siteUrl}/#person`,
