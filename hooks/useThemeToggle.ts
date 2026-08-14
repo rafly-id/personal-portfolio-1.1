@@ -1,6 +1,7 @@
 "use client";
 
 import { RefObject } from "react";
+import { usePathname } from "next/navigation";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { useGSAP } from "@gsap/react";
 import { ANIM_DURATIONS, ANIM_EASES } from "@/lib/animation";
@@ -27,6 +28,8 @@ export function useThemeToggle({
   start = "top 40%",
   end = "bottom center",
 }: UseThemeToggleOptions) {
+  const pathname = usePathname();
+
   useGSAP(
     () => {
       if (!triggerRef.current) return;
@@ -75,6 +78,6 @@ export function useThemeToggle({
         delete root.dataset.theme;
       };
     },
-    { scope: triggerRef, dependencies: [start, end] }
+    { scope: triggerRef, dependencies: [start, end, pathname] }
   );
 }

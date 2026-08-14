@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import { usePathname } from "next/navigation";
 import { useGSAP } from "@gsap/react";
 import { gsap, SplitText } from "@/lib/gsap";
 import { ScrollTrigger } from "@/lib/gsap";
@@ -21,6 +22,7 @@ const iconMap: Record<string, React.ComponentType<{ size?: number }>> = {
 };
 
 const Footer = () => {
+  const pathname = usePathname();
   const footerRef = useRef<HTMLDivElement>(null);
   const nameRef = useRef<HTMLHeadingElement>(null);
 
@@ -92,6 +94,8 @@ const Footer = () => {
                 },
               }
             );
+
+            ScrollTrigger.refresh();
           };
 
           initSplit();
@@ -107,7 +111,7 @@ const Footer = () => {
         mm.revert();
       };
     },
-    { scope: footerRef }
+    { scope: footerRef, dependencies: [pathname] }
   );
 
   return (
@@ -123,8 +127,8 @@ const Footer = () => {
 
           {/* Left Column (Bio + Socials Stacked) */}
           <div className="footer-col md:col-span-7 flex flex-col items-start gap-8 text-left">
-            <p className="font-sans text-xl md:text-3xl font-semibold text-foreground leading-snug tracking-tight max-w-xl">
-              Rafly is a <span className="font-instrument_serif italic text-2xl md:text-4xl font-normal">Frontend Developer</span> focused on creating <span className="font-instrument_serif italic text-2xl md:text-4xl font-normal">modern web experiences</span>.
+            <p className="font-instrument_serif italic text-2xl md:text-4xl font-normal text-foreground leading-snug tracking-tight max-w-xl">
+              Rafly is a Frontend Developer focused on creating modern web experiences.
             </p>
 
             <div className="flex flex-col items-start gap-4 w-full">

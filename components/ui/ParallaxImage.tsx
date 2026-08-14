@@ -4,6 +4,7 @@ import { useRef } from "react";
 import Image, { ImageProps } from "next/image";
 import { useParallaxImage } from "@/hooks/useParallaxImage";
 import { cn } from "@/lib/utils";
+import { ScrollTrigger } from "@/lib/gsap";
 
 interface ParallaxImageProps extends Omit<ImageProps, "ref"> {
   containerClassName?: string;
@@ -19,6 +20,7 @@ export default function ParallaxImage({
   scrub = 1.5,
   className,
   alt,
+  onLoad,
   ...props
 }: ParallaxImageProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -41,6 +43,10 @@ export default function ParallaxImage({
         <Image
           ref={imageRef}
           alt={alt}
+          onLoad={(e) => {
+            ScrollTrigger.refresh();
+            if (onLoad) onLoad(e);
+          }}
           className={cn("object-cover", className)}
           style={{
             opacity: enableReveal ? 0 : undefined,

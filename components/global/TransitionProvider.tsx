@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useState, useRef, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import { gsap } from "@/lib/gsap";
+import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { useGSAP } from "@gsap/react";
 import Onboarding from "../feature/Onboarding";
 import { ANIM_DURATIONS } from "@/lib/animation";
@@ -150,6 +150,9 @@ export default function TransitionProvider({ children }: { children: React.React
             targetHref.current = null;
             isHashScroll.current = false;
             gsap.set(containerRef.current, { visibility: "hidden", pointerEvents: "none" });
+            requestAnimationFrame(() => {
+              ScrollTrigger.refresh();
+            });
           },
         });
 
