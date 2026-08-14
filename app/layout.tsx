@@ -52,9 +52,9 @@ export const metadata: Metadata = {
   publisher: SITE_CONFIG.name,
   category: "technology",
 
-  // Mencegah duplikasi konten dengan resolusi path relatif
+  // Explicit canonical resolution to prevent duplicate content
   alternates: {
-    canonical: "./",
+    canonical: SITE_CONFIG.siteUrl,
   },
 
   // Mencegah browser mobile merusak desain UI
@@ -88,7 +88,6 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: SITE_CONFIG.title,
     description: SITE_CONFIG.description,
-    images: ["/images/icon.webp"],
   },
 
   openGraph: {
@@ -96,14 +95,6 @@ export const metadata: Metadata = {
     description: SITE_CONFIG.description,
     url: SITE_CONFIG.siteUrl,
     siteName: SITE_CONFIG.title,
-    images: [
-      {
-        url: "/images/icon.webp",
-        width: 1200,
-        height: 630,
-        alt: `Preview Portfolio ${SITE_CONFIG.name}`,
-      },
-    ],
     locale: "id_ID",
     alternateLocale: ["en_US"],
     type: "website",

@@ -11,9 +11,16 @@ interface TitleProps {
   index?: string | number;
   className?: string;
   showLine?: boolean;
+  as?: "h1" | "h2" | "h3" | "h4" | "span" | "p";
 }
 
-const Title = ({ text, index, className, showLine = true }: TitleProps) => {
+const Title = ({
+  text,
+  index,
+  className,
+  showLine = true,
+  as: Component = "h2",
+}: TitleProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const lineRef = useRef<HTMLDivElement>(null);
@@ -64,7 +71,7 @@ const Title = ({ text, index, className, showLine = true }: TitleProps) => {
         </span>
       )}
       <div className="font-normal uppercase font-instrument_serif w-full overflow-hidden">
-        <h1
+        <Component
           ref={titleRef}
           className={cn(
             "text-[clamp(2.25rem,9vw,4rem)] md:text-[clamp(5.5rem,13vw,9.5rem)] leading-none tracking-tight font-normal will-change-[transform,opacity]",
@@ -72,7 +79,7 @@ const Title = ({ text, index, className, showLine = true }: TitleProps) => {
           )}
         >
           {text}
-        </h1>
+        </Component>
       </div>
       {showLine && (
         <div

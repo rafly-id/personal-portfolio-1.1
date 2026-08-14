@@ -68,7 +68,7 @@ export default async function ProjectPage({ params }: Props) {
       name: SITE_CONFIG.name,
       url: SITE_CONFIG.siteUrl,
     },
-    image: `${SITE_CONFIG.siteUrl}${project.imageSrc}`,
+    image: new URL(project.imageSrc, SITE_CONFIG.siteUrl).toString(),
   };
 
   return (
