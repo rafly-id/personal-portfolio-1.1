@@ -40,46 +40,46 @@ const ProjectDetailClient = ({ project }: ProjectDetailClientProps) => {
   });
 
   return (
-    <div className="min-h-screen pt-24 px-5 md:px-12 lg:px-24 bg-background text-foreground">
+    <div className="min-h-screen pt-20 md:pt-24 px-4 md:px-12 lg:px-24 bg-background text-foreground">
       {/* Navigation and Back button */}
-      <div className="mb-10">
+      <div className="mb-8 md:mb-10">
         <Link
           ref={backLinkRef}
           href="/projects"
-          className="inline-flex items-center gap-2 group text-sm font-bold uppercase font-sans tracking-widest text-foreground/60 hover:text-foreground transition-colors duration-300"
+          className="inline-flex items-center gap-2 group text-xs sm:text-sm font-bold uppercase font-sans tracking-widest text-foreground/60 hover:text-foreground transition-colors duration-300"
         >
           <TextSwap text="Back to Projects Page" triggerRef={backLinkRef} />
         </Link>
       </div>
 
       {/* Header Info */}
-      <div className="max-w-6xl mb-12">
+      <div className="max-w-6xl mb-10 md:mb-12">
         <div className="mb-4">
           <SectionLabel text="[ Project Deep Dive ]" />
         </div>
         <h1
           ref={titleRef}
-          className="font-instrument_serif font-black text-5xl md:text-8xl lg:text-9xl uppercase tracking-tighter leading-[0.9] overflow-hidden mb-6"
+          className="font-instrument_serif font-black text-4xl sm:text-5xl md:text-8xl lg:text-9xl uppercase tracking-tighter leading-[0.95] md:leading-[0.9] overflow-hidden mb-5 md:mb-6"
         >
           {project.title}
         </h1>
         <p
           ref={summaryRef}
-          className="font-sans text-lg md:text-2xl text-foreground/75 font-light max-w-4xl leading-relaxed overflow-hidden"
+          className="font-sans text-base md:text-2xl text-foreground/75 font-light max-w-4xl leading-relaxed overflow-hidden"
         >
           {project.description}
         </p>
       </div>
 
       {/* Double-Bezel Hero Image Enclosure */}
-      <div className="w-full h-[350px] md:h-[600px] lg:h-[700px] overflow-hidden rounded-[2.5rem] bg-secondary/30 border border-foreground/5 p-2 md:p-4 mb-12 md:mb-20">
+      <div className="w-full aspect-16/10 md:aspect-auto md:h-[600px] lg:h-[700px] overflow-hidden rounded-3xl md:rounded-[2.5rem] bg-secondary/30 border border-foreground/5 p-1.5 md:p-4 mb-10 md:mb-20">
         <ParallaxImage
           src={project.imageSrc}
           alt={project.imageAlt}
           fill
           priority
-          containerClassName="w-full h-full rounded-[calc(2.5rem-0.5rem)]"
-          className="object-cover grayscale"
+          containerClassName="w-full h-full rounded-[calc(1.5rem-0.375rem)] md:rounded-[calc(2.5rem-0.5rem)]"
+          className="object-cover grayscale active:grayscale-0 transition-[filter] duration-700 ease-[cubic-bezier(0.32,0.72,0,1)]"
           sizes="100vw"
           y={30}
           enableReveal

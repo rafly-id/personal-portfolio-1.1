@@ -82,7 +82,7 @@ export default function NotFound() {
 
       <h1
         ref={headingRef}
-        className="font-instrument_serif text-7xl md:text-9xl font-light italic leading-none tracking-tight mb-6 opacity-0"
+        className="font-instrument_serif text-5xl sm:text-7xl md:text-9xl font-light italic leading-none tracking-tight mb-6 opacity-0"
       >
         not found
       </h1>

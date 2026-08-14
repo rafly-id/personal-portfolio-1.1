@@ -140,7 +140,7 @@ const AboutDetailsSection = () => {
     <section
       ref={triggerRef}
       id="about"
-      className="w-full h-auto py-20 md:py-0 md:h-dvh md:min-h-dvh flex flex-col justify-center md:overflow-hidden md:relative"
+      className="w-full h-auto py-16 md:py-0 md:h-dvh md:min-h-dvh flex flex-col justify-center md:overflow-hidden md:relative"
     >
       {/* Viewport container */}
       <div
@@ -152,7 +152,7 @@ const AboutDetailsSection = () => {
           <Title text="About" index="01" className="mb-0" />
         </div>
 
-        <div className="w-full flex flex-col gap-20 md:contents">
+        <div className="w-full flex flex-col gap-12 sm:gap-16 md:contents">
           {aboutDetails.map((detail, index) => (
             <div
               key={index}
@@ -172,7 +172,7 @@ const AboutDetailsSection = () => {
                 }`}
               >
                 {/* mixed serif title: italicized, capitalized */}
-                <h3 className="font-instrument_serif text-4xl md:text-7xl font-light italic text-foreground tracking-tight leading-none capitalize">
+                <h3 className="font-instrument_serif text-3xl sm:text-4xl md:text-7xl font-light italic text-foreground tracking-tight leading-none capitalize">
                   {detail.title}
                 </h3>
                 {/* clean sans text: sentence case normal text */}

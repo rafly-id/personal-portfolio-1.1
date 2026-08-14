@@ -19,8 +19,8 @@ export default function HeroSection() {
   useTextReveal({ ref: descRef, y: 100, delay: 0.1, type: "lines" });
 
   return (
-    <section className="flex flex-col md:flex-row justify-between gap-10 md:gap-5 mt-24 md:mt-20">
-      <h1 className="font-bold font-instrument_serif text-[clamp(2.5rem,11vw,5rem)] md:text-8xl mt-5 md:mt-10 leading-none">
+    <section className="flex flex-col md:flex-row justify-between gap-8 md:gap-5 mt-20 md:mt-20 px-4 md:px-0">
+      <h1 className="font-bold font-instrument_serif text-[clamp(2.25rem,10vw,4.5rem)] md:text-8xl mt-3 md:mt-10 leading-none">
         <span ref={raflyRef} className="block overflow-hidden pb-1">
           RAFLY
         </span>
@@ -35,7 +35,7 @@ export default function HeroSection() {
         </span>
       </h1>
 
-      <div className="flex flex-col justify-end uppercase font-light text-sm md:text-lg tracking-tighter max-w-xl">
+      <div className="flex flex-col justify-end uppercase font-light text-sm sm:text-base md:text-lg tracking-tight md:tracking-tighter max-w-xl">
         <p ref={descRef} className="overflow-hidden">
           Crafting Engaging Web Experiences with Precision and Creativity
           Specializing in{" "}

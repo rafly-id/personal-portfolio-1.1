@@ -37,7 +37,7 @@ export function useThemeToggle({
       const root = document.documentElement;
       const mm = gsap.matchMedia();
 
-      mm.add("(min-width: 768px)", () => {
+      mm.add("all", () => {
         gsap.to(root, {
           "--background": THEME_COLORS.dark,
           "--foreground": THEME_COLORS.light,

@@ -141,13 +141,13 @@ const TechStackSection = () => {
                     <span className="font-mono text-sm md:text-base text-foreground/40 tracking-wider">
                       {numStr}
                     </span>
-                    <h3 className="font-instrument_serif text-2xl md:text-3xl lg:text-4xl text-foreground/80 group-hover/btn:text-foreground transition-colors duration-300 capitalize">
+                    <h3 className="font-instrument_serif text-xl sm:text-2xl md:text-3xl lg:text-4xl text-foreground/80 group-hover/btn:text-foreground transition-colors duration-300 capitalize">
                       {cat.title}
                     </h3>
                   </div>
 
                   {/* Circular Chevron Wrapper */}
-                  <div className="accordion-chevron w-10 h-10 rounded-full border border-foreground/10 flex items-center justify-center bg-foreground/2 text-foreground/60 transition-all duration-500 group-hover/btn:scale-105 group-hover/btn:border-foreground/30 group-hover/btn:text-foreground">
+                  <div className="accordion-chevron w-9 h-9 md:w-10 md:h-10 rounded-full border border-foreground/10 flex items-center justify-center bg-foreground/2 text-foreground/60 transition-all duration-500 group-hover/btn:scale-105 group-hover/btn:border-foreground/30 group-hover/btn:text-foreground">
                     <ChevronDown size={18} strokeWidth={1.5} />
                   </div>
                 </button>
@@ -157,20 +157,20 @@ const TechStackSection = () => {
                   className="accordion-content overflow-hidden"
                   style={{ height: catIdx === 0 ? "auto" : 0 }}
                 >
-                  <div className="pt-8 md:pt-10">
-                    <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4 md:gap-8">
+                  <div className="pt-6 md:pt-10">
+                    <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3 md:gap-8">
                       {cat.items.map((tech, techIdx) => (
                         <div
                           key={techIdx}
                           className="tech-item flex flex-col items-center justify-center p-2 md:p-3 rounded-2xl hover:bg-foreground/2 transition-all duration-300 group/item cursor-default"
                           style={{ willChange: "transform, opacity" }}
                         >
-                          <div className="p-2 md:p-3">
+                          <div className="p-1.5 md:p-3">
                             <tech.icon
-                              className="w-8 h-8 md:w-10 md:h-10 text-foreground/30 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover/item:scale-110 group-hover/item:text-foreground"
+                              className="w-7 h-7 md:w-10 md:h-10 text-foreground/60 md:text-foreground/30 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover/item:scale-110 group-hover/item:text-foreground"
                             />
                           </div>
-                          <span className="mt-2 text-[9px] md:text-xs uppercase tracking-widest font-mono text-foreground/50 transition-colors duration-300 group-hover/item:text-foreground/80 text-center">
+                          <span className="mt-1.5 text-[10px] md:text-xs uppercase tracking-widest font-mono text-foreground/70 md:text-foreground/50 transition-colors duration-300 group-hover/item:text-foreground/80 text-center">
                             {tech.name}
                           </span>
                         </div>

@@ -143,7 +143,7 @@ const Footer = () => {
                       href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-12 h-12 rounded-full border border-foreground/15 flex items-center justify-center backdrop-blur-sm text-foreground/75 hover:text-foreground hover:bg-foreground/5 hover:border-foreground/40 hover:scale-105 active:scale-95 transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] cursor-pointer"
+                      className="w-11 h-11 md:w-12 md:h-12 rounded-full border border-foreground/15 flex items-center justify-center backdrop-blur-sm text-foreground/75 hover:text-foreground hover:bg-foreground/5 hover:border-foreground/40 active:scale-95 transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] cursor-pointer"
                       aria-label={link.name}
                     >
                       <Icon size={20} />
@@ -173,10 +173,10 @@ const Footer = () => {
       </div>
 
       {/* Bottom name wrapper */}
-      <div className="w-screen select-none overflow-hidden py-6 md:py-8">
+      <div className="w-screen select-none overflow-hidden py-4 md:py-8">
         <h2
           ref={nameRef}
-          className="font-instrument_serif text-[clamp(2.75rem,14vw,20rem)] italic font-normal lowercase tracking-tighter text-foreground text-center leading-none w-full will-change-transform whitespace-nowrap py-4"
+          className="font-instrument_serif text-[clamp(2.25rem,12vw,20rem)] italic font-normal lowercase tracking-tighter text-foreground text-center leading-none w-full will-change-transform whitespace-nowrap py-2 md:py-4"
         >
           rafly adriansyah
         </h2>

@@ -37,36 +37,40 @@ const CertificatesSection = () => {
         },
       });
 
-      revealTl.to(borders, {
-        scaleX: 1,
-        stagger: ANIM_STAGGERS.slow,
-        duration: ANIM_DURATIONS.slow,
-        ease: "power3.inOut",
-      })
-      .to(
-        textWraps,
-        {
-          y: 0,
-          opacity: 1,
-          stagger: ANIM_STAGGERS.standard,
-          duration: ANIM_DURATIONS.standard,
-          ease: ANIM_EASES.entry,
-        },
-        "-=0.8"
-      )
-      .to(
-        arrowWraps,
-        {
-          scale: 1,
-          opacity: 1,
-          stagger: ANIM_STAGGERS.standard,
-          duration: ANIM_DURATIONS.standard,
-          ease: "back.out(1.7)",
-        },
-        "-=0.6"
-      );
+      revealTl
+        .to(borders, {
+          scaleX: 1,
+          stagger: ANIM_STAGGERS.slow,
+          duration: ANIM_DURATIONS.slow,
+          ease: "power3.inOut",
+        })
+        .to(
+          textWraps,
+          {
+            y: 0,
+            opacity: 1,
+            stagger: ANIM_STAGGERS.standard,
+            duration: ANIM_DURATIONS.standard,
+            ease: ANIM_EASES.entry,
+          },
+          "-=0.8",
+        );
+
+      if (arrowWraps.length > 0) {
+        revealTl.to(
+          arrowWraps,
+          {
+            scale: 1,
+            opacity: 1,
+            stagger: ANIM_STAGGERS.standard,
+            duration: ANIM_DURATIONS.standard,
+            ease: "back.out(1.7)",
+          },
+          "-=0.6",
+        );
+      }
     },
-    { scope: containerRef }
+    { scope: containerRef },
   );
 
   const handleMouseMove = (e: React.MouseEvent) => {
@@ -122,7 +126,11 @@ const CertificatesSection = () => {
   };
 
   return (
-    <section ref={containerRef} onMouseMove={handleMouseMove} className="mt-20 md:mt-32 mb-16 md:mb-24 relative overflow-hidden">
+    <section
+      ref={containerRef}
+      onMouseMove={handleMouseMove}
+      className="mt-20 md:mt-32 mb-16 md:mb-24 relative overflow-hidden"
+    >
       <SectionHeader title="certificates" index="05" />
 
       {/* Floating Image Portal (Desktop only) */}
@@ -148,7 +156,10 @@ const CertificatesSection = () => {
       {/* Certificates List */}
       <div className="max-w-5xl mx-auto px-4 relative">
         {/* Top boundary border */}
-        <span className="cert-border absolute top-0 left-0 w-full h-px bg-foreground/10 origin-left" style={{ willChange: "transform" }} />
+        <span
+          className="cert-border absolute top-0 left-0 w-full h-px bg-foreground/10 origin-left"
+          style={{ willChange: "transform" }}
+        />
 
         {certificates.map((cert, index) => (
           <Link
@@ -162,7 +173,10 @@ const CertificatesSection = () => {
           >
             {/* Title & Tech stack */}
             <div className="overflow-hidden">
-              <div className="cert-text-wrap flex flex-col gap-2" style={{ willChange: "transform, opacity" }}>
+              <div
+                className="cert-text-wrap flex flex-col gap-2"
+                style={{ willChange: "transform, opacity" }}
+              >
                 <h3 className="font-instrument_serif text-2xl md:text-4xl uppercase tracking-tight text-foreground/80 group-hover:text-foreground group-hover:pl-2 transition-all duration-300">
                   {cert.title}
                 </h3>
@@ -174,15 +188,21 @@ const CertificatesSection = () => {
               </div>
             </div>
 
-            {/* Link arrow and hover indicators (text only, no arrow icon) */}
-            <div className="cert-arrow-wrap flex items-center gap-4 self-end md:self-auto mt-2 md:mt-0" style={{ willChange: "transform, opacity" }}>
-              <span className="text-xs uppercase tracking-widest font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            {/* Link arrow and hover indicators */}
+            <div
+              className="cert-arrow-wrap hidden md:flex items-center gap-4 self-end md:self-auto mt-2 md:mt-0"
+              style={{ willChange: "transform, opacity" }}
+            >
+              <span className="text-xs uppercase tracking-widest font-semibold text-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 View Certificate
               </span>
             </div>
 
             {/* Bottom boundary border */}
-            <span className="cert-border absolute bottom-0 left-0 w-full h-px bg-foreground/10 origin-left" style={{ willChange: "transform" }} />
+            <span
+              className="cert-border absolute bottom-0 left-0 w-full h-px bg-foreground/10 origin-left"
+              style={{ willChange: "transform" }}
+            />
           </Link>
         ))}
       </div>
@@ -191,4 +211,3 @@ const CertificatesSection = () => {
 };
 
 export default CertificatesSection;
-

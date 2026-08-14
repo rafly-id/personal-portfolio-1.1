@@ -210,7 +210,7 @@ const Navbar = () => {
   return (
     <>
       {/* Floating Header */}
-      <div className="fixed top-0 left-0 w-full p-6 md:p-8 flex justify-between items-center z-40 pointer-events-none">
+      <div className="fixed top-0 left-0 w-full p-4 sm:p-6 md:p-8 flex justify-between items-center z-40 pointer-events-none">
         <div className="text-3xl md:text-4xl font-instrument_serif font-semibold mix-blend-difference pointer-events-auto select-none">
           <Link href="/">Rafly.</Link>
         </div>
@@ -220,14 +220,14 @@ const Navbar = () => {
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
             onClick={() => setIsOpen(true)}
-            className="flex items-center gap-3 px-6 py-2.5 rounded-full bg-foreground text-background border border-foreground/10 shadow-sm transition-all duration-300 font-sans tracking-wide cursor-pointer select-none group"
+            className="flex items-center gap-2.5 px-5 py-2 md:px-6 md:py-2.5 rounded-full bg-foreground text-background border border-foreground/10 shadow-sm transition-all duration-300 font-sans tracking-wide cursor-pointer select-none group"
           >
             <span className="font-mono text-sm leading-none flex items-center justify-center relative w-6 h-4">
               <span className="absolute left-0 transition-transform duration-300 group-hover:-translate-x-0.5">[</span>
               <span className="dot opacity-0 scale-0 transition-all duration-300 font-sans font-bold group-hover:opacity-100 group-hover:scale-100">•</span>
               <span className="absolute right-0 transition-transform duration-300 group-hover:translate-x-0.5">]</span>
             </span>
-            <span className="text-sm font-medium uppercase tracking-widest leading-none">menu</span>
+            <span className="text-xs md:text-sm font-medium uppercase tracking-widest leading-none">menu</span>
           </button>
         </div>
       </div>
@@ -243,7 +243,7 @@ const Navbar = () => {
       {/* Floating Menu Card Overlay */}
       <div
         ref={overlayRef}
-        className="fixed top-4 right-4 left-auto bottom-auto w-[300px] h-[400px] md:top-5 md:right-5 md:w-[360px] md:h-[480px] bg-foreground text-background rounded-4xl p-6 md:p-8 flex flex-col justify-between z-50 shadow-2xl overflow-hidden invisible"
+        className="fixed top-4 right-4 left-auto bottom-auto w-[calc(100vw-2rem)] max-w-[340px] h-[380px] md:top-5 md:right-5 md:w-[360px] md:h-[480px] bg-foreground text-background rounded-3xl md:rounded-4xl p-6 md:p-8 flex flex-col justify-between z-50 shadow-2xl overflow-hidden invisible"
       >
         {/* Top Section */}
         <div className="flex justify-between items-center w-full">
@@ -253,14 +253,15 @@ const Navbar = () => {
           </div>
           <button
             onClick={() => setIsOpen(false)}
-            className="text-xs uppercase tracking-[0.2em] text-background/70 hover:text-background transition-colors duration-300 font-sans font-medium cursor-pointer"
+            className="text-xs uppercase tracking-[0.2em] text-background/70 hover:text-background transition-colors duration-300 font-sans font-medium cursor-pointer p-2 -mr-2 active:opacity-60"
+            aria-label="Close menu"
           >
             close
           </button>
         </div>
 
         {/* Navigation Links */}
-        <div className="flex flex-col gap-4 my-auto text-left">
+        <div className="flex flex-col gap-3 md:gap-4 my-auto text-left">
           {navLinks.map((link, idx) => (
             <NavbarLink
               key={idx}
@@ -275,11 +276,11 @@ const Navbar = () => {
         </div>
 
         {/* Bottom Section */}
-        <div className="flex justify-between items-center w-full mt-auto">
-          <div className="font-sans font-semibold text-sm tracking-wider text-background/30 select-none">
+        <div className="flex justify-between items-center w-full mt-auto pt-2">
+          <div className="font-sans font-semibold text-xs md:text-sm tracking-wider text-background/30 select-none">
             [rafly]
           </div>
-          <div className="flex gap-4 text-xs uppercase tracking-wider text-background/50 font-sans font-medium">
+          <div className="flex gap-3 md:gap-4 text-xs uppercase tracking-wider text-background/50 font-sans font-medium">
             {socialLinks
               .filter((link) => ["Instagram", "Github", "LinkedIn"].includes(link.name))
               .map((link) => {

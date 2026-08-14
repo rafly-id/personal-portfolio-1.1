@@ -26,8 +26,8 @@ export const metadata: Metadata = {
 
 const Projects = () => {
   return (
-    <div className="mx-5 mt-35">
-      <Title text="all projects" showLine={false} className="text-[clamp(2.5rem,10vw,4.5rem)] md:text-[clamp(6rem,14vw,10rem)] w-full flex justify-center items-center " />
+    <div className="px-4 md:px-10 mt-24 md:mt-35">
+      <Title text="all projects" showLine={false} className="text-[clamp(2.25rem,9vw,4.5rem)] md:text-[clamp(6rem,14vw,10rem)] w-full flex justify-center items-center " />
       <ProjectListSection />
     </div>
   );

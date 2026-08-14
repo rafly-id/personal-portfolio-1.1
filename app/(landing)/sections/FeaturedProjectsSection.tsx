@@ -216,14 +216,14 @@ const FeaturedProjectsSection = () => {
           </div>
 
           {/* Mobile Header / Divider */}
-          <div className="mobile-header px-1 md:hidden mb-2 w-full">
+          <div className="mobile-header px-4 md:hidden mb-2 w-full">
             <Title text="Featured Projects" index="04" />
           </div>
 
           {/* Scroll Track */}
           <div
             ref={scrollTrackRef}
-            className="relative flex flex-col md:flex-row items-stretch md:items-center gap-8 md:gap-16 px-0 w-full md:w-max z-10"
+            className="relative flex flex-col md:flex-row items-stretch md:items-center gap-8 md:gap-16 px-4 md:px-0 w-full md:w-max z-10"
           >
             {featuredProjects.map((project, index) => (
               <div
@@ -235,9 +235,9 @@ const FeaturedProjectsSection = () => {
                 {/* Flat / Sharp cornered Image Card */}
                 <Link
                   href={`/projects/${project.slug}`}
-                  className="block overflow-hidden p-2 md:p-3 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]"
+                  className="block overflow-hidden p-1.5 md:p-3 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]"
                 >
-                  <div className="relative w-full aspect-video overflow-hidden rounded-4xl shadow-[inset_0_1px_2.5px_rgba(0,0,0,0.08)]">
+                  <div className="relative w-full aspect-[16/10] md:aspect-video overflow-hidden rounded-3xl md:rounded-4xl shadow-[inset_0_1px_2.5px_rgba(0,0,0,0.08)]">
                     {/* Scale wrapper that transition-scales on hover to avoid GSAP layout triggers */}
                     <div className="relative w-full h-full">
                       {/* Main background image */}
@@ -246,7 +246,7 @@ const FeaturedProjectsSection = () => {
                         alt={project.imageAlt}
                         fill
                         sizes="(max-width: 768px) 100vw, 900px"
-                        className="object-cover grayscale group-hover:grayscale-0 transition-[filter] duration-700 ease-[cubic-bezier(0.32,0.72,0,1)]"
+                        className="object-cover grayscale group-hover:grayscale-0 group-active:grayscale-0 active:grayscale-0 transition-[filter] duration-700 ease-[cubic-bezier(0.32,0.72,0,1)]"
                       />
                     </div>
                   </div>

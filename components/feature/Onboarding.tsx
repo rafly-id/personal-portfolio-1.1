@@ -134,7 +134,7 @@ const Onboarding = ({ onExitStart, onFinish }: OnboardingProps) => {
       >
         <h1
           ref={nameRef}
-          className="font-instrument_serif text-[clamp(2.75rem,14vw,20rem)] italic font-normal tracking-tighter text-background text-center leading-none w-full will-change-transform whitespace-nowrap py-4"
+          className="font-instrument_serif text-[clamp(2.25rem,11vw,20rem)] italic font-normal tracking-tighter text-background text-center leading-none w-full will-change-transform whitespace-nowrap py-4"
         >
           {nameWords.map((word, wordIdx) => (
             <span

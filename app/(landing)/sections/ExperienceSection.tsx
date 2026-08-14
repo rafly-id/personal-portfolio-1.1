@@ -71,7 +71,7 @@ const ExperienceSection = () => {
             <Title text="Experience" index="02" />
           </div>
           <SectionLabel text="[ My Experience ]" className="hidden md:inline-block" />
-          <h2 className="font-instrument_serif text-5xl md:text-7xl font-light italic text-foreground mt-6 mb-3 capitalize leading-none tracking-tight">
+          <h2 className="font-instrument_serif text-4xl sm:text-5xl md:text-7xl font-light italic text-foreground mt-4 md:mt-6 mb-3 capitalize leading-none tracking-tight">
             {experiences[0].company}
           </h2>
           <h3 className="font-sans text-lg md:text-xl font-medium text-foreground/85 mb-4 md:mb-6 flex items-center gap-2">
