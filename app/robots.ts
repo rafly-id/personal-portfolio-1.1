@@ -1,4 +1,5 @@
 import { MetadataRoute } from "next";
+import { SITE_CONFIG } from "@/lib/config";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -6,6 +7,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://rafly-id.vercel.app/sitemap.xml",
+    sitemap: `${SITE_CONFIG.siteUrl}/sitemap.xml`,
   };
 }
+

@@ -237,7 +237,7 @@ const FeaturedProjectsSection = () => {
                   href={`/projects/${project.slug}`}
                   className="block overflow-hidden p-1.5 md:p-3 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]"
                 >
-                  <div className="relative w-full aspect-[16/10] md:aspect-video overflow-hidden rounded-3xl md:rounded-4xl shadow-[inset_0_1px_2.5px_rgba(0,0,0,0.08)]">
+                  <div className="relative w-full aspect-16/10 md:aspect-video overflow-hidden rounded-3xl md:rounded-4xl shadow-[inset_0_1px_2.5px_rgba(0,0,0,0.08)]">
                     {/* Scale wrapper that transition-scales on hover to avoid GSAP layout triggers */}
                     <div className="relative w-full h-full">
                       {/* Main background image */}
@@ -255,14 +255,14 @@ const FeaturedProjectsSection = () => {
                 {/* Title & Metadata */}
                 <div className="mt-4 flex flex-col md:flex-row md:items-start justify-between gap-2 px-1">
                   <div>
-                    <h4 className="font-instrument_serif text-2xl lg:text-3xl font-black uppercase tracking-tight leading-none text-foreground">
+                    <h3 className="font-instrument_serif text-2xl lg:text-3xl font-black uppercase tracking-tight leading-none text-foreground">
                       <Link
                         href={`/projects/${project.slug}`}
                         className="hover:font-instrument_serif hover:text-foreground transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] inline-block"
                       >
                         {project.title}
                       </Link>
-                    </h4>
+                    </h3>
                     <p className="font-sans text-sm md:text-base text-foreground/60 font-light mt-1.5 max-w-xl">
                       {project.description}
                     </p>

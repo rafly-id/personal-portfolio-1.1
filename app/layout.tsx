@@ -5,6 +5,7 @@ import Navbar from "@/components/layout/Navbar";
 import SmoothScroll from "@/components/global/SmoothScroll";
 import TransitionProvider from "@/components/global/TransitionProvider";
 import Cursor from "@/components/global/Cursor";
+import { SITE_CONFIG } from "@/lib/config";
 
 const dm_sans = DM_Sans({
   variable: "--font-dm-sans",
@@ -21,14 +22,13 @@ const instrument_serif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://rafly-id.vercel.app/"),
+  metadataBase: new URL(SITE_CONFIG.siteUrl),
 
   title: {
-    default: "Rafly Adriansyah Portfolio",
+    default: SITE_CONFIG.title,
     template: "%s | Rafly Adriansyah",
   },
-  description:
-    "Portfolio pribadi Muhammad Rafly Adriansyah — seorang Frontend Developer yang juga berpengalaman dalam UI/UX dan pengembangan aplikasi web modern.",
+  description: SITE_CONFIG.description,
   keywords: [
     "Muhammad Rafly Adriansyah",
     "Frontend Developer",
@@ -46,10 +46,10 @@ export const metadata: Metadata = {
   ],
 
   authors: [
-    { name: "Muhammad Rafly Adriansyah", url: "https://rafly-id.vercel.app" },
+    { name: SITE_CONFIG.name, url: SITE_CONFIG.siteUrl },
   ],
-  creator: "Muhammad Rafly Adriansyah",
-  publisher: "Muhammad Rafly Adriansyah",
+  creator: SITE_CONFIG.name,
+  publisher: SITE_CONFIG.name,
   category: "technology",
 
   // Mencegah duplikasi konten dengan resolusi path relatif
@@ -86,24 +86,22 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Rafly Adriansyah Portfolio",
-    description:
-      "Portfolio pribadi Muhammad Rafly Adriansyah — Frontend Developer dengan fokus pada UI/UX dan pengembangan web.",
+    title: SITE_CONFIG.title,
+    description: SITE_CONFIG.description,
     images: ["/images/icon.webp"],
   },
 
   openGraph: {
-    title: "Rafly Adriansyah Portfolio",
-    description:
-      "Portfolio pribadi Muhammad Rafly Adriansyah — Frontend Developer dengan fokus pada UI/UX dan pengembangan web.",
-    url: "https://rafly-id.vercel.app/",
-    siteName: "Rafly Adriansyah Portfolio",
+    title: SITE_CONFIG.title,
+    description: SITE_CONFIG.description,
+    url: SITE_CONFIG.siteUrl,
+    siteName: SITE_CONFIG.title,
     images: [
       {
         url: "/images/icon.webp",
         width: 1200,
         height: 630,
-        alt: "Preview Portfolio Muhammad Rafly Adriansyah",
+        alt: `Preview Portfolio ${SITE_CONFIG.name}`,
       },
     ],
     locale: "id_ID",
@@ -136,10 +134,10 @@ export default function RootLayout({
               "@graph": [
                 {
                   "@type": "Person",
-                  "@id": "https://rafly-id.vercel.app/#person",
-                  name: "Muhammad Rafly Adriansyah",
+                  "@id": `${SITE_CONFIG.siteUrl}/#person`,
+                  name: SITE_CONFIG.name,
                   jobTitle: "Frontend Developer",
-                  url: "https://rafly-id.vercel.app",
+                  url: SITE_CONFIG.siteUrl,
                   sameAs: [
                     "https://github.com/rafly-id",
                     "https://www.linkedin.com/in/rafly-adriansyah-35587225b/",
@@ -172,13 +170,12 @@ export default function RootLayout({
                 },
                 {
                   "@type": "WebSite",
-                  "@id": "https://rafly-id.vercel.app/#website",
-                  url: "https://rafly-id.vercel.app",
-                  name: "Rafly Adriansyah Portfolio",
-                  description:
-                    "Portfolio pribadi Muhammad Rafly Adriansyah — Frontend Developer dengan fokus pada UI/UX dan pengembangan web.",
+                  "@id": `${SITE_CONFIG.siteUrl}/#website`,
+                  url: SITE_CONFIG.siteUrl,
+                  name: SITE_CONFIG.title,
+                  description: SITE_CONFIG.description,
                   publisher: {
-                    "@id": "https://rafly-id.vercel.app/#person",
+                    "@id": `${SITE_CONFIG.siteUrl}/#person`,
                   },
                   inLanguage: "en-US",
                 },

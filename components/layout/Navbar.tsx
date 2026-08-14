@@ -43,7 +43,9 @@ const NavbarLink = ({ href, label, onClick, setRef }: NavbarLinkProps) => {
       href={href}
       onClick={onClick}
       ref={(el) => {
-        (linkRef as any).current = el;
+        if (linkRef) {
+          (linkRef as React.MutableRefObject<HTMLAnchorElement | null>).current = el;
+        }
         setRef(el);
       }}
       className="text-4xl md:text-5xl font-light font-sans tracking-tight text-background hover:opacity-80 transition-opacity duration-300 lowercase block overflow-hidden py-1"
@@ -220,6 +222,9 @@ const Navbar = () => {
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
             onClick={() => setIsOpen(true)}
+            aria-expanded={isOpen}
+            aria-controls="mobile-overlay-menu"
+            aria-label="Open navigation menu"
             className="flex items-center gap-2.5 px-5 py-2 md:px-6 md:py-2.5 rounded-full bg-foreground text-background border border-foreground/10 shadow-sm transition-all duration-300 font-sans tracking-wide cursor-pointer select-none group"
           >
             <span className="font-mono text-sm leading-none flex items-center justify-center relative w-6 h-4">
@@ -243,6 +248,7 @@ const Navbar = () => {
       {/* Floating Menu Card Overlay */}
       <div
         ref={overlayRef}
+        id="mobile-overlay-menu"
         className="fixed top-4 right-4 left-auto bottom-auto w-[calc(100vw-2rem)] max-w-[340px] h-[380px] md:top-5 md:right-5 md:w-[360px] md:h-[480px] bg-foreground text-background rounded-3xl md:rounded-4xl p-6 md:p-8 flex flex-col justify-between z-50 shadow-2xl overflow-hidden invisible"
       >
         {/* Top Section */}

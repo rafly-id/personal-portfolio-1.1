@@ -1,7 +1,10 @@
-/**
- * Centralized design-system configuration.
- * Single source of truth for values that are used across multiple files.
- */
+export const SITE_CONFIG = {
+  name: "Muhammad Rafly Adriansyah",
+  title: "Rafly Adriansyah Portfolio",
+  description:
+    "Portfolio pribadi Muhammad Rafly Adriansyah — seorang Frontend Developer yang juga berpengalaman dalam UI/UX dan pengembangan aplikasi web modern.",
+  siteUrl: "https://rafly-id.vercel.app",
+} as const;
 
 /**
  * The two theme color values used throughout the site.
@@ -19,3 +22,4 @@ export const THEME_COLORS = {
  */
 export const LENIS_EASING = (t: number): number =>
   Math.min(1, 1.001 - Math.pow(2, -10 * t));
+

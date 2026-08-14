@@ -1,8 +1,9 @@
 import { MetadataRoute } from "next";
 import { projects } from "@/lib/data";
+import { SITE_CONFIG } from "@/lib/config";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://rafly-id.vercel.app";
+  const baseUrl = SITE_CONFIG.siteUrl;
 
   const staticUrls = [
     {
@@ -28,3 +29,4 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [...staticUrls, ...projectUrls];
 }
+

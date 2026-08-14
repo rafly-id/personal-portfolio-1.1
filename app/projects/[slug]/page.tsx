@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { projects } from "@/lib/data";
 import ProjectDetailClient from "./ProjectDetailClient";
 import type { Metadata } from "next";
+import { SITE_CONFIG } from "@/lib/config";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -17,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
-  const pageUrl = `https://rafly-id.vercel.app/projects/${slug}`;
+  const pageUrl = `${SITE_CONFIG.siteUrl}/projects/${slug}`;
 
   return {
     title: project.title,
@@ -60,14 +61,14 @@ export default async function ProjectPage({ params }: Props) {
     "@type": "SoftwareApplication",
     name: project.title,
     description: project.description,
-    url: `https://rafly-id.vercel.app/projects/${project.slug}`,
+    url: `${SITE_CONFIG.siteUrl}/projects/${project.slug}`,
     applicationCategory: "WebApplication",
     author: {
       "@type": "Person",
-      name: "Muhammad Rafly Adriansyah",
-      url: "https://rafly-id.vercel.app",
+      name: SITE_CONFIG.name,
+      url: SITE_CONFIG.siteUrl,
     },
-    image: `https://rafly-id.vercel.app${project.imageSrc}`,
+    image: `${SITE_CONFIG.siteUrl}${project.imageSrc}`,
   };
 
   return (

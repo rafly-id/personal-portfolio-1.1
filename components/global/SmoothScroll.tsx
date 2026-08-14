@@ -50,7 +50,7 @@ const SmoothScroll = ({ children }: { children: React.ReactNode }) => {
     };
 
     gsap.ticker.add(handleTicker);
-    gsap.ticker.lagSmoothing(0);
+    gsap.ticker.lagSmoothing(500, 33);
 
     return () => {
       gsap.ticker.remove(handleTicker);

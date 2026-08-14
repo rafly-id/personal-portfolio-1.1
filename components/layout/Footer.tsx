@@ -173,7 +173,7 @@ const Footer = () => {
       </div>
 
       {/* Bottom name wrapper */}
-      <div className="w-screen select-none overflow-hidden py-4 md:py-8">
+      <div className="w-full select-none overflow-hidden py-4 md:py-8">
         <h2
           ref={nameRef}
           className="font-instrument_serif text-[clamp(2.25rem,12vw,20rem)] italic font-normal lowercase tracking-tighter text-foreground text-center leading-none w-full will-change-transform whitespace-nowrap py-2 md:py-4"
