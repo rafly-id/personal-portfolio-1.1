@@ -142,7 +142,7 @@ The project follows a modular, scalable architecture. Key components and feature
 ## Contact & Socials
 
 - **Author:** Muhammad Rafly Adriansyah
-- **Role:** Frontend Developer & UI/UX Enthusiast
+- **Role:** Web Developer & Software Engineer
 - **Email:** [muhr0417@gmail.com](mailto:muhr0417@gmail.com)
 - **LinkedIn:** [Rafly Adriansyah](https://www.linkedin.com/in/rafly-adriansyah-35587225b/)
 - **GitHub:** [@rafly-id](https://github.com/rafly-id)

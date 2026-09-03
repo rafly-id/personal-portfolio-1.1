@@ -2,7 +2,7 @@ export const SITE_CONFIG = {
   name: "Muhammad Rafly Adriansyah",
   title: "Rafly Adriansyah Portfolio",
   description:
-    "Portfolio pribadi Muhammad Rafly Adriansyah — seorang Frontend Developer yang juga berpengalaman dalam UI/UX dan pengembangan aplikasi web modern.",
+    "Portfolio pribadi Muhammad Rafly Adriansyah — seorang Web Developer & Software Engineer yang berpengalaman dalam pengembangan aplikasi web modern, arsitektur perangkat lunak, dan sistem performa tinggi.",
   siteUrl: "https://rafly-id.vercel.app",
 } as const;
 

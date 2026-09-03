@@ -61,7 +61,7 @@ export default function MarqueeSection() {
               ref={i === 0 ? firstItemRef2 : undefined}
               className="shrink-0"
             >
-              Frontend Developer/&nbsp;
+              Web Developer/&nbsp;
             </span>
           ))}
         </div>

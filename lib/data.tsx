@@ -47,7 +47,7 @@ export const projects = [
     link: "https://rafly-id-try-movie-app.vercel.app/",
     github: "https://github.com/rafly-id/rafly_id_tryMovieApp",
     featured: true,
-    role: "Frontend Developer & UI Designer",
+    role: "Web Developer & Software Engineer",
     year: "2023",
     description:
       "A simple React and Vite-based application for searching movies using the TMDB API and displaying a list of trending titles.",
@@ -71,7 +71,7 @@ export const projects = [
     link: "https://rafly-id-awwward.vercel.app/",
     github: "https://github.com/rafly-id/rafly_id_awwward",
     featured: true,
-    role: "Creative Developer / Motion Designer",
+    role: "Creative Web Developer / Motion Designer",
     year: "2024",
     description:
       "An interactive portfolio demo showcasing Awwwards-style visual effects, inspired by the modern design of Zentry.",
@@ -95,7 +95,7 @@ export const projects = [
     link: "https://id-camp-todoapps.vercel.app/",
     github: "https://github.com/rafly-id/idCamp_todoapps",
     featured: true,
-    role: "Frontend Developer",
+    role: "Web Developer",
     year: "2023",
     description:
       "A clean task management application emphasizing local storage features, built as part of the idCamp training program.",
@@ -119,7 +119,7 @@ export const projects = [
     link: "https://web-client-uas-raflylucky.vercel.app/",
     github: "https://github.com/rafly-id/WebClient-UAS",
     featured: false,
-    role: "Frontend Developer",
+    role: "Web Developer",
     year: "2023",
     description:
       "A static web implementation project featuring a collection of HTML and CSS pages for a university web client practicum assignment.",
@@ -143,12 +143,12 @@ export const projects = [
     link: "https://sejati.krsjawa3.com/",
     github: "https://github.com/balai-p3kp-jawa-3",
     featured: true,
-    role: "Frontend Developer Intern",
+    role: "Web Developer Intern",
     year: "2026",
     description:
       "A large-scale modular frontend restructuring of the SEJATI housing data management application for BP3KP Jawa III.",
     longDescription:
-      "Developed during my frontend engineering internship, this project involved the complete restructuring of the SEJATI application and the integration of the Sinoman Dashboard for RTLH (Rumah Tidak Layak Huni) management. The primary objective was migrating a monolithic legacy codebase into a highly scalable, modular architecture using Feature-Sliced Design (FSD). It features strict TypeScript typings, optimized rendering pipelines, and high-level data security.",
+      "Developed during my web development engineering internship, this project involved the complete restructuring of the SEJATI application and the integration of the Sinoman Dashboard for RTLH (Rumah Tidak Layak Huni) management. The primary objective was migrating a monolithic legacy codebase into a highly scalable, modular architecture using Feature-Sliced Design (FSD). It features strict TypeScript typings, optimized rendering pipelines, and high-level data security.",
     features: [
       "Modular frontend architecture utilizing Feature-Sliced Design (FSD)",
       "Role-Based Access Control (RBAC) with Region-lock security measures",
@@ -190,15 +190,15 @@ export const techStack = [
 export const aboutDetails = [
   {
     title: "About Me",
-    text: "Since starting my programming journey in 2023, I have focused on frontend engineering with React, Next.js, and TypeScript. I specialize in building highly responsive, type-safe web applications that prioritize performance, clean code, and seamless user experiences.",
+    text: "Since starting my programming journey in 2023, I have focused on web development with React, Next.js, TypeScript, and Node.js. I specialize in building highly responsive, type-safe web applications that prioritize speed, clean code, scalable web architecture, and seamless user experiences.",
   },
   {
     title: "What Drives Me",
-    text: "I am driven by solving complex logical problems and optimizing technical architecture. From resolving memory leaks to designing scalable structures, I thrive on turning sophisticated visual designs and system requirements into stable, high-performance codebases.",
+    text: "I am driven by solving complex logical problems and optimizing technical architecture. From resolving memory leaks to designing scalable structures, I thrive on turning sophisticated visual designs and system requirements into stable, high-performance web systems.",
   },
   {
     title: "My Approach",
-    text: "I advocate for a highly modular and structured development process. By strictly adhering to best practices like Feature-Sliced Design (FSD), ensuring type-safety, and writing maintainable code, I deliver lightweight, polished, and easily extensible software systems.",
+    text: "I advocate for a highly modular and structured development process. By adhering to clean software architecture, type-safety, and maintainable design patterns, I deliver lightweight, robust, and easily extensible web applications.",
   },
 ];
 

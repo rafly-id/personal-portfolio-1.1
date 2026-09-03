@@ -7,7 +7,7 @@ export default function ProfileSection() {
     <section className="w-full h-auto">
       <ParallaxImage
         src="/images/rafly.webp"
-        alt="Muhammad Rafly Adriansyah - Frontend Developer Profile"
+        alt="Muhammad Rafly Adriansyah - Web Developer & Software Engineer Profile"
         fill
         containerClassName="w-full h-[450px] md:h-[750px] rounded-[calc(2.5rem-0.5rem)]"
         className="object-cover grayscale"

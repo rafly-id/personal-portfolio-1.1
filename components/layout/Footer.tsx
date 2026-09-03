@@ -128,7 +128,7 @@ const Footer = () => {
           {/* Left Column (Bio + Socials Stacked) */}
           <div className="footer-col md:col-span-7 flex flex-col items-start gap-8 text-left">
             <p className="font-instrument_serif italic text-2xl md:text-4xl font-normal text-foreground leading-snug tracking-tight max-w-xl">
-              Rafly is a Frontend Developer focused on creating modern web experiences.
+              Rafly is a Web Developer & Software Engineer focused on building high-performance web applications and scalable software systems.
             </p>
 
             <div className="flex flex-col items-start gap-4 w-full">

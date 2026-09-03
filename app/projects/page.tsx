@@ -8,21 +8,21 @@ import { projects } from "@/lib/data";
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "Explore frontend development, web application, and UI/UX design projects built by Muhammad Rafly Adriansyah.",
+    "Explore web development, software engineering, and full-stack application projects built by Muhammad Rafly Adriansyah.",
   alternates: {
     canonical: "/projects",
   },
   openGraph: {
     title: "Projects | Rafly Adriansyah",
     description:
-      "Explore frontend development, web application, and UI/UX design projects built by Muhammad Rafly Adriansyah.",
+      "Explore web development, software engineering, and full-stack application projects built by Muhammad Rafly Adriansyah.",
     url: `${SITE_CONFIG.siteUrl}/projects`,
   },
   twitter: {
     card: "summary_large_image",
     title: "Projects | Rafly Adriansyah",
     description:
-      "Explore frontend development, web application, and UI/UX design projects built by Muhammad Rafly Adriansyah.",
+      "Explore web development, software engineering, and full-stack application projects built by Muhammad Rafly Adriansyah.",
   },
 };
 
@@ -32,7 +32,7 @@ const Projects = () => {
     "@type": "CollectionPage",
     name: "Projects | Rafly Adriansyah",
     description:
-      "Explore frontend development, web application, and UI/UX design projects built by Muhammad Rafly Adriansyah.",
+      "Explore web development, software engineering, and full-stack application projects built by Muhammad Rafly Adriansyah.",
     url: `${SITE_CONFIG.siteUrl}/projects`,
     mainEntity: {
       "@type": "ItemList",

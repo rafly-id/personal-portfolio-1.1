@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
 
-export const alt = "Rafly Adriansyah — Frontend Developer Portfolio";
+export const alt = "Rafly Adriansyah — Web Developer & Software Engineer Portfolio";
 export const size = {
   width: 1200,
   height: 630,
@@ -68,7 +68,7 @@ export default async function Image() {
               fontWeight: 400,
             }}
           >
-            Frontend Developer & UI/UX Specialist
+            Web Developer & Software Engineer
           </p>
         </div>
 

@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "Muhammad Rafly Adriansyah Portfolio",
     short_name: "Rafly Portfolio",
     description:
-      "Portfolio pribadi Muhammad Rafly Adriansyah — Frontend Developer dengan fokus pada UI/UX dan pengembangan web.",
+      "Portfolio pribadi Muhammad Rafly Adriansyah — Web Developer & Software Engineer dengan fokus pada arsitektur web modern, rekayasa perangkat lunak, dan aplikasi performa tinggi.",
     start_url: "/",
     display: "standalone",
     background_color: "#000000",
