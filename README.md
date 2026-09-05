@@ -12,6 +12,7 @@ A high-performance, minimalist personal portfolio website showcasing the project
 ## Key Features
 
 - **Next.js 16 (App Router):** Fast, production-ready routing structure, static generation, and optimized metadata headers.
+- **SEO & JSON-LD Structured Data:** Full technical SEO architecture featuring JSON-LD `@graph` (Person & WebSite schemas), dynamic XML sitemap generation for project routes, custom `robots.txt`, Web App Manifest, and OpenGraph / Twitter metadata cards.
 - **GSAP & Lenis Integration:** Custom page loader transitions, text animations, parallax effects, and smooth inertia scrolling.
 - **Tailwind CSS v4:** Future-proof utility-first styling with native CSS variables.
 - **Interactive Cursor:** A canvas-free HTML cursor that dynamically reacts to interactive UI elements.
@@ -109,7 +110,11 @@ The project follows a modular, scalable architecture. Key components and feature
 │   ├── work/                 # Work route directory
 │   │   ├── page.tsx          # Master work portfolio listing page
 │   │   └── [slug]/           # Dynamic project details and case studies
-│   ├── layout.tsx            # Global layout wrapper, fonts, and metadata configurations
+│   ├── layout.tsx            # Global layout wrapper, fonts, metadata & JSON-LD schema markup
+│   ├── manifest.ts           # Web application manifest configuration
+│   ├── opengraph-image.tsx   # Dynamic OpenGraph social preview image generator
+│   ├── robots.ts             # Dynamic robots.txt routing rule engine
+│   ├── sitemap.ts            # Dynamic XML sitemap generator (Includes dynamic project routes)
 │   └── template.tsx          # Page transition wrapper
 ├── components/               # UI and Layout Components
 │   ├── feature/              # Feature-specific blocks (e.g., Work cards, onboarding screen)
