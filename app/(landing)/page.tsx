@@ -11,7 +11,7 @@ import CertificatesSection from "./sections/CertificatesSection";
 
 export const metadata: Metadata = {
   description:
-    "Portfolio pribadi Muhammad Rafly Adriansyah — seorang Frontend Developer yang juga berpengalaman dalam UI/UX dan pengembangan aplikasi web modern.",
+    "Personal portfolio of Muhammad Rafly Adriansyah — a Software Engineer & Web Developer specializing in modern React, Next.js, TypeScript, and high-performance web applications.",
   alternates: {
     canonical: "/",
   },

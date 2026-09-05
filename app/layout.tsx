@@ -115,6 +115,14 @@ export const metadata: Metadata = {
     locale: "id_ID",
     alternateLocale: ["en_US"],
     type: "website",
+    images: [
+      {
+        url: "/images/icon.webp",
+        width: 1200,
+        height: 630,
+        alt: SITE_CONFIG.title,
+      },
+    ],
   },
 
   verification: {

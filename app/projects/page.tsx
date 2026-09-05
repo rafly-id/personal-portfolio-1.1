@@ -54,6 +54,7 @@ const Projects = () => {
       <div className="px-4 md:px-10 mt-24 md:mt-35">
         <Title
           text="all projects"
+          as="h1"
           showLine={false}
           className="text-[clamp(2.25rem,9vw,4.5rem)] md:text-[clamp(6rem,14vw,10rem)] w-full flex justify-center items-center "
         />
