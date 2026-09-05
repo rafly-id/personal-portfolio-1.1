@@ -16,7 +16,7 @@ const AboutDetailsSection = () => {
     () => {
       if (!containerRef.current || !triggerRef.current) return;
 
-      const paragraphs = gsap.utils.toArray(".about-paragraph");
+      const paragraphs = gsap.utils.toArray<Element>(".about-paragraph");
       let mm = gsap.matchMedia();
 
       // Desktop layout with side-shifting
@@ -42,7 +42,7 @@ const AboutDetailsSection = () => {
         });
 
         // Paragraph 1 (Float Left)
-        tl.to(paragraphs[0] as Element, {
+        tl.to(paragraphs[0], {
           z: 0,
           scale: 1,
           opacity: 1,
@@ -51,7 +51,7 @@ const AboutDetailsSection = () => {
           ease: "power2.out",
           duration: ANIM_DURATIONS.slow,
         })
-        .to(paragraphs[0] as Element, {
+        .to(paragraphs[0], {
           z: 600,
           scale: 1.6,
           opacity: 0,
@@ -62,7 +62,7 @@ const AboutDetailsSection = () => {
         }, "+=0.4");
 
         // Paragraph 2 (Float Right)
-        tl.to(paragraphs[1] as Element, {
+        tl.to(paragraphs[1], {
           z: 0,
           scale: 1,
           opacity: 1,
@@ -71,7 +71,7 @@ const AboutDetailsSection = () => {
           ease: "power2.out",
           duration: ANIM_DURATIONS.slow,
         })
-        .to(paragraphs[1] as Element, {
+        .to(paragraphs[1], {
           z: 600,
           scale: 1.6,
           opacity: 0,
@@ -82,7 +82,7 @@ const AboutDetailsSection = () => {
         }, "+=0.4");
 
         // Paragraph 3 (Float Left)
-        tl.to(paragraphs[2] as Element, {
+        tl.to(paragraphs[2], {
           z: 0,
           scale: 1,
           opacity: 1,
@@ -91,7 +91,7 @@ const AboutDetailsSection = () => {
           ease: "power2.out",
           duration: ANIM_DURATIONS.slow,
         })
-        .to(paragraphs[2] as Element, {
+        .to(paragraphs[2], {
           z: 600,
           scale: 1.6,
           opacity: 0,
@@ -115,13 +115,13 @@ const AboutDetailsSection = () => {
         });
 
         paragraphs.forEach((p) => {
-          gsap.to(p as Element, {
+          gsap.to(p, {
             opacity: 1,
             y: 0,
             duration: 0.8,
             ease: "power2.out",
             scrollTrigger: {
-              trigger: p as Element,
+              trigger: p,
               start: "top 85%",
               toggleActions: "play none none none",
             },

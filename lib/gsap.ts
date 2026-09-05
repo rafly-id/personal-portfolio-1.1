@@ -15,4 +15,14 @@ import SplitText from "gsap/SplitText";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
+export interface GSAPMatchMediaConditions {
+  isDesktop?: boolean;
+  isMobile?: boolean;
+}
+
+export interface GSAPContext {
+  conditions?: GSAPMatchMediaConditions;
+}
+
 export { gsap, ScrollTrigger, SplitText };
+

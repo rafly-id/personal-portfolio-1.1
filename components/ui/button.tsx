@@ -5,28 +5,38 @@ import Link from "@/components/global/TransitionLink";
 import { cn } from "@/lib/utils";
 import TextSwap from "@/components/ui/TextSwap";
 
-interface ButtonProps {
+interface ButtonBaseProps {
   children?: React.ReactNode;
   text?: string; // Text to be swapped on hover
-  href?: string;
-  onClick?: (e: React.MouseEvent) => void;
   className?: string;
   variant?: "solid" | "outline" | "ghost";
-  target?: string;
-  rel?: string;
 }
 
-export default function Button({
-  children,
-  text,
-  href,
-  onClick,
-  className,
-  variant = "solid",
-  target,
-  rel,
-}: ButtonProps) {
-  const buttonRef = useRef<any>(null);
+type ButtonAsButton = ButtonBaseProps & {
+  href?: undefined;
+  type?: "button" | "submit" | "reset";
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+} & Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, keyof ButtonBaseProps | "type" | "onClick">;
+
+type ButtonAsAnchor = ButtonBaseProps & {
+  href: string;
+  target?: string;
+  rel?: string;
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>;
+} & Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, keyof ButtonBaseProps | "href" | "onClick">;
+
+export type ButtonProps = ButtonAsButton | ButtonAsAnchor;
+
+export default function Button(props: ButtonProps) {
+  const {
+    children,
+    text,
+    className,
+    variant = "solid",
+    ...rest
+  } = props;
+
+  const buttonRef = useRef<HTMLElement | null>(null);
 
   const baseClasses = cn(
     "group flex items-center justify-center gap-2 px-6 py-3 rounded-full font-sans text-sm font-semibold select-none cursor-pointer transition-all duration-300 active:scale-95",
@@ -51,23 +61,31 @@ export default function Button({
     );
   };
 
-  if (href) {
+  if (props.href) {
+    const { href, onClick, target, rel, ...anchorProps } = props as ButtonAsAnchor;
     const isInternal = href.startsWith("/") && !href.startsWith("//");
     if (isInternal) {
       return (
-        <Link ref={buttonRef} href={href} className={baseClasses} onClick={onClick}>
+        <Link
+          ref={buttonRef as React.RefObject<HTMLAnchorElement>}
+          href={href}
+          className={baseClasses}
+          onClick={onClick}
+          {...anchorProps}
+        >
           {renderContent()}
         </Link>
       );
     } else {
       return (
         <a
-          ref={buttonRef}
+          ref={buttonRef as React.RefObject<HTMLAnchorElement>}
           href={href}
           className={baseClasses}
           onClick={onClick}
           target={target || "_blank"}
           rel={rel || "noopener noreferrer"}
+          {...anchorProps}
         >
           {renderContent()}
         </a>
@@ -75,8 +93,16 @@ export default function Button({
     }
   }
 
+  const { onClick, type = "button", ...buttonProps } = props as ButtonAsButton;
+
   return (
-    <button ref={buttonRef} type="button" className={baseClasses} onClick={onClick}>
+    <button
+      ref={buttonRef as React.RefObject<HTMLButtonElement>}
+      type={type}
+      className={baseClasses}
+      onClick={onClick}
+      {...buttonProps}
+    >
       {renderContent()}
     </button>
   );

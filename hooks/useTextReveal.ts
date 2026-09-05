@@ -1,6 +1,6 @@
 "use client";
 
-import { gsap, SplitText, ScrollTrigger } from "@/lib/gsap";
+import { gsap, SplitText, ScrollTrigger, GSAPMatchMediaConditions } from "@/lib/gsap";
 import { useGSAP } from "@gsap/react";
 import { RefObject } from "react";
 import { ANIM_DURATIONS, ANIM_EASES, ANIM_STAGGERS } from "@/lib/animation";
@@ -76,7 +76,8 @@ export function useTextReveal({
             isMobile: "(max-width: 767px)",
           },
           (context) => {
-            const { isDesktop } = context.conditions as { isDesktop: boolean };
+            const conditions = context.conditions as GSAPMatchMediaConditions | undefined;
+            const isDesktop = !!conditions?.isDesktop;
 
             gsap.from(targets, {
               y: isDesktop ? y : Math.min(y, 60),

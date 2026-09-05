@@ -147,7 +147,6 @@ const CertificatesSection = () => {
               fill
               className="object-cover grayscale"
               sizes="340px"
-              priority
             />
           )}
         </div>

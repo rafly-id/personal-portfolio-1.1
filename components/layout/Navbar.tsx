@@ -37,15 +37,13 @@ interface NavbarLinkProps {
 }
 
 const NavbarLink = ({ href, label, onClick, setRef }: NavbarLinkProps) => {
-  const linkRef = useRef<HTMLAnchorElement>(null);
+  const linkRef = useRef<HTMLAnchorElement | null>(null);
   return (
     <Link
       href={href}
       onClick={onClick}
       ref={(el) => {
-        if (linkRef) {
-          (linkRef as React.MutableRefObject<HTMLAnchorElement | null>).current = el;
-        }
+        linkRef.current = el;
         setRef(el);
       }}
       className="text-4xl md:text-5xl font-light font-sans tracking-tight text-background hover:opacity-80 transition-opacity duration-300 lowercase block overflow-hidden py-1"

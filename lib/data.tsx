@@ -13,8 +13,16 @@ import {
   SiCss3,
 } from "react-icons/si";
 import { getWhatsAppLink } from "@/lib/utils";
+import {
+  SocialLink,
+  Project,
+  TechItem,
+  AboutDetail,
+  Certificate,
+  Experience,
+} from "@/types";
 
-export const socialLinks = [
+export const socialLinks: SocialLink[] = [
   {
     name: "LinkedIn",
     href: "https://www.linkedin.com/in/rafly-adriansyah-35587225b/",
@@ -37,7 +45,7 @@ export const socialLinks = [
   },
 ];
 
-export const projects = [
+export const projects: Project[] = [
   {
     slug: "movie-app",
     imageSrc: "/images/movie.webp",
@@ -160,7 +168,7 @@ export const projects = [
   },
 ];
 
-export const techStack = [
+export const techStack: TechItem[] = [
   { name: "HTML5", icon: SiHtml5 },
   { name: "CSS3", icon: SiCss3 },
   { name: "JavaScript", icon: SiJavascript },
@@ -187,7 +195,7 @@ export const techStack = [
   { name: "Figma", icon: SiFigma },
 ];
 
-export const aboutDetails = [
+export const aboutDetails: AboutDetail[] = [
   {
     title: "About Me",
     text: "Since starting my programming journey in 2023, I have focused on web development with React, Next.js, TypeScript, and Node.js. I specialize in building highly responsive, type-safe web applications that prioritize speed, clean code, scalable web architecture, and seamless user experiences.",
@@ -202,7 +210,7 @@ export const aboutDetails = [
   },
 ];
 
-export const certificates = [
+export const certificates: Certificate[] = [
   {
     imageSrc: "/images/sertif-1.jpg",
     imageAlt: "Sertifikat 1",
@@ -226,7 +234,7 @@ export const certificates = [
   },
 ];
 
-export const experiences = [
+export const experiences: Experience[] = [
   {
     company: "BP3KP Jawa III",
     role: "Frontend Developer Intern",

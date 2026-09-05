@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { usePathname } from "next/navigation";
 import { useGSAP } from "@gsap/react";
-import { gsap, SplitText } from "@/lib/gsap";
+import { gsap, SplitText, GSAPMatchMediaConditions } from "@/lib/gsap";
 import { ScrollTrigger } from "@/lib/gsap";
 import { FaLinkedin, FaInstagram, FaGithub, FaWhatsapp } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
@@ -42,7 +42,8 @@ const Footer = () => {
           isMobile: "(max-width: 767px)",
         },
         (context) => {
-          const { isDesktop } = context.conditions as { isDesktop: boolean };
+          const conditions = context.conditions as GSAPMatchMediaConditions | undefined;
+          const isDesktop = !!conditions?.isDesktop;
 
           // Entrance Animation for Content Columns
           if (columns.length > 0) {

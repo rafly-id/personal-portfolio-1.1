@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { gsap } from "@/lib/gsap";
+import { gsap, GSAPMatchMediaConditions } from "@/lib/gsap";
 import { useGSAP } from "@gsap/react";
 import { ANIM_DURATIONS, ANIM_EASES, ANIM_STAGGERS } from "@/lib/animation";
 
@@ -39,7 +39,8 @@ const Onboarding = ({ onExitStart, onFinish }: OnboardingProps) => {
           isMobile: "(max-width: 767px)",
         },
         (context) => {
-          const { isDesktop } = context.conditions as { isDesktop: boolean };
+          const conditions = context.conditions as GSAPMatchMediaConditions | undefined;
+          const isDesktop = !!conditions?.isDesktop;
 
           const tl = gsap.timeline({
             onComplete: () => {

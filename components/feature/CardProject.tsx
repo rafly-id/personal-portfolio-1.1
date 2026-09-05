@@ -21,6 +21,7 @@ type CardProjectProps = Pick<
   "slug" | "imageSrc" | "imageAlt" | "title" | "tech"
 > & {
   className?: string;
+  priority?: boolean;
 };
 
 const CardProject = memo(function CardProject({
@@ -30,6 +31,7 @@ const CardProject = memo(function CardProject({
   title,
   tech,
   className,
+  priority = false,
 }: CardProjectProps) {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const techRef = useRef<HTMLParagraphElement>(null);
@@ -63,7 +65,7 @@ const CardProject = memo(function CardProject({
           containerClassName="w-full aspect-[16/10] md:aspect-auto md:h-[600px] lg:h-[700px] rounded-3xl md:rounded-[2rem] shadow-[inset_0_1px_2.5px_rgba(0,0,0,0.08)]"
           className="grayscale group-hover/card:grayscale-0 group-active/card:grayscale-0 active:grayscale-0 transition-[filter] duration-700 ease-[cubic-bezier(0.32,0.72,0,1)]"
           sizes="(max-width: 768px) 100vw, 50vw"
-          priority
+          priority={priority}
         />
       </Link>
 
