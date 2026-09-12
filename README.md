@@ -152,4 +152,3 @@ The project follows a modular, scalable architecture. Key components and feature
 - **LinkedIn:** [Rafly Adriansyah](https://www.linkedin.com/in/rafly-adriansyah-35587225b/)
 - **GitHub:** [@rafly-id](https://github.com/rafly-id)
 - **Instagram:** [@\_\_rafllyy](https://www.instagram.com/__rafllyy/)
-- **WhatsApp:** [Message me](https://wa.me/628123456789) *(Dynamic WhatsApp Link generated on site)*

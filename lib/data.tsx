@@ -12,7 +12,6 @@ import {
   SiHtml5,
   SiCss3,
 } from "react-icons/si";
-import { getWhatsAppLink } from "@/lib/utils";
 import {
   SocialLink,
   Project,
@@ -38,10 +37,6 @@ export const socialLinks: SocialLink[] = [
   {
     name: "Email",
     href: "mailto:muhr0417@gmail.com",
-  },
-  {
-    name: "Whatsapp",
-    href: getWhatsAppLink("Halo Rafly"),
   },
 ];
 

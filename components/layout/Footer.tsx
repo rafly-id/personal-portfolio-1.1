@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useGSAP } from "@gsap/react";
 import { gsap, SplitText, GSAPMatchMediaConditions } from "@/lib/gsap";
 import { ScrollTrigger } from "@/lib/gsap";
-import { FaLinkedin, FaInstagram, FaGithub, FaWhatsapp } from "react-icons/fa";
+import { FaLinkedin, FaInstagram, FaGithub } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { socialLinks } from "@/lib/data";
 import Button from "@/components/ui/button";
@@ -18,7 +18,6 @@ const iconMap: Record<string, React.ComponentType<{ size?: number }>> = {
   Instagram: FaInstagram,
   Github: FaGithub,
   Email: MdEmail,
-  Whatsapp: FaWhatsapp,
 };
 
 const Footer = () => {
