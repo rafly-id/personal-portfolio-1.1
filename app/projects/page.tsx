@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description:
     "Explore web development, software engineering, and full-stack application projects built by Muhammad Rafly Adriansyah.",
   alternates: {
-    canonical: "/projects",
+    canonical: `${SITE_CONFIG.siteUrl}/projects`,
   },
   openGraph: {
     title: "Projects | Rafly Adriansyah",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 };
 
 const Projects = () => {
-  const jsonLd = {
+  const collectionJsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     name: "Projects | Rafly Adriansyah",
@@ -45,11 +45,34 @@ const Projects = () => {
     },
   };
 
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: SITE_CONFIG.siteUrl,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Projects",
+        item: `${SITE_CONFIG.siteUrl}/projects`,
+      },
+    ],
+  };
+
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <div className="px-4 md:px-10 mt-24 md:mt-35">
         <Title

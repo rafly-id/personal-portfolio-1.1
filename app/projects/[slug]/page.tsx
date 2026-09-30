@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: project.title,
     description: project.description,
     alternates: {
-      canonical: `/projects/${slug}`,
+      canonical: pageUrl,
     },
     openGraph: {
       title: `${project.title} | Rafly Adriansyah`,
@@ -56,7 +56,7 @@ export default async function ProjectPage({ params }: Props) {
     notFound();
   }
 
-  const jsonLd = {
+  const softwareJsonLd = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     name: project.title,
@@ -71,11 +71,40 @@ export default async function ProjectPage({ params }: Props) {
     image: new URL(project.imageSrc, SITE_CONFIG.siteUrl).toString(),
   };
 
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: SITE_CONFIG.siteUrl,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Projects",
+        item: `${SITE_CONFIG.siteUrl}/projects`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: project.title,
+        item: `${SITE_CONFIG.siteUrl}/projects/${project.slug}`,
+      },
+    ],
+  };
+
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <ProjectDetailClient project={project} />
     </>
