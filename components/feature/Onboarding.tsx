@@ -24,7 +24,8 @@ const Onboarding = ({ onExitStart, onFinish }: OnboardingProps) => {
       // 1. Initial State Setup: Prepare letters for staggered mask entry
       if (letters && letters.length > 0) {
         gsap.set(letters, {
-          yPercent: 180,
+          yPercent: 250,
+          autoAlpha: 0,
         });
       }
 
@@ -55,6 +56,7 @@ const Onboarding = ({ onExitStart, onFinish }: OnboardingProps) => {
           if (letters && letters.length > 0) {
             tl.to(letters, {
               yPercent: 0,
+              autoAlpha: 1,
               duration: ANIM_DURATIONS.slow,
               stagger: ANIM_STAGGERS.fast,
               ease: ANIM_EASES.entry,
@@ -73,7 +75,7 @@ const Onboarding = ({ onExitStart, onFinish }: OnboardingProps) => {
           tl.to(
             textWrapperRef.current,
             {
-              y: -140,
+              y: isDesktop ? -140 : -70,
               opacity: 0,
               filter: isDesktop ? "blur(20px)" : "none",
               duration: ANIM_DURATIONS.standard,
